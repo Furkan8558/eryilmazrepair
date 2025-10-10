@@ -63,10 +63,20 @@ npm run build
 
 ## 📚 Documentation
 
+### Getting Started
 - **[QUICK_START.md](QUICK_START.md)** - Get started in 3 steps
 - **[INSTALLATION.md](INSTALLATION.md)** - Detailed installation guide
 - **[CUSTOMIZATION_GUIDE.md](CUSTOMIZATION_GUIDE.md)** - Complete customization guide
 - **[FILE_STRUCTURE.md](FILE_STRUCTURE.md)** - Project structure explained
+
+### Deployment & Hosting 🚀
+- **[QUICK_DEPLOY.md](QUICK_DEPLOY.md)** - Deploy in 5 minutes ⚡
+- **[DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)** - Complete deployment documentation
+- **[DEPLOYMENT_CHECKLIST.md](DEPLOYMENT_CHECKLIST.md)** - Pre-launch checklist
+- **[HOSTING_SUMMARY.md](HOSTING_SUMMARY.md)** - Hosting comparison & recommendations
+
+### Integrations
+- **[GOOGLE_MAPS_SETUP.md](GOOGLE_MAPS_SETUP.md)** - Google Maps integration guide
 
 ## 🎯 What to Customize
 
@@ -156,19 +166,28 @@ export const companyInfo = {
 
 ## 🚢 Deployment
 
-### Deploy to Vercel (Recommended)
-1. Push to GitHub
-2. Import to [Vercel](https://vercel.com)
-3. Auto-deploy! ✨
+### ⚡ Quick Deploy (Recommended)
 
-### Deploy to Netlify
-1. Run `npm run build`
-2. Upload `dist` folder to [Netlify](https://netlify.com)
+**Vercel (Easiest):**
+1. Push to GitHub
+2. Visit [vercel.com/new](https://vercel.com/new)
+3. Import your repository
+4. Add `VITE_GOOGLE_MAPS_API_KEY` environment variable
+5. Deploy! ✨
+
+**Configuration files included:**
+- ✅ `vercel.json` - Vercel config (React Router support)
+- ✅ `netlify.toml` - Netlify config
+- ✅ `CNAME` - Custom domain ready
+
+**Detailed guides:**
+- 📖 `QUICK_DEPLOY.md` - 5-minute deployment guide
+- 📖 `DEPLOYMENT_GUIDE.md` - Complete deployment documentation
 
 ### Other Options
-- GitHub Pages
-- AWS S3
-- Any static hosting service
+- Netlify (equally good)
+- GitHub Pages (requires extra setup)
+- Cloudflare Pages
 
 ## 📋 NPM Scripts
 
