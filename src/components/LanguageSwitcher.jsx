@@ -12,11 +12,11 @@ const LanguageSwitcher = () => {
   return (
     <button
       onClick={toggleLanguage}
-      className="flex items-center gap-2 px-3 py-2 rounded-lg bg-primary-100 text-primary-700 hover:bg-primary-200 transition-colors"
+      className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg bg-primary-100 text-primary-700 hover:bg-primary-200 transition-colors text-sm"
       aria-label="Change language"
     >
-      <FaGlobe className="text-lg" />
-      <span className="font-semibold text-sm">
+      <FaGlobe className="text-sm" />
+      <span className="font-semibold text-xs">
         {i18n.language === 'en' ? 'TR' : 'EN'}
       </span>
     </button>

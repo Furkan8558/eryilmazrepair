@@ -232,17 +232,20 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden text-secondary-700 hover:text-primary-600 transition-colors"
-          >
-            {mobileMenuOpen ? (
-              <FaTimes className="text-2xl" />
-            ) : (
-              <FaBars className="text-2xl" />
-            )}
-          </button>
+          {/* Mobile Language Switcher & Menu */}
+          <div className="lg:hidden flex items-center space-x-3">
+            <LanguageSwitcher />
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="text-secondary-700 hover:text-primary-600 transition-colors"
+            >
+              {mobileMenuOpen ? (
+                <FaTimes className="text-2xl" />
+              ) : (
+                <FaBars className="text-2xl" />
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
