@@ -1,40 +1,42 @@
 import { FaAward, FaClock, FaDollarSign, FaUserTie, FaShieldAlt, FaStar, FaCheckCircle, FaTools, FaThumbsUp } from 'react-icons/fa'
+import { useTranslation } from 'react-i18next'
 import CallToAction from '../components/CallToAction'
 import { companyInfo } from '../data/companyInfo'
 
 export default function WhyChooseUs() {
+  const { t } = useTranslation()
   const mainReasons = [
     {
       icon: FaUserTie,
-      title: 'Qualified Experts',
-      description: 'Our technicians are factory-trained, certified, and have 15+ years of experience. They stay current with the latest appliance technologies and repair techniques.',
+      title: t('whyUs.qualifiedExperts'),
+      description: t('whyUs.qualifiedExpertsDescription'),
       features: [
-        'Factory-trained technicians',
-        'Ongoing education & certification',
-        'Background-checked professionals',
-        'Courteous & respectful service'
+        t('whyUs.qualifiedExpertsFeature1'),
+        t('whyUs.qualifiedExpertsFeature2'),
+        t('whyUs.qualifiedExpertsFeature3'),
+        t('whyUs.qualifiedExpertsFeature4')
       ]
     },
     {
       icon: FaClock,
-      title: 'Scheduled Appointment Times',
-      description: 'We value your time. Schedule appointments that work for you, and we\'ll arrive on time within the scheduled window. Same-day service available.',
+      title: t('whyUs.scheduledTimes'),
+      description: t('whyUs.scheduledTimesDescription'),
       features: [
-        'Flexible scheduling options',
-        'Same-day service available',
-        'On-time arrival guarantee',
-        'Real-time technician tracking'
+        t('whyUs.scheduledTimesFeature1'),
+        t('whyUs.scheduledTimesFeature2'),
+        t('whyUs.scheduledTimesFeature3'),
+        t('whyUs.scheduledTimesFeature4')
       ]
     },
     {
       icon: FaDollarSign,
-      title: 'Upfront, Flat-Rate Pricing',
-      description: 'No hidden fees or surprise charges. We provide clear, upfront pricing before we start any work. You\'ll know exactly what you\'ll pay.',
+      title: t('whyUs.upfrontPricing'),
+      description: t('whyUs.upfrontPricingDescription'),
       features: [
-        'Free diagnostic with repair',
-        'Clear pricing before work begins',
-        'No hidden fees',
-        'Competitive rates'
+        t('whyUs.upfrontPricingFeature1'),
+        t('whyUs.upfrontPricingFeature2'),
+        t('whyUs.upfrontPricingFeature3'),
+        t('whyUs.upfrontPricingFeature4')
       ]
     }
   ]
@@ -42,64 +44,64 @@ export default function WhyChooseUs() {
   const additionalBenefits = [
     {
       icon: FaShieldAlt,
-      title: 'Warranty Guaranteed',
-      description: '90-day labor warranty on all repairs. We stand behind our work 100%.'
+      title: t('whyUs.warrantyGuaranteed'),
+      description: t('whyUs.warrantyGuaranteedDescription')
     },
     {
       icon: FaStar,
-      title: '5-Star Service',
-      description: 'Rated 5 stars by thousands of satisfied customers across our service area.'
+      title: t('whyUs.fiveStarService'),
+      description: t('whyUs.fiveStarServiceDescription')
     },
     {
       icon: FaTools,
-      title: 'All Major Brands',
-      description: 'We service all major appliance brands including Samsung, LG, Whirlpool, GE, and more.'
+      title: t('whyUs.allMajorBrands'),
+      description: t('whyUs.allMajorBrandsDescription')
     },
     {
       icon: FaAward,
-      title: 'Licensed & Insured',
-      description: 'Fully licensed, bonded, and insured for your complete peace of mind.'
+      title: t('whyUs.licensedInsured'),
+      description: t('whyUs.licensedInsuredDescription')
     },
     {
       icon: FaCheckCircle,
-      title: 'Quality Parts',
-      description: 'We use only genuine OEM parts to ensure lasting repairs and optimal performance.'
+      title: t('whyUs.qualityParts'),
+      description: t('whyUs.qualityPartsDescription')
     },
     {
       icon: FaThumbsUp,
-      title: '100% Satisfaction',
-      description: 'Your satisfaction is our priority. We\'re not done until you\'re completely happy.'
+      title: t('whyUs.satisfaction'),
+      description: t('whyUs.satisfactionDescription')
     }
   ]
 
   const processSteps = [
     {
       number: '1',
-      title: 'Schedule Service',
-      description: 'Call us or book online at a time that works for you. We offer flexible scheduling including same-day appointments.'
+      title: t('whyUs.step1Title'),
+      description: t('whyUs.step1Description')
     },
     {
       number: '2',
-      title: 'Technician Arrival',
-      description: 'Our qualified expert arrives on time, diagnoses the problem, and provides upfront, flat-rate pricing.'
+      title: t('whyUs.step2Title'),
+      description: t('whyUs.step2Description')
     },
     {
       number: '3',
-      title: 'Expert Repair',
-      description: 'Once you approve, we complete the repair efficiently using quality parts and proven techniques.'
+      title: t('whyUs.step3Title'),
+      description: t('whyUs.step3Description')
     },
     {
       number: '4',
-      title: 'Quality Check',
-      description: 'We test your appliance to ensure it\'s working perfectly and clean up our work area.'
+      title: t('whyUs.step4Title'),
+      description: t('whyUs.step4Description')
     }
   ]
 
   const stats = [
-    { number: '15+', label: 'Years of Excellence' },
-    { number: '5,000+', label: 'Happy Customers' },
-    { number: '99%', label: 'Success Rate' },
-    { number: '24/7', label: 'Emergency Service' }
+    { number: '15+', label: t('whyUs.yearsExcellence') },
+    { number: '5,000+', label: t('whyUs.happyCustomers') },
+    { number: '99%', label: t('whyUs.successRate') },
+    { number: '24/7', label: t('whyUs.emergencyService') }
   ]
 
   return (
@@ -107,10 +109,9 @@ export default function WhyChooseUs() {
       {/* Hero Section */}
       <section className="bg-gradient-primary text-white py-20">
         <div className="container-custom text-center">
-          <h1 className="mb-6">Why Choose {companyInfo.name}</h1>
+          <h1 className="mb-6">{t('whyUs.title')}</h1>
           <p className="text-xl max-w-3xl mx-auto mb-8">
-            We're not just another appliance repair service. We're your trusted partner 
-            in keeping your appliances running smoothly. Here's what sets us apart.
+            {t('whyUs.subtitle')}
           </p>
         </div>
       </section>
@@ -132,18 +133,21 @@ export default function WhyChooseUs() {
       </section>
 
       {/* Main Reasons */}
-      <section className="section-padding bg-secondary-50">
+      <section id="professionals" className="section-padding bg-secondary-50">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="mb-4">The {companyInfo.name.split(' ')[0]} Difference</h2>
+            <h2 className="mb-4">{t('whyUs.theDifference')}</h2>
             <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
-              Three core principles that guide everything we do
+              {t('whyUs.differenceDescription')}
             </p>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8">
-            {mainReasons.map((reason, index) => (
-              <div key={index} className="bg-white rounded-xl p-8 shadow-lg">
+            {mainReasons.map((reason, index) => {
+              // Generate ID from title
+              const sectionId = reason.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+              return (
+              <div key={index} id={sectionId} className="bg-white rounded-xl p-8 shadow-lg">
                 <div className="bg-primary-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
                   <reason.icon className="text-3xl text-white" />
                 </div>
@@ -158,7 +162,7 @@ export default function WhyChooseUs() {
                   ))}
                 </ul>
               </div>
-            ))}
+            )})}
           </div>
         </div>
       </section>
@@ -167,9 +171,9 @@ export default function WhyChooseUs() {
       <section className="section-padding">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="mb-4">How Our Service Works</h2>
+            <h2 className="mb-4">{t('whyUs.howItWorks')}</h2>
             <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
-              A simple, straightforward process from start to finish
+              {t('whyUs.howItWorksDescription')}
             </p>
           </div>
 
@@ -195,9 +199,9 @@ export default function WhyChooseUs() {
       <section className="section-padding bg-secondary-50">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="mb-4">Additional Benefits</h2>
+            <h2 className="mb-4">{t('whyUs.additionalBenefits')}</h2>
             <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
-              Even more reasons to trust us with your appliance repairs
+              {t('whyUs.additionalBenefitsDescription')}
             </p>
           </div>
 
@@ -213,28 +217,6 @@ export default function WhyChooseUs() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Commitment */}
-      <section className="section-padding">
-        <div className="container-custom max-w-4xl mx-auto text-center">
-          <h2 className="mb-6">Our Commitment to You</h2>
-          <div className="bg-primary-50 border-l-4 border-primary-600 p-8 rounded-r-lg text-left">
-            <p className="text-lg text-secondary-700 mb-4">
-              At {companyInfo.name}, we're committed to providing exceptional service on every call. 
-              We treat your home and appliances with the utmost respect, arriving on time, working efficiently, 
-              and leaving your space cleaner than we found it.
-            </p>
-            <p className="text-lg text-secondary-700 mb-4">
-              Our technicians are not just skilled professionals – they're friendly neighbors who care about 
-              your satisfaction. We take the time to explain the problem, answer your questions, and provide 
-              honest recommendations.
-            </p>
-            <p className="text-lg text-secondary-700 font-semibold">
-              We're not satisfied until you're completely happy with our service. That's the {companyInfo.name.split(' ')[0]} promise.
-            </p>
           </div>
         </div>
       </section>

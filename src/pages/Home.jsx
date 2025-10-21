@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import Hero from '../components/Hero'
 import ServiceCard from '../components/ServiceCard'
 import TestimonialCard from '../components/TestimonialCard'
@@ -12,7 +13,12 @@ import { FaStar, FaArrowRight, FaBook, FaCalendar, FaClock, FaChevronDown } from
 import { useState } from 'react'
 
 export default function Home() {
-  const featuredServices = services.slice(0, 6)
+  const { t } = useTranslation()
+  // Show specific 6 services on homepage
+  const featuredServices = services.filter(s => 
+    ['refrigerator-repair', 'dishwasher-repair', 'oven-repair', 
+     'washer-repair', 'combi-boiler-repair', 'air-conditioner-repair'].includes(s.id)
+  )
   const featuredTestimonials = testimonials.slice(0, 3)
   const featuredBlogPosts = blogPosts.slice(0, 3)
   const featuredFAQs = faqCategories[0].questions.slice(0, 4) // First 4 general questions
@@ -30,10 +36,9 @@ export default function Home() {
       <section className="section-padding">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="mb-4">Our Appliance Repair Services</h2>
+            <h2 className="mb-4">{t('home.ourServices')}</h2>
             <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
-              Expert repair services for all major appliance brands. Fast, reliable, 
-              and affordable solutions for your home.
+              {t('home.servicesDescription')}
             </p>
           </div>
 
@@ -45,7 +50,7 @@ export default function Home() {
 
           <div className="text-center">
             <Link to="/services" className="btn-primary inline-flex items-center">
-              View All Services
+              {t('home.viewAllServices')}
               <FaArrowRight className="ml-2" />
             </Link>
           </div>
@@ -65,13 +70,12 @@ export default function Home() {
                 ))}
               </div>
               <span className="ml-3 text-xl font-semibold text-secondary-700">
-                5.0 Rating
+                5.0 {t('common.rating')}
               </span>
             </div>
-            <h2 className="mb-4">What Our Customers Say</h2>
+            <h2 className="mb-4">{t('home.testimonials')}</h2>
             <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
-              Don't just take our word for it. Here's what our satisfied customers 
-              have to say about our services.
+              {t('home.testimonialsDescription')}
             </p>
           </div>
 
@@ -83,7 +87,7 @@ export default function Home() {
 
           <div className="text-center">
             <Link to="/reviews" className="btn-outline inline-flex items-center">
-              Read More Reviews
+              {t('home.readMoreReviews')}
               <FaArrowRight className="ml-2" />
             </Link>
           </div>
@@ -97,9 +101,9 @@ export default function Home() {
             <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-4">
               <FaBook className="text-3xl text-primary-600" />
             </div>
-            <h2 className="mb-4">Helpful Resources</h2>
+            <h2 className="mb-4">{t('home.helpfulResources')}</h2>
             <p className="text-lg text-secondary-600 max-w-3xl mx-auto">
-              Expert tips and advice to help you maintain your appliances and troubleshoot common issues.
+              {t('home.resourcesDescription')}
             </p>
           </div>
 
@@ -131,7 +135,7 @@ export default function Home() {
                     {post.excerpt}
                   </p>
                   <span className="text-primary-600 font-semibold text-sm inline-flex items-center">
-                    Read More <FaArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
+                    {t('home.readFullArticle')} <FaArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
                   </span>
                 </div>
               </Link>
@@ -140,7 +144,7 @@ export default function Home() {
 
           <div className="text-center">
             <Link to="/blog" className="btn-primary inline-flex items-center">
-              View All Resources
+              {t('common.viewAll')} {t('nav.resources')}
               <FaArrowRight className="ml-2" />
             </Link>
           </div>
@@ -151,9 +155,9 @@ export default function Home() {
       <section className="section-padding">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="mb-4">Frequently Asked Questions</h2>
+            <h2 className="mb-4">{t('nav.faq')}</h2>
             <p className="text-lg text-secondary-600 max-w-3xl mx-auto">
-              Find answers to common questions about our appliance repair services.
+              {t('home.faqDescription')}
             </p>
           </div>
 
@@ -192,7 +196,7 @@ export default function Home() {
 
             <div className="text-center mt-10">
               <Link to="/faq" className="btn-outline inline-flex items-center">
-                View All FAQs
+                {t('common.viewAll')} {t('nav.faq')}
                 <FaArrowRight className="ml-2" />
               </Link>
             </div>
@@ -204,10 +208,9 @@ export default function Home() {
       <section className="bg-secondary-100 py-16">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="mb-4">Services for Every Need</h2>
+            <h2 className="mb-4">{t('home.servicesForEveryNeed')}</h2>
             <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
-              Whether you need home appliance repair or commercial equipment service, 
-              we've got you covered.
+              {t('home.servicesForEveryNeedDescription')}
             </p>
           </div>
 
@@ -215,28 +218,26 @@ export default function Home() {
             <Link to="/residential-services" className="bg-white rounded-xl p-8 hover:shadow-2xl transition-all group">
               <div className="text-5xl mb-4">🏠</div>
               <h3 className="text-2xl font-bold mb-3 group-hover:text-primary-600 transition-colors">
-                Residential Services
+                {t('nav.residentialServices')}
               </h3>
               <p className="text-secondary-700 mb-4">
-                Expert repair for all your home appliances. Refrigerators, dishwashers, 
-                washers, dryers, ovens, and more.
+                {t('home.residentialServicesDescription')}
               </p>
               <span className="text-primary-600 font-semibold inline-flex items-center">
-                View Residential Services <FaArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
+                {t('common.viewAll')} {t('nav.residentialServices')} <FaArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
               </span>
             </Link>
 
             <Link to="/commercial-services" className="bg-white rounded-xl p-8 hover:shadow-2xl transition-all group">
               <div className="text-5xl mb-4">🏢</div>
               <h3 className="text-2xl font-bold mb-3 group-hover:text-primary-600 transition-colors">
-                Commercial Services
+                {t('nav.commercialServices')}
               </h3>
               <p className="text-secondary-700 mb-4">
-                Professional service for commercial appliances. Minimize downtime and keep 
-                your business running smoothly.
+                {t('home.commercialServicesDescription')}
               </p>
               <span className="text-primary-600 font-semibold inline-flex items-center">
-                View Commercial Services <FaArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
+                {t('common.viewAll')} {t('nav.commercialServices')} <FaArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
               </span>
             </Link>
           </div>

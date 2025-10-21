@@ -1,9 +1,11 @@
 import { useParams, Link } from 'react-router-dom'
 import { FaClock, FaUser, FaArrowLeft, FaTag } from 'react-icons/fa'
+import { useTranslation } from 'react-i18next'
 import CallToAction from '../components/CallToAction'
 import { getPostById, getRecentPosts } from '../data/blogPosts'
 
 export default function BlogPost() {
+  const { t } = useTranslation()
   const { postId } = useParams()
   const post = getPostById(postId)
   const recentPosts = getRecentPosts(3).filter(p => p.id !== postId)
@@ -12,12 +14,12 @@ export default function BlogPost() {
     return (
       <div className="section-padding">
         <div className="container-custom text-center">
-          <h2 className="mb-4">Post Not Found</h2>
+          <h2 className="mb-4">{t('blogPost.notFound')}</h2>
           <p className="text-xl text-secondary-600 mb-8">
-            The blog post you're looking for doesn't exist.
+            {t('blogPost.notFoundMessage')}
           </p>
           <Link to="/blog" className="btn-primary">
-            Back to Blog
+            {t('blogPost.backToBlog')}
           </Link>
         </div>
       </div>
@@ -31,7 +33,7 @@ export default function BlogPost() {
         <div className="container-custom max-w-4xl">
           <Link to="/blog" className="inline-flex items-center text-white mb-6 hover:text-gray-200 transition-colors">
             <FaArrowLeft className="mr-2" />
-            Back to Blog
+            {t('blogPost.backToBlog')}
           </Link>
           
           <div className="inline-block bg-white bg-opacity-20 text-white text-sm font-semibold px-4 py-2 rounded-full mb-4">
@@ -57,7 +59,7 @@ export default function BlogPost() {
             {/* Main Content */}
             <div className="lg:col-span-2">
               <div className="bg-secondary-200 h-96 rounded-lg mb-8 flex items-center justify-center">
-                <span className="text-secondary-400 text-xl">Featured Image</span>
+                <span className="text-secondary-400 text-xl">{t('blogPost.featuredImage')}</span>
               </div>
 
               <div className="prose prose-lg max-w-none">
@@ -71,12 +73,12 @@ export default function BlogPost() {
                   exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </p>
 
-                <h2 className="mt-8 mb-4">Key Takeaways</h2>
+                <h2 className="mt-8 mb-4">{t('blogPost.keyTakeaways')}</h2>
                 <ul className="list-disc pl-6 mb-6 text-secondary-700">
-                  <li>Regular maintenance can prevent costly repairs</li>
-                  <li>Know when to call a professional</li>
-                  <li>Keep your appliances clean and well-maintained</li>
-                  <li>Follow manufacturer guidelines</li>
+                  <li>{t('blogPost.takeaway1')}</li>
+                  <li>{t('blogPost.takeaway2')}</li>
+                  <li>{t('blogPost.takeaway3')}</li>
+                  <li>{t('blogPost.takeaway4')}</li>
                 </ul>
               </div>
 
@@ -98,7 +100,7 @@ export default function BlogPost() {
               <div className="sticky top-24">
                 {/* Recent Posts */}
                 <div className="card mb-8">
-                  <h3 className="text-xl font-bold mb-4">Recent Posts</h3>
+                  <h3 className="text-xl font-bold mb-4">{t('blogPost.recentPosts')}</h3>
                   <div className="space-y-4">
                     {recentPosts.map((recentPost) => (
                       <Link
@@ -117,12 +119,12 @@ export default function BlogPost() {
 
                 {/* CTA Box */}
                 <div className="bg-primary-600 text-white rounded-lg p-6">
-                  <h3 className="text-xl font-bold mb-3">Need Help?</h3>
+                  <h3 className="text-xl font-bold mb-3">{t('blogPost.needHelp')}</h3>
                   <p className="mb-4">
-                    Our expert technicians are here to help with all your appliance repair needs.
+                    {t('blogPost.needHelpDescription')}
                   </p>
                   <Link to="/contact" className="btn-primary bg-white text-primary-600 hover:bg-gray-100 w-full text-center">
-                    Schedule Service
+                    {t('blogPost.scheduleService')}
                   </Link>
                 </div>
               </div>

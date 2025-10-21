@@ -1,81 +1,84 @@
 import { Link } from 'react-router-dom'
 import { FaBuilding, FaCheckCircle, FaClock, FaTools, FaShieldAlt } from 'react-icons/fa'
+import { useTranslation } from 'react-i18next'
 import CallToAction from '../components/CallToAction'
 import { companyInfo } from '../data/companyInfo'
 
 export default function CommercialServices() {
+  const { t } = useTranslation()
+  
   const commercialServices = [
     {
       id: 'commercial-refrigeration',
-      name: 'Commercial Refrigeration',
-      description: 'Walk-in coolers, reach-in refrigerators, display cases, and more.',
+      name: t('commercial.service1Name'),
+      description: t('commercial.service1Description'),
       icon: FaTools
     },
     {
       id: 'commercial-ice-machines',
-      name: 'Ice Machine Repair',
-      description: 'Keep your ice machines running efficiently for your business needs.',
+      name: t('commercial.service2Name'),
+      description: t('commercial.service2Description'),
       icon: FaTools
     },
     {
       id: 'commercial-dishwashers',
-      name: 'Commercial Dishwasher Repair',
-      description: 'Restaurant and commercial dishwasher repair and maintenance.',
+      name: t('commercial.service3Name'),
+      description: t('commercial.service3Description'),
       icon: FaTools
     },
     {
       id: 'commercial-ovens',
-      name: 'Commercial Oven & Range Repair',
-      description: 'Professional repair for commercial cooking equipment.',
+      name: t('commercial.service4Name'),
+      description: t('commercial.service4Description'),
       icon: FaTools
     },
     {
       id: 'commercial-washers-dryers',
-      name: 'Commercial Laundry Equipment',
-      description: 'Washers and dryers for laundromats, hotels, and multi-family buildings.',
+      name: t('commercial.service5Name'),
+      description: t('commercial.service5Description'),
       icon: FaTools
     },
     {
       id: 'commercial-freezers',
-      name: 'Commercial Freezer Repair',
-      description: 'Walk-in and reach-in freezer repair and maintenance services.',
+      name: t('commercial.service6Name'),
+      description: t('commercial.service6Description'),
       icon: FaTools
     }
   ]
 
   const industries = [
-    'Restaurants & Cafes',
-    'Hotels & Hospitality',
-    'Healthcare Facilities',
-    'Schools & Universities',
-    'Multi-Family Housing',
-    'Retail Stores',
-    'Office Buildings',
-    'Laundromats',
-    'Food Service',
-    'Property Management'
+    t('commercial.industry1'),
+    t('commercial.industry2'),
+    t('commercial.industry3'),
+    t('commercial.industry4'),
+    t('commercial.industry5'),
+    t('commercial.industry6'),
+    t('commercial.industry7'),
+    t('commercial.industry8'),
+    t('commercial.industry9'),
+    t('commercial.industry10'),
   ]
 
   const benefits = [
     {
       icon: FaClock,
-      title: 'Minimize Downtime',
-      description: 'Fast response times and efficient repairs to keep your business running.'
+      title: t('commercial.benefit1Title'),
+      description: t('commercial.benefit1Description')
     },
     {
       icon: FaShieldAlt,
-      title: 'Commercial Expertise',
-      description: 'Specialized training in commercial-grade appliances and equipment.'
+      title: t('commercial.benefit2Title'),
+      description: t('commercial.benefit2Description')
     },
     {
       icon: FaTools,
-      title: 'Preventive Maintenance',
-      description: 'Regular maintenance programs to prevent costly breakdowns.'
+      title: t('commercial.benefit3Title'),
+      description: t('commercial.benefit3Description')
     },
     {
       icon: FaCheckCircle,
-      title: 'Licensed & Insured',
-      description: 'Fully licensed, bonded, and insured for commercial operations.'
+      title: t('commercial.benefit4Title'),
+      description: t('commercial.benefit4Description')
     }
   ]
 
@@ -86,17 +89,16 @@ export default function CommercialServices() {
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <FaBuilding className="text-6xl mx-auto mb-6" />
-            <h1 className="mb-6">Commercial Appliance Repair Services</h1>
+            <h1 className="mb-6">{t('commercial.title')}</h1>
             <p className="text-xl mb-8">
-              Professional repair and maintenance for commercial appliances. Minimize downtime 
-              and keep your business operations running smoothly with our expert technicians.
+              {t('commercial.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/contact" className="btn-primary bg-white text-primary-600 hover:bg-gray-100">
-                Request Commercial Service
+                {t('commercial.requestService')}
               </Link>
-              <a href={`tel:${companyInfo.phone}`} className="btn-secondary border-white text-white hover:bg-white hover:text-primary-600">
-                Call {companyInfo.phone}
+              <a href={`tel:${companyInfo.phone}`} className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-2 px-5 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-sm">
+                {t('residential.call')} {companyInfo.phone}
               </a>
             </div>
           </div>
@@ -107,9 +109,9 @@ export default function CommercialServices() {
       <section className="section-padding">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="mb-4">Our Commercial Services</h2>
+            <h2 className="mb-4">{t('commercial.ourServices')}</h2>
             <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
-              Comprehensive repair and maintenance services for all types of commercial appliances.
+              {t('commercial.ourServicesDescription')}
             </p>
           </div>
 
@@ -122,7 +124,7 @@ export default function CommercialServices() {
                 <h3 className="text-xl font-bold mb-3 text-secondary-900">{service.name}</h3>
                 <p className="text-secondary-600 mb-4">{service.description}</p>
                 <Link to="/contact" className="text-primary-600 font-semibold hover:text-primary-700 inline-flex items-center">
-                  Get Quote →
+                  {t('commercial.getQuote')} →
                 </Link>
               </div>
             ))}
@@ -134,10 +136,9 @@ export default function CommercialServices() {
       <section className="section-padding bg-secondary-50">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="mb-4">Why Businesses Choose Us</h2>
+            <h2 className="mb-4">{t('commercial.whyBusinesses')}</h2>
             <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
-              We understand that appliance downtime means lost revenue. 
-              Our commercial service is designed to get you back in business fast.
+              {t('commercial.whyBusinessesDescription')}
             </p>
           </div>
 
@@ -159,9 +160,9 @@ export default function CommercialServices() {
       <section className="section-padding">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="mb-4">Industries We Serve</h2>
+            <h2 className="mb-4">{t('commercial.industriesWeServe')}</h2>
             <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
-              Trusted by businesses across multiple industries for reliable commercial appliance repair.
+              {t('commercial.industriesWeServeDescription')}
             </p>
           </div>
 
@@ -179,88 +180,87 @@ export default function CommercialServices() {
       <section className="section-padding bg-secondary-50">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="mb-4">Preventive Maintenance Plans</h2>
+            <h2 className="mb-4">{t('commercial.maintenancePlans')}</h2>
             <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
-              Protect your investment with regular maintenance. Prevent costly breakdowns 
-              and extend the life of your commercial appliances.
+              {t('commercial.maintenancePlansDescription')}
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <div className="bg-white rounded-xl p-8 shadow-lg">
-              <h3 className="text-2xl font-bold mb-4 text-primary-600">Basic Plan</h3>
+              <h3 className="text-2xl font-bold mb-4 text-primary-600">{t('commercial.basicPlan')}</h3>
               <div className="text-4xl font-bold mb-4">$199<span className="text-xl text-secondary-600">/mo</span></div>
               <ul className="space-y-3 mb-6">
                 <li className="flex items-start">
                   <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                  <span>Quarterly inspections</span>
+                  <span>{t('commercial.basicFeature1')}</span>
                 </li>
                 <li className="flex items-start">
                   <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                  <span>Priority scheduling</span>
+                  <span>{t('commercial.basicFeature2')}</span>
                 </li>
                 <li className="flex items-start">
                   <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                  <span>10% parts discount</span>
+                  <span>{t('commercial.basicFeature3')}</span>
                 </li>
               </ul>
               <Link to="/contact" className="btn-outline w-full text-center">
-                Get Started
+                {t('commercial.getStarted')}
               </Link>
             </div>
 
             <div className="bg-primary-600 text-white rounded-xl p-8 shadow-xl transform md:scale-105">
               <div className="bg-white text-primary-600 inline-block px-3 py-1 rounded-full text-sm font-semibold mb-4">
-                Most Popular
+                {t('commercial.mostPopular')}
               </div>
-              <h3 className="text-2xl font-bold mb-4">Professional Plan</h3>
+              <h3 className="text-2xl font-bold mb-4">{t('commercial.professionalPlan')}</h3>
               <div className="text-4xl font-bold mb-4">$399<span className="text-xl opacity-90">/mo</span></div>
               <ul className="space-y-3 mb-6">
                 <li className="flex items-start">
                   <FaCheckCircle className="text-white mt-1 mr-3 flex-shrink-0" />
-                  <span>Monthly inspections</span>
+                  <span>{t('commercial.proFeature1')}</span>
                 </li>
                 <li className="flex items-start">
                   <FaCheckCircle className="text-white mt-1 mr-3 flex-shrink-0" />
-                  <span>24/7 emergency service</span>
+                  <span>{t('commercial.proFeature2')}</span>
                 </li>
                 <li className="flex items-start">
                   <FaCheckCircle className="text-white mt-1 mr-3 flex-shrink-0" />
-                  <span>20% parts discount</span>
+                  <span>{t('commercial.proFeature3')}</span>
                 </li>
                 <li className="flex items-start">
                   <FaCheckCircle className="text-white mt-1 mr-3 flex-shrink-0" />
-                  <span>Free labor on covered repairs</span>
+                  <span>{t('commercial.proFeature4')}</span>
                 </li>
               </ul>
               <Link to="/contact" className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg block text-center transition-colors">
-                Get Started
+                {t('commercial.getStarted')}
               </Link>
             </div>
 
             <div className="bg-white rounded-xl p-8 shadow-lg">
-              <h3 className="text-2xl font-bold mb-4 text-primary-600">Enterprise Plan</h3>
-              <div className="text-4xl font-bold mb-4">Custom</div>
+              <h3 className="text-2xl font-bold mb-4 text-primary-600">{t('commercial.enterprisePlan')}</h3>
+              <div className="text-4xl font-bold mb-4">{t('commercial.custom')}</div>
               <ul className="space-y-3 mb-6">
                 <li className="flex items-start">
                   <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                  <span>Custom schedule</span>
+                  <span>{t('commercial.enterpriseFeature1')}</span>
                 </li>
                 <li className="flex items-start">
                   <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                  <span>Dedicated technician</span>
+                  <span>{t('commercial.enterpriseFeature2')}</span>
                 </li>
                 <li className="flex items-start">
                   <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                  <span>25% parts discount</span>
+                  <span>{t('commercial.enterpriseFeature3')}</span>
                 </li>
                 <li className="flex items-start">
                   <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                  <span>Annual equipment review</span>
+                  <span>{t('commercial.enterpriseFeature4')}</span>
                 </li>
               </ul>
               <Link to="/contact" className="btn-outline w-full text-center">
-                Contact Us
+                {t('commercial.contactUs')}
               </Link>
             </div>
           </div>

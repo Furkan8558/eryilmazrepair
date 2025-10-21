@@ -1,16 +1,19 @@
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa'
+import { useTranslation } from 'react-i18next'
 import ContactForm from '../components/ContactForm'
 import { companyInfo } from '../data/companyInfo'
 
 export default function Contact() {
+  const { t } = useTranslation()
+  
   return (
     <div>
       {/* Page Header */}
       <section className="bg-gradient-primary text-white py-16">
         <div className="container-custom text-center">
-          <h1 className="mb-4">Contact Us</h1>
+          <h1 className="mb-4">{t('nav.contactUs')}</h1>
           <p className="text-xl max-w-3xl mx-auto">
-            Get in touch with us today. We're here to help with all your appliance repair needs.
+            {t('contact.getInTouchDescription')}
           </p>
         </div>
       </section>
@@ -21,7 +24,7 @@ export default function Contact() {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Information */}
             <div>
-              <h2 className="mb-8">Get In Touch</h2>
+              <h2 className="mb-8">{t('contact.getInTouch')}</h2>
               
               <div className="space-y-6 mb-8">
                 <div className="flex items-start">
@@ -29,12 +32,12 @@ export default function Contact() {
                     <FaPhone className="text-2xl text-primary-600" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold mb-2">Phone</h3>
+                    <h3 className="text-lg font-semibold mb-2">{t('common.phone')}</h3>
                     <a href={`tel:${companyInfo.phone}`} className="text-secondary-600 hover:text-primary-600 transition-colors">
                       {companyInfo.phone}
                     </a>
                     <p className="text-sm text-secondary-500 mt-1">
-                      Emergency: {companyInfo.emergencyPhone}
+                      {t('common.emergency')}: {companyInfo.emergencyPhone}
                     </p>
                   </div>
                 </div>
@@ -44,7 +47,7 @@ export default function Contact() {
                     <FaEnvelope className="text-2xl text-primary-600" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold mb-2">Email</h3>
+                    <h3 className="text-lg font-semibold mb-2">{t('common.email')}</h3>
                     <a href={`mailto:${companyInfo.email}`} className="text-secondary-600 hover:text-primary-600 transition-colors">
                       {companyInfo.email}
                     </a>
@@ -56,7 +59,7 @@ export default function Contact() {
                     <FaMapMarkerAlt className="text-2xl text-primary-600" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold mb-2">Address</h3>
+                    <h3 className="text-lg font-semibold mb-2">{t('common.address')}</h3>
                     <p className="text-secondary-600">
                       {companyInfo.address.street}<br />
                       {companyInfo.address.city}, {companyInfo.address.state} {companyInfo.address.zip}
@@ -69,11 +72,11 @@ export default function Contact() {
                     <FaClock className="text-2xl text-primary-600" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold mb-2">Business Hours</h3>
+                    <h3 className="text-lg font-semibold mb-2">{t('contact.businessHours')}</h3>
                     <div className="text-secondary-600">
-                      <p>Monday - Friday: {companyInfo.hours.weekday}</p>
-                      <p>Saturday: {companyInfo.hours.saturday}</p>
-                      <p>Sunday: {companyInfo.hours.sunday}</p>
+                      <p>{t('common.monFri')}: {companyInfo.hours.weekday}</p>
+                      <p>{t('common.saturday')}: {companyInfo.hours.saturday}</p>
+                      <p>{t('common.sunday')}: {companyInfo.hours.sunday}</p>
                     </div>
                   </div>
                 </div>

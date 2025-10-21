@@ -1,118 +1,103 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { FaPhone, FaBars, FaTimes, FaClock, FaMapMarkerAlt } from 'react-icons/fa'
+import { useTranslation } from 'react-i18next'
 import { companyInfo } from '../data/companyInfo'
+import LanguageSwitcher from './LanguageSwitcher'
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const location = useLocation()
+  const { t } = useTranslation()
 
   const navigation = [
     { 
-      name: 'Residential', 
+      name: t('nav.residential'), 
       path: '/residential-services',
       submenu: [
         { 
-          name: 'Appliance Repair And Service',
+          name: t('nav.applianceRepair'),
           items: [
-            { name: 'Appliance Wellness Program', path: '/services/appliance-wellness' },
-            { name: 'Dishwasher Repair And Service', path: '/services/dishwasher-repair' },
-            { name: 'Electric Dryer Repair And Service', path: '/services/dryer-repair' },
-            { name: 'Freezer Repair And Service', path: '/services/freezer-repair' },
-            { name: 'Garbage Disposal Repair And Replacement', path: '/services/garbage-disposal-repair' },
-            { name: 'Gas Dryer Repair And Service', path: '/services/gas-dryer-repair' },
-            { name: 'Grill And Barbeque Repair And Service', path: '/services/grill-repair' },
-            { name: 'Ice Machine Repair And Service', path: '/services/ice-maker-repair' },
-            { name: 'Ice Maker Repair And Service', path: '/services/ice-maker-repair' },
-            { name: 'Microwave Oven Repair And Service', path: '/services/microwave-repair' },
-            { name: 'Outdoor Kitchen Appliance Repair And Service', path: '/services/outdoor-kitchen-repair' },
-            { name: 'Oven Repair And Service', path: '/services/oven-repair' },
-            { name: 'Range And Stove Top Repair And Service', path: '/services/range-repair' },
-            { name: 'Refrigerator Repair And Service', path: '/services/refrigerator-repair' },
-            { name: 'Trash Compactor Repair And Service', path: '/services/trash-compactor-repair' },
-            { name: 'Vent Hood Repair And Service', path: '/services/vent-hood-repair' },
-            { name: 'Washing Machine Repair And Service', path: '/services/washer-repair' },
-            { name: 'Wine Cooler Repair And Service', path: '/services/wine-cooler-repair' },
-          ]
-        },
-        { name: 'Dryer Vent Cleaning', path: '/services/dryer-vent-cleaning' }
-      ]
-    },
-    { 
-      name: 'Commercial', 
-      path: '/commercial-services',
-      submenu: [
-        { 
-          name: 'Appliance Repair And Service',
-          items: [
-            { name: 'Dishwasher Repair And Service', path: '/services/dishwasher-repair' },
-            { name: 'Freezer Repair And Service', path: '/services/freezer-repair' },
-            { name: 'Gas Dryer Repair And Service', path: '/services/gas-dryer-repair' },
-            { name: 'Ice Machine Repair And Service', path: '/services/ice-maker-repair' },
-            { name: 'Ice Maker Repair And Service', path: '/services/ice-maker-repair' },
-            { name: 'Oven Repair And Service', path: '/services/oven-repair' },
-            { name: 'Refrigerator Repair And Service', path: '/services/refrigerator-repair' },
-            { name: 'Washing Machine Repair And Service', path: '/services/washer-repair' },
-          ]
-        },
-        { name: 'Dryer Vent Cleaning', path: '/services/dryer-vent-cleaning' }
-      ]
-    },
-    { 
-      name: 'Why Us', 
-      path: '/why-choose-us',
-      submenu: [
-        { 
-          name: 'Our Approach',
-          items: [
-            { name: 'Qualified Experts', path: '/why-choose-us#qualified-experts' },
-            { name: 'Professionals', path: '/why-choose-us#professionals' },
-            { name: 'Scheduled Appointment Times', path: '/why-choose-us#scheduled-appointments' },
-            { name: 'Upfront Pricing', path: '/why-choose-us#upfront-pricing' },
-            { name: 'Appliance Wellness Program', path: '/services/appliance-wellness' },
+            { name: t('services.dishwasherrepair.name'), path: '/services/dishwasher-repair' },
+            { name: t('services.dryerrepair.name'), path: '/services/dryer-repair' },
+            { name: t('services.garbagedisposalrepair.name'), path: '/services/garbage-disposal-repair' },
+            { name: t('services.icemakerrepair.name'), path: '/services/ice-maker-repair' },
+            { name: t('services.microwaverepair.name'), path: '/services/microwave-repair' },
+            { name: t('services.ovenrepair.name'), path: '/services/oven-repair' },
+            { name: t('services.refrigeratorrepair.name'), path: '/services/refrigerator-repair' },
+            { name: t('services.washerrepair.name'), path: '/services/washer-repair' },
           ]
         },
         { 
-          name: 'Our Results',
+          name: t('nav.heatingCooling'),
           items: [
-            { name: 'Testimonials', path: '/reviews' },
-          ]
-        },
-        { 
-          name: 'Our Commitment',
-          items: [
-            { name: 'The Neighborly Done Right Promise®', path: '/why-choose-us#commitment' },
+            { name: t('services.combiboilerrepair.name'), path: '/services/combi-boiler-repair' },
+            { name: t('services.airconditionerrepair.name'), path: '/services/air-conditioner-repair' },
+            { name: t('services.radiatorrepair.name'), path: '/services/radiator-repair' },
           ]
         }
       ]
     },
     { 
-      name: 'About', 
-      path: '/about',
+      name: t('nav.commercial'), 
+      path: '/commercial-services',
       submenu: [
-        { name: 'About Mr. Appliance', path: '/about' },
-        { name: 'Our Values', path: '/about#values' },
-        { name: 'Brands We Service', path: '/about#brands' },
-        { name: 'A Neighborly Company', path: '/about#neighborly' },
-        { name: 'The Neighborly App', path: '/about#app' },
-        { name: 'Own A Franchise', path: '/franchise' },
-        { name: 'Careers', path: '/careers' },
-        { name: 'Contact Us', path: '/contact' },
+        { 
+          name: t('nav.applianceRepair'),
+          items: [
+            { name: t('services.dishwasherrepair.name'), path: '/services/dishwasher-repair' },
+            { name: t('services.icemakerrepair.name'), path: '/services/ice-maker-repair' },
+            { name: t('services.ovenrepair.name'), path: '/services/oven-repair' },
+            { name: t('services.refrigeratorrepair.name'), path: '/services/refrigerator-repair' },
+            { name: t('services.washerrepair.name'), path: '/services/washer-repair' },
+            { name: t('services.dryerrepair.name'), path: '/services/dryer-repair' },
+          ]
+        }
       ]
     },
     { 
-      name: 'Resources', 
+      name: t('nav.whyUs'), 
+      path: '/why-choose-us',
+      submenu: [
+        { 
+          name: t('nav.ourApproach'),
+          items: [
+            { name: t('nav.qualifiedExperts'), path: '/why-choose-us#qualified-experts' },
+            { name: t('nav.professionals'), path: '/why-choose-us#professionals' },
+            { name: t('nav.scheduledAppointments'), path: '/why-choose-us#scheduled-appointments' },
+            { name: t('nav.upfrontPricing'), path: '/why-choose-us#upfront-pricing' },
+          ]
+        },
+        { 
+          name: t('nav.ourResults'),
+          items: [
+            { name: t('nav.testimonials'), path: '/reviews' },
+          ]
+        }
+      ]
+    },
+    { 
+      name: t('nav.about'), 
+      path: '/about',
+      submenu: [
+        { name: t('nav.eryilmazService'), path: '/about' },
+        { name: t('nav.ourValues'), path: '/about#values' },
+        { name: t('nav.brandsWeService'), path: '/about#brands' },
+        { name: t('nav.contactUs'), path: '/contact' },
+      ]
+    },
+    { 
+      name: t('nav.resources'), 
       path: '/blog',
       submenu: [
-        { name: 'Blog', path: '/blog' },
+        { name: t('nav.blog'), path: '/blog' },
         { 
-          name: 'Expert Tips',
+          name: t('nav.expertTips'),
           items: [
-            { name: 'Appliance Care', path: '/blog?category=appliance-care' },
-            { name: 'Appliance Life Guide', path: '/blog?category=appliance-life-guide' },
-            { name: 'Dryer Troubleshooting', path: '/blog?category=dryer-troubleshooting' },
-            { name: 'Energy Saving Tips', path: '/blog?category=energy-saving' },
-            { name: 'Frequently Asked Questions', path: '/faq' },
+            { name: t('nav.applianceCare'), path: '/appliance-care' },
+            { name: t('nav.applianceLifeGuide'), path: '/appliance-life-guide' },
+            { name: t('nav.energySavingTips'), path: '/energy-saving-tips' },
+            { name: t('nav.faq'), path: '/faq' },
           ]
         }
       ]
@@ -132,7 +117,7 @@ export default function Header() {
             <div className="flex items-center space-x-4">
               <div className="flex items-center">
                 <FaClock className="mr-1.5 text-xs" />
-                <span>Mon-Fri: {companyInfo.hours.weekday}</span>
+                <span>{t('common.monFri')}: {companyInfo.hours.weekday}</span>
               </div>
               <div className="flex items-center">
                 <FaMapMarkerAlt className="mr-1.5 text-xs" />
@@ -140,7 +125,7 @@ export default function Header() {
               </div>
             </div>
             <div className="flex items-center">
-              <span className="font-semibold">Emergency Service Available 24/7</span>
+              <span className="font-semibold">{t('common.emergency')}</span>
             </div>
           </div>
         </div>
@@ -234,6 +219,7 @@ export default function Header() {
 
           {/* Phone & CTA */}
           <div className="hidden lg:flex items-center space-x-3">
+            <LanguageSwitcher />
             <a
               href={`tel:${companyInfo.phone}`}
               className="flex items-center text-primary-600 font-semibold hover:text-primary-700 transition-colors"
@@ -242,7 +228,7 @@ export default function Header() {
               <span className="text-sm">{companyInfo.phone}</span>
             </a>
             <Link to="/contact" className="btn-primary text-sm py-2 px-4">
-              Schedule Service
+              {t('common.scheduleService')}
             </Link>
           </div>
 
@@ -323,7 +309,7 @@ export default function Header() {
                 onClick={() => setMobileMenuOpen(false)}
                 className="btn-primary block text-center"
               >
-                Schedule Service
+                {t('common.scheduleService')}
               </Link>
             </div>
           </div>

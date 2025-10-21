@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FaCheckCircle } from 'react-icons/fa'
 
 export default function ContactForm() {
+  const { t } = useTranslation()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -39,9 +41,9 @@ export default function ContactForm() {
     return (
       <div className="bg-green-50 border border-green-200 rounded-lg p-8 text-center">
         <FaCheckCircle className="text-5xl text-green-500 mx-auto mb-4" />
-        <h3 className="text-2xl font-bold text-green-800 mb-2">Message Sent!</h3>
+        <h3 className="text-2xl font-bold text-green-800 mb-2">{t('contact.messageSent')}</h3>
         <p className="text-green-700">
-          Thank you for contacting us. We'll get back to you as soon as possible.
+          {t('contact.thankYou')}
         </p>
       </div>
     )
@@ -52,7 +54,7 @@ export default function ContactForm() {
       <div className="grid md:grid-cols-2 gap-6">
         <div>
           <label htmlFor="name" className="block text-sm font-semibold text-secondary-700 mb-2">
-            Your Name *
+            {t('contact.name')} *
           </label>
           <input
             type="text"
@@ -62,13 +64,13 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             className="input-field"
-            placeholder="John Doe"
+            placeholder={t('contact.namePlaceholder')}
           />
         </div>
 
         <div>
           <label htmlFor="phone" className="block text-sm font-semibold text-secondary-700 mb-2">
-            Phone Number *
+            {t('contact.phone')} *
           </label>
           <input
             type="tel"
@@ -78,14 +80,14 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             className="input-field"
-            placeholder="(555) 123-4567"
+            placeholder={t('contact.phonePlaceholder')}
           />
         </div>
       </div>
 
       <div>
         <label htmlFor="email" className="block text-sm font-semibold text-secondary-700 mb-2">
-          Email Address *
+          {t('contact.email')} *
         </label>
         <input
           type="email"
@@ -95,13 +97,13 @@ export default function ContactForm() {
           onChange={handleChange}
           required
           className="input-field"
-          placeholder="john@example.com"
+          placeholder={t('contact.emailPlaceholder')}
         />
       </div>
 
       <div>
         <label htmlFor="subject" className="block text-sm font-semibold text-secondary-700 mb-2">
-          Subject *
+          {t('contact.subject')} *
         </label>
         <input
           type="text"
@@ -111,13 +113,13 @@ export default function ContactForm() {
           onChange={handleChange}
           required
           className="input-field"
-          placeholder="How can we help you?"
+          placeholder={t('contact.subjectPlaceholder')}
         />
       </div>
 
       <div>
         <label htmlFor="message" className="block text-sm font-semibold text-secondary-700 mb-2">
-          Message *
+          {t('contact.message')} *
         </label>
         <textarea
           id="message"
@@ -127,12 +129,12 @@ export default function ContactForm() {
           required
           rows="5"
           className="textarea-field"
-          placeholder="Tell us about your appliance issue or question..."
+          placeholder={t('contact.messagePlaceholder')}
         ></textarea>
       </div>
 
       <button type="submit" className="btn-primary w-full">
-        Send Message
+        {t('contact.send')}
       </button>
     </form>
   )

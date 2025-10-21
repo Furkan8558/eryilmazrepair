@@ -1,36 +1,39 @@
 import { FaCertificate, FaClock, FaTools, FaShieldAlt, FaDollarSign, FaThumbsUp } from 'react-icons/fa'
+import { useTranslation } from 'react-i18next'
 
 export default function WhyChooseUs() {
+  const { t } = useTranslation()
+  
   const features = [
     {
       icon: FaCertificate,
-      title: "Licensed & Certified",
-      description: "All our technicians are fully licensed, certified, and background-checked professionals."
+      title: t('whyChooseUs.feature1Title'),
+      description: t('whyChooseUs.feature1Desc')
     },
     {
       icon: FaClock,
-      title: "Same-Day Service",
-      description: "We offer same-day service for most repairs. Emergency service available 24/7."
+      title: t('whyChooseUs.feature2Title'),
+      description: t('whyChooseUs.feature2Desc')
     },
     {
       icon: FaTools,
-      title: "Expert Technicians",
-      description: "15+ years of experience with all major appliance brands and models."
+      title: t('whyChooseUs.feature3Title'),
+      description: t('whyChooseUs.feature3Desc')
     },
     {
       icon: FaShieldAlt,
-      title: "Warranty Guaranteed",
-      description: "90-day labor warranty on all repairs. We stand behind our work."
+      title: t('whyChooseUs.feature4Title'),
+      description: t('whyChooseUs.feature4Desc')
     },
     {
       icon: FaDollarSign,
-      title: "Upfront Pricing",
-      description: "No hidden fees. Clear, upfront pricing before we start any work."
+      title: t('whyChooseUs.feature5Title'),
+      description: t('whyChooseUs.feature5Desc')
     },
     {
       icon: FaThumbsUp,
-      title: "100% Satisfaction",
-      description: "Your satisfaction is our priority. We're not done until you're happy."
+      title: t('whyChooseUs.feature6Title'),
+      description: t('whyChooseUs.feature6Desc')
     }
   ]
 
@@ -38,10 +41,9 @@ export default function WhyChooseUs() {
     <section className="section-padding bg-secondary-50">
       <div className="container-custom">
         <div className="text-center mb-12">
-          <h2 className="mb-4">Why Choose Us</h2>
+          <h2 className="mb-4">{t('whyChooseUs.title')}</h2>
           <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
-            We're committed to providing the highest quality appliance repair services 
-            with professionalism, integrity, and customer satisfaction.
+            {t('whyChooseUs.subtitle')}
           </p>
         </div>
 

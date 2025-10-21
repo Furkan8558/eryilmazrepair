@@ -1,19 +1,22 @@
+import { useTranslation } from 'react-i18next'
 import ServiceCard from '../components/ServiceCard'
 import CallToAction from '../components/CallToAction'
 import { services } from '../data/services'
 import { FaTools } from 'react-icons/fa'
 
 export default function Services() {
+  const { t } = useTranslation()
+  
+  // Show ALL services on the main services page
   return (
     <div>
       {/* Page Header */}
       <section className="bg-gradient-primary text-white py-16">
         <div className="container-custom text-center">
           <FaTools className="text-5xl mx-auto mb-4" />
-          <h1 className="mb-4">Our Services</h1>
+          <h1 className="mb-4">{t('services.title')}</h1>
           <p className="text-xl max-w-3xl mx-auto">
-            Professional repair services for all major appliance brands. 
-            Expert technicians, fast service, and guaranteed satisfaction.
+            {t('services.subtitle')}
           </p>
         </div>
       </section>
@@ -33,11 +36,9 @@ export default function Services() {
       <section className="bg-secondary-50 py-16">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-center mb-8">All Major Brands Serviced</h2>
+            <h2 className="text-center mb-8">{t('services.allMajorBrands')}</h2>
             <p className="text-lg text-secondary-700 text-center mb-8">
-              We service all major appliance brands including Samsung, LG, Whirlpool, GE, 
-              Frigidaire, Maytag, KitchenAid, Bosch, and many more. If you don't see your 
-              brand listed, give us a call - we likely service it!
+              {t('services.allMajorBrandsDescription')}
             </p>
             <div className="flex flex-wrap justify-center gap-6">
               {['Samsung', 'LG', 'Whirlpool', 'GE', 'Frigidaire', 'Maytag', 'KitchenAid', 'Bosch'].map((brand) => (

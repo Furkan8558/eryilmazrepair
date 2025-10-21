@@ -1,45 +1,61 @@
 import { Link } from 'react-router-dom'
 import { FaClock, FaUser, FaArrowRight, FaRss } from 'react-icons/fa'
+import { useTranslation } from 'react-i18next'
 import CallToAction from '../components/CallToAction'
 import { blogPosts } from '../data/blogPosts'
 
 function BlogCard({ post }) {
+  const { t } = useTranslation()
+  
   return (
-    <article className="card group">
-      <div className="bg-secondary-200 h-48 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
-        <span className="text-secondary-400">Blog Image</span>
+    <article className="card group p-0 overflow-hidden">
+      <div className="relative h-48 overflow-hidden">
+        <img 
+          src={post.image} 
+          alt={post.title}
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+          onError={(e) => {
+            // Fallback to gradient background if image fails to load
+            e.target.style.display = 'none';
+            e.target.parentElement.classList.add('bg-gradient-to-br', 'from-primary-500', 'to-primary-700', 'flex', 'items-center', 'justify-center');
+            e.target.parentElement.innerHTML += `<span class="text-white text-lg">${t('blog.blogImage')}</span>`;
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        <div className="absolute bottom-3 left-3 bg-primary-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+          {post.category}
+        </div>
       </div>
       
-      <div className="flex items-center text-sm text-secondary-500 mb-3">
-        <FaUser className="mr-2" />
-        <span>{post.author}</span>
-        <span className="mx-3">•</span>
-        <FaClock className="mr-2" />
-        <span>{post.readTime}</span>
+      <div className="p-5">
+        <div className="flex items-center text-sm text-secondary-500 mb-3">
+          <FaUser className="mr-2" />
+          <span>{post.author}</span>
+          <span className="mx-3">•</span>
+          <FaClock className="mr-2" />
+          <span>{post.readTime}</span>
+        </div>
+
+        <h3 className="text-xl font-bold mb-3 text-secondary-900 group-hover:text-primary-600 transition-colors">
+          <Link to={`/blog/${post.id}`}>{post.title}</Link>
+        </h3>
+
+        <p className="text-secondary-600 mb-4">{post.excerpt}</p>
+
+        <Link
+          to={`/blog/${post.id}`}
+          className="inline-flex items-center text-primary-600 font-semibold hover:text-primary-700 transition-colors"
+        >
+          {t('blog.readMore')}
+          <FaArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
+        </Link>
       </div>
-
-      <div className="inline-block bg-primary-100 text-primary-700 text-xs font-semibold px-3 py-1 rounded-full mb-3">
-        {post.category}
-      </div>
-
-      <h3 className="text-xl font-bold mb-3 text-secondary-900 group-hover:text-primary-600 transition-colors">
-        <Link to={`/blog/${post.id}`}>{post.title}</Link>
-      </h3>
-
-      <p className="text-secondary-600 mb-4">{post.excerpt}</p>
-
-      <Link
-        to={`/blog/${post.id}`}
-        className="inline-flex items-center text-primary-600 font-semibold hover:text-primary-700 transition-colors"
-      >
-        Read More
-        <FaArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
-      </Link>
     </article>
   )
 }
 
 export default function Blog() {
+  const { t } = useTranslation()
   const categories = [...new Set(blogPosts.map(post => post.category))]
 
   return (
@@ -48,9 +64,9 @@ export default function Blog() {
       <section className="bg-gradient-primary text-white py-16">
         <div className="container-custom text-center">
           <FaRss className="text-5xl mx-auto mb-4" />
-          <h1 className="mb-4">Blog & Resources</h1>
+          <h1 className="mb-4">{t('blog.title')}</h1>
           <p className="text-xl max-w-3xl mx-auto">
-            Tips, guides, and expert advice for maintaining and repairing your appliances.
+            {t('blog.subtitle')}
           </p>
         </div>
       </section>
@@ -61,7 +77,7 @@ export default function Blog() {
           {/* Categories */}
           <div className="flex flex-wrap gap-3 justify-center mb-12">
             <button className="px-4 py-2 bg-primary-600 text-white rounded-lg font-semibold">
-              All Posts
+              {t('blog.allPosts')}
             </button>
             {categories.map((category) => (
               <button

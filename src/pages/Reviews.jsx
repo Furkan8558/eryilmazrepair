@@ -1,9 +1,12 @@
 import { FaStar, FaQuoteLeft } from 'react-icons/fa'
+import { useTranslation } from 'react-i18next'
 import TestimonialCard from '../components/TestimonialCard'
 import CallToAction from '../components/CallToAction'
 import { testimonials, getAverageRating, getTotalReviews } from '../data/testimonials'
 
 export default function Reviews() {
+  const { t } = useTranslation()
+  
   return (
     <div>
       {/* Page Header */}
@@ -16,13 +19,13 @@ export default function Reviews() {
               ))}
             </div>
           </div>
-          <h1 className="mb-4">Customer Reviews</h1>
+          <h1 className="mb-4">{t('reviews.title')}</h1>
           <p className="text-xl max-w-3xl mx-auto">
-            Read what our satisfied customers have to say about our appliance repair services.
+            {t('reviews.subtitle')}
           </p>
           <div className="mt-6">
             <div className="text-4xl font-bold mb-2">{getAverageRating()} / 5.0</div>
-            <div className="text-lg">Based on {getTotalReviews()}+ reviews</div>
+            <div className="text-lg">{t('reviews.basedOn')} {getTotalReviews()}+ {t('reviews.reviews')}</div>
           </div>
         </div>
       </section>
@@ -42,13 +45,12 @@ export default function Reviews() {
       <section className="bg-secondary-50 py-16">
         <div className="container-custom text-center">
           <FaQuoteLeft className="text-5xl text-primary-600 mx-auto mb-6" />
-          <h2 className="mb-4">Share Your Experience</h2>
+          <h2 className="mb-4">{t('reviews.shareExperience')}</h2>
           <p className="text-lg text-secondary-700 mb-8 max-w-2xl mx-auto">
-            We'd love to hear about your experience with our service. Your feedback helps 
-            us improve and helps others make informed decisions.
+            {t('reviews.shareExperienceDescription')}
           </p>
           <button className="btn-primary">
-            Leave a Review
+            {t('reviews.leaveReview')}
           </button>
         </div>
       </section>

@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FaCheckCircle, FaArrowLeft, FaPhone, FaWrench, FaStar, FaBook, FaCalendar, FaClock, FaChevronDown, FaArrowRight } from 'react-icons/fa'
 import * as Icons from 'react-icons/fa'
 import BookingForm from '../components/BookingForm'
@@ -13,6 +14,7 @@ import { companyInfo } from '../data/companyInfo'
 
 export default function ServiceDetail() {
   const { serviceId } = useParams()
+  const { t } = useTranslation()
   const service = getServiceById(serviceId)
   const [openFAQ, setOpenFAQ] = useState(null)
 
@@ -20,16 +22,21 @@ export default function ServiceDetail() {
     setOpenFAQ(openFAQ === index ? null : index)
   }
 
+  // Get translated service name and description
+  const translationKey = `services.${serviceId.replace(/-/g, '')}`
+  const serviceName = t(`${translationKey}.name`, service?.name || '')
+  const serviceDescription = t(`${translationKey}.description`, service?.description || '')
+
   if (!service) {
     return (
       <div className="section-padding">
         <div className="container-custom text-center">
-          <h2 className="mb-4">Service Not Found</h2>
+          <h2 className="mb-4">{t('services.serviceNotFound')}</h2>
           <p className="text-xl text-secondary-600 mb-8">
-            The service you're looking for doesn't exist.
+            {t('services.serviceNotFoundMessage')}
           </p>
           <Link to="/services" className="btn-primary">
-            View All Services
+            {t('home.viewAllServices')}
           </Link>
         </div>
       </div>
@@ -37,32 +44,46 @@ export default function ServiceDetail() {
   }
 
   const IconComponent = Icons[service.icon] || Icons.FaTools
-  const otherServices = services.filter(s => s.id !== service.id).slice(0, 6)
+  
+  // Show the same 6 featured services as homepage, excluding current service
+  const featuredServiceIds = ['refrigerator-repair', 'dishwasher-repair', 'oven-repair', 
+                               'washer-repair', 'combi-boiler-repair', 'air-conditioner-repair']
+  const otherServices = services.filter(s => 
+    featuredServiceIds.includes(s.id) && s.id !== service.id
+  )
+  
   const relatedTestimonials = testimonials.slice(0, 3)
   const relatedBlogPosts = blogPosts.slice(0, 3)
 
   return (
     <div>
-      {/* Service Header */}
-      <section className="bg-gradient-primary text-white py-12">
-        <div className="container-custom">
+      {/* Service Header with Image */}
+      <section className="relative text-white py-20">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={service.image} 
+            alt={service.name}
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              e.target.parentElement.classList.add('bg-gradient-primary');
+              e.target.style.display = 'none';
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-black/60"></div>
+        </div>
+        <div className="container-custom relative z-10">
           <Link to="/services" className="inline-flex items-center text-white mb-6 hover:text-gray-200 transition-colors text-sm">
             <FaArrowLeft className="mr-2" />
-            Back to Services
+            {t('services.backToServices')}
           </Link>
-          <div className="flex items-center mb-6">
-            <div className="bg-white bg-opacity-20 p-4 rounded-lg mr-4">
-              <IconComponent className="text-4xl" />
+          <div className="flex items-start mb-6">
+            <div className="bg-white bg-opacity-20 p-4 rounded-lg mr-6">
+              <IconComponent className="text-5xl" />
             </div>
             <div>
-              <h1 className="mb-2">{service.name} Service</h1>
-              <p className="text-lg">{service.shortDescription}</p>
+              <h1 className="mb-3">{serviceName}</h1>
+              <p className="text-xl">{t(`${translationKey}.shortDescription`, service.shortDescription)}</p>
             </div>
-          </div>
-          <div className="flex items-center">
-            <span className="text-xl font-bold bg-white text-primary-600 px-6 py-2 rounded-lg">
-              {service.price}
-            </span>
           </div>
         </div>
       </section>
@@ -76,12 +97,12 @@ export default function ServiceDetail() {
               
               {/* About This Service */}
               <div className="mb-12">
-                <h2 className="mb-6">About {service.name} Service</h2>
-                <p className="text-base text-secondary-700 mb-6">{service.description}</p>
+                <h2 className="mb-6">{t('serviceDetail.aboutService')} {serviceName}</h2>
+                <p className="text-base text-secondary-700 mb-6">{serviceDescription}</p>
                 
                 <div className="bg-primary-50 border-l-4 border-primary-600 p-6 rounded-r-lg">
                   <p className="font-semibold text-primary-800 text-sm">
-                    Need immediate assistance? Call us now for same-day service!
+                    {t('serviceDetail.needImmediate')}
                   </p>
                   <a href={`tel:${companyInfo.phone}`} className="text-xl font-bold text-primary-600 mt-2 inline-flex items-center">
                     <FaPhone className="mr-3" />
@@ -92,12 +113,12 @@ export default function ServiceDetail() {
 
               {/* Common Problems We Fix */}
               <div className="mb-12">
-                <h2 className="mb-6">Common {service.name.replace(' Repair', '').replace(' & Stove', '')} Problems We Fix</h2>
+                <h2 className="mb-6">{t('serviceDetail.commonProblems')}</h2>
                 <div className="grid md:grid-cols-2 gap-4">
                   {service.commonIssues.map((issue, index) => (
                     <div key={index} className="flex items-start">
                       <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                      <span className="text-secondary-700 text-sm">{issue}</span>
+                      <span className="text-secondary-700 text-sm">{t(`${translationKey}.commonIssues.${index}`, issue)}</span>
                     </div>
                   ))}
                 </div>
@@ -106,13 +127,13 @@ export default function ServiceDetail() {
               {/* Repair Services We Provide */}
               {service.repairServices && (
                 <div className="mb-12">
-                  <h2 className="mb-6">{service.name} Services We Provide</h2>
+                  <h2 className="mb-6">{t('serviceDetail.servicesProvide')}</h2>
                   <div className="bg-white border border-secondary-200 rounded-xl p-6">
                     <div className="grid md:grid-cols-2 gap-4">
                       {service.repairServices.map((repairService, index) => (
                         <div key={index} className="flex items-start">
                           <FaWrench className="text-primary-600 mt-1 mr-3 flex-shrink-0" />
-                          <span className="text-secondary-700 text-sm">{repairService}</span>
+                          <span className="text-secondary-700 text-sm">{t(`${translationKey}.repairServices.${index}`, repairService)}</span>
                         </div>
                       ))}
                     </div>
@@ -122,7 +143,7 @@ export default function ServiceDetail() {
 
               {/* Brands We Service */}
               <div className="mb-12">
-                <h3 className="mb-6">Brands We Service</h3>
+                <h3 className="mb-6">{t('serviceDetail.brandsWeService')}</h3>
                 <div className="flex flex-wrap gap-3">
                   {service.brands.map((brand, index) => (
                     <span key={index} className="bg-secondary-100 px-4 py-2 rounded-lg font-semibold text-secondary-700 text-sm">
@@ -138,7 +159,7 @@ export default function ServiceDetail() {
             <div className="lg:col-span-1">
               <div className="sticky top-24">
                 <div className="card">
-                  <h3 className="mb-6 text-lg">Schedule Service</h3>
+                  <h3 className="mb-6 text-lg">{t('serviceDetail.scheduleService')}</h3>
                   <BookingForm />
                 </div>
               </div>
@@ -151,9 +172,9 @@ export default function ServiceDetail() {
       <section className="bg-secondary-50 section-padding">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="mb-4">Our Appliance Repair Services</h2>
+            <h2 className="mb-4">{t('serviceDetail.otherServices')}</h2>
             <p className="text-base text-secondary-600 max-w-3xl mx-auto">
-              Expert repair services for all major appliance brands. Fast, reliable, and affordable solutions for your home.
+              {t('serviceDetail.otherServicesDescription')}
             </p>
           </div>
 
@@ -165,7 +186,7 @@ export default function ServiceDetail() {
 
           <div className="text-center mt-10">
             <Link to="/services" className="btn-primary inline-flex items-center">
-              View All Services
+              {t('home.viewAllServices')}
               <FaArrowRight className="ml-2" />
             </Link>
           </div>
@@ -183,12 +204,12 @@ export default function ServiceDetail() {
                 ))}
               </div>
               <span className="ml-3 text-lg font-semibold text-secondary-700">
-                5.0 Rating
+                {t('serviceDetail.rating')}
               </span>
             </div>
-            <h2 className="mb-4">Customer Reviews</h2>
+            <h2 className="mb-4">{t('serviceDetail.customerReviews')}</h2>
             <p className="text-base text-secondary-600 max-w-3xl mx-auto">
-              Don't just take our word for it. Here's what our satisfied customers have to say about our {service.name.toLowerCase()} services.
+              {t('serviceDetail.customerReviewsDescription')}
             </p>
           </div>
 
@@ -200,7 +221,7 @@ export default function ServiceDetail() {
 
           <div className="text-center mt-10">
             <Link to="/reviews" className="btn-outline inline-flex items-center">
-              Read More Reviews
+              {t('serviceDetail.readMoreReviews')}
               <FaArrowRight className="ml-2" />
             </Link>
           </div>
@@ -214,9 +235,9 @@ export default function ServiceDetail() {
             <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-4">
               <FaBook className="text-2xl text-primary-600" />
             </div>
-            <h2 className="mb-4">Helpful Resources</h2>
+            <h2 className="mb-4">{t('serviceDetail.helpfulResources')}</h2>
             <p className="text-base text-secondary-600 max-w-3xl mx-auto">
-              Expert tips and advice to help you maintain your appliances and troubleshoot common issues.
+              {t('serviceDetail.helpfulResourcesDescription')}
             </p>
           </div>
 
@@ -248,7 +269,7 @@ export default function ServiceDetail() {
                     {post.excerpt}
                   </p>
                   <span className="text-primary-600 font-semibold text-sm inline-flex items-center">
-                    Read More <FaArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
+                    {t('serviceDetail.readMore')} <FaArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
                   </span>
                 </div>
               </Link>
@@ -257,7 +278,7 @@ export default function ServiceDetail() {
 
           <div className="text-center mt-10">
             <Link to="/blog" className="btn-primary inline-flex items-center">
-              View All Resources
+              {t('serviceDetail.viewAllResources')}
               <FaArrowRight className="ml-2" />
             </Link>
           </div>
@@ -269,9 +290,9 @@ export default function ServiceDetail() {
         <section className="section-padding">
           <div className="container-custom">
             <div className="text-center mb-12">
-              <h2 className="mb-4">FAQs About {service.name} and Service</h2>
+              <h2 className="mb-4">{t('serviceDetail.faqsAbout')} {serviceName}</h2>
               <p className="text-base text-secondary-600 max-w-3xl mx-auto">
-                Find answers to common questions about our {service.name.toLowerCase()} services.
+                {t('serviceDetail.faqsDescription')}
               </p>
             </div>
 
@@ -287,7 +308,7 @@ export default function ServiceDetail() {
                       className="w-full text-left px-6 py-5 flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-primary-500"
                     >
                       <h3 className="text-sm font-semibold text-secondary-800 pr-8">
-                        {faq.question}
+                        {t(`${translationKey}.faqs.${index}.question`, faq.question)}
                       </h3>
                       <FaChevronDown 
                         className={`text-primary-600 flex-shrink-0 transition-transform duration-300 ${
@@ -301,7 +322,7 @@ export default function ServiceDetail() {
                       }`}
                     >
                       <div className="px-6 pb-5 text-sm text-secondary-600">
-                        {faq.answer}
+                        {t(`${translationKey}.faqs.${index}.answer`, faq.answer)}
                       </div>
                     </div>
                   </div>
@@ -310,7 +331,7 @@ export default function ServiceDetail() {
 
               <div className="text-center mt-10">
                 <Link to="/faq" className="btn-outline inline-flex items-center">
-                  View All FAQs
+                  {t('serviceDetail.viewAllFAQs')}
                   <FaArrowRight className="ml-2" />
                 </Link>
               </div>

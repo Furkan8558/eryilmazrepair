@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { FaChevronDown, FaChevronUp, FaQuestionCircle } from 'react-icons/fa'
+import { useTranslation } from 'react-i18next'
 import CallToAction from '../components/CallToAction'
-import { faqCategories } from '../data/faq'
+import { getFaqCategories } from '../data/faq'
 
 function FAQItem({ question, answer }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -29,15 +30,18 @@ function FAQItem({ question, answer }) {
 }
 
 export default function FAQ() {
+  const { t } = useTranslation()
+  const faqCategories = getFaqCategories()
+
   return (
     <div>
       {/* Page Header */}
       <section className="bg-gradient-primary text-white py-16">
         <div className="container-custom text-center">
           <FaQuestionCircle className="text-5xl mx-auto mb-4" />
-          <h1 className="mb-4">Frequently Asked Questions</h1>
+          <h1 className="mb-4">{t('faq.title')}</h1>
           <p className="text-xl max-w-3xl mx-auto">
-            Find answers to common questions about our appliance repair services.
+            {t('faq.subtitle')}
           </p>
         </div>
       </section>
@@ -65,17 +69,16 @@ export default function FAQ() {
       {/* Still Have Questions */}
       <section className="bg-secondary-50 py-16">
         <div className="container-custom text-center">
-          <h2 className="mb-4">Still Have Questions?</h2>
+          <h2 className="mb-4">{t('faq.stillHaveQuestions')}</h2>
           <p className="text-lg text-secondary-700 mb-8 max-w-2xl mx-auto">
-            Can't find the answer you're looking for? Our friendly customer service team 
-            is here to help. Give us a call or send us a message.
+            {t('faq.stillHaveQuestionsDescription')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/contact" className="btn-primary">
-              Contact Us
+              {t('faq.contactUs')}
             </a>
             <a href="tel:(555) 123-4567" className="btn-outline">
-              Call (555) 123-4567
+              {t('faq.callUs')}
             </a>
           </div>
         </div>

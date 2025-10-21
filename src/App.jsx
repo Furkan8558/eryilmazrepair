@@ -14,6 +14,9 @@ import BlogPost from './pages/BlogPost'
 import FAQ from './pages/FAQ'
 import ServiceAreas from './pages/ServiceAreas'
 import Reviews from './pages/Reviews'
+import ApplianceCare from './pages/ApplianceCare'
+import ApplianceLifeGuide from './pages/ApplianceLifeGuide'
+import EnergySavingTips from './pages/EnergySavingTips'
 import ScrollToTop from './components/ScrollToTop'
 
 function App() {
@@ -36,6 +39,9 @@ function App() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/service-areas" element={<ServiceAreas />} />
           <Route path="/reviews" element={<Reviews />} />
+          <Route path="/appliance-care" element={<ApplianceCare />} />
+          <Route path="/appliance-life-guide" element={<ApplianceLifeGuide />} />
+          <Route path="/energy-saving-tips" element={<EnergySavingTips />} />
         </Routes>
       </main>
       <Footer />

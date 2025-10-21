@@ -1,40 +1,44 @@
 import { Link } from 'react-router-dom'
 import { FaHome, FaCheckCircle, FaArrowRight } from 'react-icons/fa'
+import { useTranslation } from 'react-i18next'
 import ServiceCard from '../components/ServiceCard'
 import CallToAction from '../components/CallToAction'
 import { services } from '../data/services'
 import { companyInfo } from '../data/companyInfo'
 
 export default function ResidentialServices() {
-  const residentialServices = services.filter(s => 
-    ['refrigerator-repair', 'dishwasher-repair', 'oven-repair', 'washer-repair', 
-     'dryer-repair', 'microwave-repair', 'ice-maker-repair', 'garbage-disposal-repair'].includes(s.id)
+  const { t } = useTranslation()
+  
+  // Show the same 6 featured services as homepage
+  const featuredServices = services.filter(s => 
+    ['refrigerator-repair', 'dishwasher-repair', 'oven-repair', 
+     'washer-repair', 'combi-boiler-repair', 'air-conditioner-repair'].includes(s.id)
   )
 
   const benefits = [
     {
-      title: "Same-Day Service Available",
-      description: "We understand appliance emergencies. Get fast, reliable service when you need it most."
+      title: t('residential.benefit1Title'),
+      description: t('residential.benefit1Description')
     },
     {
-      title: "All Major Brands",
-      description: "Our technicians are trained to service all major appliance brands and models."
+      title: t('residential.benefit2Title'),
+      description: t('residential.benefit2Description')
     },
     {
-      title: "Upfront Pricing",
-      description: "No surprises. We provide clear pricing before we start any work."
+      title: t('residential.benefit3Title'),
+      description: t('residential.benefit3Description')
     },
     {
-      title: "Licensed & Insured",
-      description: "All our technicians are fully licensed, certified, and insured for your peace of mind."
+      title: t('residential.benefit4Title'),
+      description: t('residential.benefit4Description')
     },
     {
-      title: "Warranty Guaranteed",
-      description: "90-day labor warranty on all residential repairs. We stand behind our work."
+      title: t('residential.benefit5Title'),
+      description: t('residential.benefit5Description')
     },
     {
-      title: "Experienced Technicians",
-      description: "15+ years of experience fixing residential appliances quickly and correctly."
+      title: t('residential.benefit6Title'),
+      description: t('residential.benefit6Description')
     }
   ]
 
@@ -45,17 +49,16 @@ export default function ResidentialServices() {
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <FaHome className="text-6xl mx-auto mb-6" />
-            <h1 className="mb-6">Residential Appliance Repair Services</h1>
+            <h1 className="mb-6">{t('residential.title')}</h1>
             <p className="text-xl mb-8">
-              Expert repair services for all your home appliances. Fast, reliable, and affordable 
-              solutions to keep your household running smoothly.
+              {t('residential.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/contact" className="btn-primary bg-white text-primary-600 hover:bg-gray-100">
-                Schedule Repair Service
+                {t('residential.scheduleRepair')}
               </Link>
-              <a href={`tel:${companyInfo.phone}`} className="btn-secondary border-white text-white hover:bg-white hover:text-primary-600">
-                Call {companyInfo.phone}
+              <a href={`tel:${companyInfo.phone}`} className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-2 px-5 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-sm">
+                {t('residential.call')} {companyInfo.phone}
               </a>
             </div>
           </div>
@@ -66,15 +69,14 @@ export default function ResidentialServices() {
       <section className="section-padding">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="mb-4">Our Residential Services</h2>
+            <h2 className="mb-4">{t('residential.ourServices')}</h2>
             <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
-              From kitchen appliances to laundry equipment, we repair it all. 
-              Professional service for every appliance in your home.
+              {t('residential.ourServicesDescription')}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {residentialServices.map((service) => (
+            {featuredServices.map((service) => (
               <ServiceCard key={service.id} service={service} />
             ))}
           </div>
@@ -85,10 +87,9 @@ export default function ResidentialServices() {
       <section className="section-padding bg-secondary-50">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="mb-4">Why Choose Us for Your Home</h2>
+            <h2 className="mb-4">{t('residential.whyChoose')}</h2>
             <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
-              We're committed to providing the best residential appliance repair service. 
-              Here's what makes us the trusted choice for homeowners.
+              {t('residential.whyChooseDescription')}
             </p>
           </div>
 
@@ -110,9 +111,9 @@ export default function ResidentialServices() {
       <section className="section-padding">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="mb-4">How Our Service Works</h2>
+            <h2 className="mb-4">{t('residential.howItWorks')}</h2>
             <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
-              Getting your appliances repaired is easy with our simple 3-step process.
+              {t('residential.howItWorksDescription')}
             </p>
           </div>
 
@@ -121,27 +122,27 @@ export default function ResidentialServices() {
               <div className="bg-primary-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                 1
               </div>
-              <h3 className="text-xl font-bold mb-3">Schedule Service</h3>
+              <h3 className="text-xl font-bold mb-3">{t('residential.step1Title')}</h3>
               <p className="text-secondary-600">
-                Contact us by phone or online to schedule a convenient appointment time.
+                {t('residential.step1Description')}
               </p>
             </div>
             <div className="text-center">
               <div className="bg-primary-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                 2
               </div>
-              <h3 className="text-xl font-bold mb-3">Expert Diagnosis</h3>
+              <h3 className="text-xl font-bold mb-3">{t('residential.step2Title')}</h3>
               <p className="text-secondary-600">
-                Our technician arrives, diagnoses the problem, and provides upfront pricing.
+                {t('residential.step2Description')}
               </p>
             </div>
             <div className="text-center">
               <div className="bg-primary-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                 3
               </div>
-              <h3 className="text-xl font-bold mb-3">Quality Repair</h3>
+              <h3 className="text-xl font-bold mb-3">{t('residential.step3Title')}</h3>
               <p className="text-secondary-600">
-                We complete the repair efficiently and ensure your appliance works perfectly.
+                {t('residential.step3Description')}
               </p>
             </div>
           </div>
@@ -151,9 +152,9 @@ export default function ResidentialServices() {
       {/* Brands We Service */}
       <section className="bg-secondary-50 py-16">
         <div className="container-custom">
-          <h2 className="text-center mb-8">Brands We Service</h2>
+          <h2 className="text-center mb-8">{t('residential.brandsWeService')}</h2>
           <p className="text-center text-lg text-secondary-700 mb-8">
-            We repair all major residential appliance brands
+            {t('residential.brandsWeServiceDescription')}
           </p>
           <div className="flex flex-wrap justify-center gap-6">
             {['Samsung', 'LG', 'Whirlpool', 'GE', 'Frigidaire', 'Maytag', 'KitchenAid', 'Bosch', 
