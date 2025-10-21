@@ -12,6 +12,7 @@ export default function ContactForm() {
     message: ''
   })
   const [submitted, setSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = (e) => {
     setFormData({
@@ -20,21 +21,36 @@ export default function ContactForm() {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('Contact form submitted:', formData)
-    setSubmitted(true)
+    setIsSubmitting(true)
     
-    setTimeout(() => {
-      setSubmitted(false)
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: ''
-      })
-    }, 3000)
+    try {
+      // TODO: Integrate with backend API or email service (Formspree, EmailJS, etc.)
+      // Example: await sendEmail(formData)
+      
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 500))
+      
+      setSubmitted(true)
+      
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setSubmitted(false)
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          subject: '',
+          message: ''
+        })
+      }, 3000)
+    } catch (error) {
+      // Handle error (could show error message to user)
+      console.error('Form submission error:', error)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   if (submitted) {
@@ -133,8 +149,12 @@ export default function ContactForm() {
         ></textarea>
       </div>
 
-      <button type="submit" className="btn-primary w-full">
-        {t('contact.send')}
+      <button 
+        type="submit" 
+        className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? t('common.sending') || 'Sending...' : t('contact.send')}
       </button>
     </form>
   )

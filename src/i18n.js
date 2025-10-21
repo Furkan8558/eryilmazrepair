@@ -2394,18 +2394,21 @@ const resources = {
 };
 
 i18n
-  .use(LanguageDetector) // Detect user language
-  .use(initReactI18next) // Pass i18n instance to react-i18next
+  .use(LanguageDetector)
+  .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: 'tr', // Default to Turkish since this is a Turkish business
+    lng: 'tr', // Force Turkish as default
+    fallbackLng: 'tr', // Fallback to Turkish
     debug: false,
     interpolation: {
       escapeValue: false, // React already escapes
     },
     detection: {
-      order: ['localStorage', 'navigator'], // Check localStorage first, then browser
-      caches: ['localStorage'], // Cache language selection
+      order: ['localStorage', 'cookie', 'htmlTag'], // Check user's saved preference first
+      caches: ['localStorage', 'cookie'], // Cache language selection
+      lookupLocalStorage: 'i18nextLng',
+      lookupCookie: 'i18nextLng',
     },
   });
 

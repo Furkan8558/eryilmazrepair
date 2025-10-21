@@ -27,3 +27,14 @@ dist-ssr
 *.sln
 *.sw?
 
+# Backup files
+*.backup
+*.bak
+*.old
+*~
+
+# Python virtual environment (not needed for React project)
+myenv/
+venv/
+env/
+

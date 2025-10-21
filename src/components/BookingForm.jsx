@@ -13,6 +13,7 @@ export default function BookingForm() {
     message: ''
   })
   const [submitted, setSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = (e) => {
     setFormData({
@@ -21,26 +22,39 @@ export default function BookingForm() {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Here you would typically send the data to a backend
-    console.log('Form submitted:', formData)
-    setSubmitted(true)
+    setIsSubmitting(true)
     
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setSubmitted(false)
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        address: '',
-        service: '',
-        preferredDate: '',
-        preferredTime: '',
-        message: ''
-      })
-    }, 3000)
+    try {
+      // TODO: Integrate with backend API or email service (Formspree, EmailJS, etc.)
+      // Example: await sendBookingEmail(formData)
+      
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 500))
+      
+      setSubmitted(true)
+      
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setSubmitted(false)
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          address: '',
+          service: '',
+          preferredDate: '',
+          preferredTime: '',
+          message: ''
+        })
+      }, 3000)
+    } catch (error) {
+      // Handle error (could show error message to user)
+      console.error('Booking submission error:', error)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   if (submitted) {
@@ -199,8 +213,12 @@ export default function BookingForm() {
         ></textarea>
       </div>
 
-      <button type="submit" className="btn-primary w-full">
-        Schedule Service Appointment
+      <button 
+        type="submit" 
+        className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? 'Scheduling...' : 'Schedule Service Appointment'}
       </button>
 
       <p className="text-sm text-secondary-600 text-center">
