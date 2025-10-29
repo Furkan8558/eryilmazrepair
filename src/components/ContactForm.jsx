@@ -34,7 +34,7 @@ export default function ContactForm() {
 
   return (
     <form 
-      action="https://formsubmit.co/furkaneryilmaz201@gmail.com" 
+      action="https://formsubmit.co/info@eryilmazteknik.com.tr" 
       method="POST"
       className="space-y-6"
     >
