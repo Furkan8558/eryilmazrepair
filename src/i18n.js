@@ -154,6 +154,8 @@ const resources = {
       },
       // Home page
       home: {
+        metaTitle: 'Eryilmaz Teknik - Bursa Beyaz Eşya Tamir Servisi | Kombi Klima Teknik Servis',
+        metaDescription: 'Bursa\'nın en güvenilir beyaz eşya tamir servisi. Kombi, klima, buzdolabı, çamaşır makinesi tamiri. 7/24 acil teknik servis. ☎️ Hemen Arayın!',
         heroTitle: 'Expert Appliance Repair Services in Bursa',
         heroSubtitle: 'Fast, Reliable & Affordable Repairs for All Major Brands',
         ourServices: 'Our Appliance Repair Services',
@@ -1412,6 +1414,8 @@ const resources = {
       },
       // Home page - Ana sayfa
       home: {
+        metaTitle: 'Eryilmaz Teknik - Bursa Beyaz Eşya Tamir Servisi | Kombi Klima Teknik Servis',
+        metaDescription: 'Bursa\'nın en güvenilir beyaz eşya tamir servisi. Kombi, klima, buzdolabı, çamaşır makinesi tamiri. 7/24 acil teknik servis. ☎️ Hemen Arayın!',
         heroTitle: "Bursa'da Uzman Beyaz Eşya Tamir Servisi",
         heroSubtitle: 'Tüm Markalarda Hızlı, Güvenilir ve Uygun Fiyatlı Tamir',
         ourServices: 'Beyaz Eşya Tamir Servislerimiz',

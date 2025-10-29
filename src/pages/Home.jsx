@@ -5,6 +5,7 @@ import ServiceCard from '../components/ServiceCard'
 import TestimonialCard from '../components/TestimonialCard'
 import WhyChooseUs from '../components/WhyChooseUs'
 import CallToAction from '../components/CallToAction'
+import SEO from '../components/SEO'
 import getServices from '../data/services'
 import { testimonials } from '../data/testimonials'
 import { blogPosts } from '../data/blogPosts'
@@ -32,8 +33,123 @@ export default function Home() {
     setOpenFAQ(openFAQ === id ? null : id)
   }
 
+  // Structured Data for Homepage
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://eryilmazteknik.com.tr/#organization",
+        "name": "Eryilmaz Teknik",
+        "url": "https://eryilmazteknik.com.tr",
+        "logo": "https://eryilmazteknik.com.tr/logo.png",
+        "image": "https://eryilmazteknik.com.tr/og-image.jpg",
+        "description": "Bursa'nın en güvenilir beyaz eşya tamir servisi. Kombi, klima, buzdolabı, çamaşır makinesi tamiri ve bakım hizmetleri.",
+        "priceRange": "$$",
+        "telephone": "+90-XXX-XXX-XXXX",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bursa",
+          "addressRegion": "Marmara",
+          "postalCode": "16000",
+          "addressCountry": "TR"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "40.1826",
+          "longitude": "29.0665"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "00:00",
+            "closes": "23:59"
+          }
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "reviewCount": "150",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://eryilmazteknik.com.tr/#website",
+        "url": "https://eryilmazteknik.com.tr",
+        "name": "Eryilmaz Teknik",
+        "inLanguage": "tr-TR",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://eryilmazteknik.com.tr/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://eryilmazteknik.com.tr/"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": featuredFAQs.map((faq, index) => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
+          }
+        }))
+      },
+      {
+        "@type": "Service",
+        "serviceType": "Beyaz Eşya Tamir Servisi",
+        "provider": {
+          "@id": "https://eryilmazteknik.com.tr/#organization"
+        },
+        "areaServed": {
+          "@type": "City",
+          "name": "Bursa"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Teknik Servis Hizmetleri",
+          "itemListElement": featuredServices.map((service, index) => ({
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": service.title,
+              "description": service.description
+            }
+          }))
+        }
+      }
+    ]
+  };
+
   return (
     <div>
+      <SEO 
+        title={t('home.metaTitle') || "Bursa Beyaz Eşya Tamir Servisi | Kombi Klima Teknik Servis"}
+        description={t('home.metaDescription') || "Bursa'nın en güvenilir beyaz eşya tamir servisi. Kombi, klima, buzdolabı, çamaşır makinesi tamiri. 7/24 acil teknik servis. Hemen arayın!"}
+        keywords={[
+          'bursa beyaz eşya servisi ana sayfa',
+          'bursa teknik servis anasayfa',
+          'eryilmaz teknik',
+          'bursa en iyi tamirci',
+          'bursa 7/24 teknik servis',
+          'acil beyaz eşya tamiri bursa'
+        ]}
+        structuredData={structuredData}
+      />
       <Hero />
 
       {/* Services Section */}

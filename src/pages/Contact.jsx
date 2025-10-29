@@ -2,14 +2,60 @@ import { Link } from 'react-router-dom'
 import { FaPhone, FaEnvelope, FaClock, FaMapMarkerAlt } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
 import ContactForm from '../components/ContactForm'
+import SEO from '../components/SEO'
 import getCompanyInfo from '../data/companyInfo'
 
 export default function Contact() {
   const { t } = useTranslation()
   const companyInfo = getCompanyInfo()
   
+  // Structured Data for Contact page
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "name": "Eryilmaz Teknik",
+      "telephone": companyInfo.phone,
+      "email": companyInfo.email,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bursa",
+        "addressRegion": "Marmara",
+        "addressCountry": "TR"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "00:00",
+        "closes": "23:59"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": companyInfo.phone,
+        "contactType": "Customer Service",
+        "areaServed": "TR",
+        "availableLanguage": ["Turkish", "English"]
+      }
+    }
+  };
+  
   return (
     <div>
+      <SEO 
+        title={t('nav.contactUs') || "İletişim | Eryilmaz Teknik Bursa"}
+        description={t('contact.getInTouchDescription') || "Eryilmaz Teknik ile iletişime geçin. Bursa beyaz eşya, kombi, klima tamir servisi. 7/24 acil servis için hemen arayın!"}
+        keywords={[
+          'eryilmaz teknik iletişim',
+          'bursa teknik servis iletişim',
+          'beyaz eşya tamirci telefon',
+          'bursa kombi servisi telefon',
+          'acil tamir servisi bursa',
+          'beyaz eşya servisi randevu'
+        ]}
+        structuredData={structuredData}
+        ogType="website"
+      />
       {/* Page Header */}
       <section className="bg-gradient-primary text-white py-16">
         <div className="container-custom text-center">

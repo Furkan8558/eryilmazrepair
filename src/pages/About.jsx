@@ -82,8 +82,12 @@ export default function About() {
                 </p>
               </div>
             </div>
-            <div className="bg-secondary-200 rounded-xl h-96 flex items-center justify-center">
-              <span className="text-secondary-400 text-xl">{t('about.companyImage')}</span>
+            <div className="bg-secondary-100 rounded-xl h-96 flex items-center justify-center p-8">
+              <img 
+                src="/logo.png" 
+                alt="Eryilmaz Teknik Logo" 
+                className="max-w-full max-h-full object-contain"
+              />
             </div>
           </div>
         </div>
