@@ -13,68 +13,12 @@ export default function BookingForm() {
     message: ''
   })
   const [submitted, setSubmitted] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     })
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    
-    try {
-      // Send booking data to FormSubmit.co
-      const response = await fetch('https://formsubmit.co/furkaneryilmaz201@gmail.com', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          address: formData.address,
-          service: formData.service,
-          preferredDate: formData.preferredDate,
-          preferredTime: formData.preferredTime,
-          message: formData.message,
-          _subject: 'New Service Booking Request - Eryilmaz Teknik',
-          _template: 'table',
-          _captcha: 'false'
-        })
-      })
-
-      if (response.ok) {
-        setSubmitted(true)
-        
-        // Reset form after 3 seconds
-        setTimeout(() => {
-          setSubmitted(false)
-          setFormData({
-            name: '',
-            email: '',
-            phone: '',
-            address: '',
-            service: '',
-            preferredDate: '',
-            preferredTime: '',
-            message: ''
-          })
-        }, 3000)
-      } else {
-        throw new Error('Booking submission failed')
-      }
-    } catch (error) {
-      console.error('Booking submission error:', error)
-      alert('There was an error submitting your booking. Please try again or call us directly.')
-    } finally {
-      setIsSubmitting(false)
-    }
   }
 
   if (submitted) {
@@ -90,7 +34,17 @@ export default function BookingForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form 
+      action="https://formsubmit.co/furkaneryilmaz201@gmail.com" 
+      method="POST"
+      className="space-y-6"
+    >
+      {/* FormSubmit Configuration */}
+      <input type="hidden" name="_subject" value="New Service Booking Request - Eryilmaz Teknik" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_next" value="https://www.eryilmazteknik.com.tr/franchise-finder?success=true" />
+      
       <div className="grid md:grid-cols-2 gap-6">
         <div>
           <label htmlFor="name" className="block text-sm font-semibold text-secondary-700 mb-2">
@@ -235,10 +189,9 @@ export default function BookingForm() {
 
       <button 
         type="submit" 
-        className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
-        disabled={isSubmitting}
+        className="btn-primary w-full"
       >
-        {isSubmitting ? 'Scheduling...' : 'Schedule Service Appointment'}
+        Schedule Service Appointment
       </button>
 
       <p className="text-sm text-secondary-600 text-center">
