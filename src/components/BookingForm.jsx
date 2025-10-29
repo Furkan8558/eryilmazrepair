@@ -103,7 +103,7 @@ export default function BookingForm() {
       action="https://formsubmit.co/info@eryilmazteknik.com.tr" 
       method="POST"
       onSubmit={handleSubmit}
-      className="space-y-6"
+      className="space-y-4 md:space-y-6"
     >
       {/* FormSubmit Configuration */}
       <input type="hidden" name="_subject" value="New Service Booking Request - Eryilmaz Teknik" />
@@ -111,7 +111,7 @@ export default function BookingForm() {
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_next" value="https://www.eryilmazteknik.com.tr/franchise-finder?success=true" />
       
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-4 md:gap-6">
         <div>
           <label htmlFor="name" className="block text-sm font-semibold text-secondary-700 mb-2">
             {t('bookingForm.fullName')} *
@@ -127,7 +127,7 @@ export default function BookingForm() {
             className={`input-field ${errors.name ? 'border-red-500' : ''}`}
             placeholder={t('bookingForm.fullNamePlaceholder')}
           />
-          {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+          {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
         </div>
 
         <div>
@@ -145,7 +145,7 @@ export default function BookingForm() {
             className={`input-field ${errors.phone ? 'border-red-500' : ''}`}
             placeholder={t('bookingForm.phoneNumberPlaceholder')}
           />
-          {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
+          {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
         </div>
       </div>
 
@@ -164,7 +164,7 @@ export default function BookingForm() {
           className={`input-field ${errors.email ? 'border-red-500' : ''}`}
           placeholder={t('bookingForm.emailPlaceholder')}
         />
-        {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+        {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
       </div>
 
       <div>
@@ -182,7 +182,7 @@ export default function BookingForm() {
           className={`input-field ${errors.address ? 'border-red-500' : ''}`}
           placeholder={t('bookingForm.serviceAddressPlaceholder')}
         />
-        {errors.address && <p className="text-red-500 text-sm mt-1">{errors.address}</p>}
+        {errors.address && <p className="text-red-500 text-xs mt-1">{errors.address}</p>}
       </div>
 
       <div>
@@ -208,10 +208,10 @@ export default function BookingForm() {
           <option value="disposal">{t('bookingForm.disposalRepair')}</option>
           <option value="other">{t('bookingForm.other')}</option>
         </select>
-        {errors.service && <p className="text-red-500 text-sm mt-1">{errors.service}</p>}
+        {errors.service && <p className="text-red-500 text-xs mt-1">{errors.service}</p>}
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-4 md:gap-6">
         <div>
           <label htmlFor="preferredDate" className="block text-sm font-semibold text-secondary-700 mb-2">
             {t('bookingForm.preferredDate')} *
@@ -246,7 +246,7 @@ export default function BookingForm() {
             <option value="afternoon">{t('bookingForm.afternoon')}</option>
             <option value="evening">{t('bookingForm.evening')}</option>
           </select>
-          {errors.preferredTime && <p className="text-red-500 text-sm mt-1">{errors.preferredTime}</p>}
+          {errors.preferredTime && <p className="text-red-500 text-xs mt-1">{errors.preferredTime}</p>}
         </div>
       </div>
 
@@ -268,7 +268,7 @@ export default function BookingForm() {
 
       <button 
         type="submit" 
-        className="btn-primary w-full"
+        className="btn-primary w-full text-base font-bold"
       >
         {t('bookingForm.scheduleAppointment')}
       </button>

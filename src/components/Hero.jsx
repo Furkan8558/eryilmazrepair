@@ -64,10 +64,10 @@ export default function Hero() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link to="/franchise-finder" className="btn-primary bg-white text-primary-600 hover:bg-gray-100">
+            <Link to="/franchise-finder" className="btn-primary bg-white text-primary-600 hover:bg-gray-100 text-base sm:text-lg py-3 px-6 font-bold">
               {t('common.scheduleService')}
             </Link>
-            <Link to="/services" className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-2 px-5 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-sm">
+            <Link to="/services" className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-base sm:text-lg">
               {t('common.viewAll')} {t('footer.services')}
             </Link>
           </div>

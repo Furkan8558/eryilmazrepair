@@ -250,14 +250,14 @@ export default function Header() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden mt-4 pb-4 border-t border-secondary-200 pt-4 max-h-96 overflow-y-auto">
+          <div className="lg:hidden mt-4 pb-4 border-t border-secondary-200 pt-4 max-h-[70vh] overflow-y-auto">
             <nav className="flex flex-col space-y-3">
               {navigation.map((item) => (
                 <div key={item.path}>
                   <Link
                     to={item.path}
                     onClick={() => !item.submenu && setMobileMenuOpen(false)}
-                    className={`font-semibold transition-colors hover:text-primary-600 block ${
+                    className={`text-base font-semibold transition-colors hover:text-primary-600 block ${
                       isActive(item.path) ? 'text-primary-600' : 'text-secondary-700'
                     }`}
                   >
@@ -268,8 +268,8 @@ export default function Header() {
                       {item.submenu.map((subItem, idx) => (
                         <div key={idx}>
                           {subItem.items ? (
-                            <div className="mb-2">
-                              <div className="font-semibold text-primary-600 text-sm mb-1">
+                            <div className="mb-3">
+                              <div className="font-medium text-primary-600 text-sm mb-1.5 uppercase tracking-wide">
                                 {subItem.name}
                               </div>
                               {subItem.items.map((nestedItem) => (
@@ -277,7 +277,7 @@ export default function Header() {
                                   key={nestedItem.path}
                                   to={nestedItem.path}
                                   onClick={() => setMobileMenuOpen(false)}
-                                  className="block text-secondary-600 hover:text-primary-600 transition-colors text-sm py-1 pl-2"
+                                  className="block text-secondary-600 hover:text-primary-600 transition-colors text-sm py-1.5 pl-2 font-normal"
                                 >
                                   {nestedItem.name}
                                 </Link>
@@ -287,7 +287,7 @@ export default function Header() {
                             <Link
                               to={subItem.path}
                               onClick={() => setMobileMenuOpen(false)}
-                              className="block text-secondary-700 hover:text-primary-600 transition-colors text-sm font-semibold"
+                              className="block text-secondary-700 hover:text-primary-600 transition-colors text-sm font-normal py-1"
                             >
                               {subItem.name}
                             </Link>
@@ -299,10 +299,10 @@ export default function Header() {
                 </div>
               ))}
             </nav>
-            <div className="mt-4 space-y-3">
+            <div className="mt-6 pt-4 border-t border-secondary-200 space-y-3">
               <a
                 href={`tel:${companyInfo.phone}`}
-                className="flex items-center text-primary-600 font-semibold"
+                className="flex items-center justify-center text-primary-600 font-semibold text-base"
               >
                 <FaPhone className="mr-2" />
                 {companyInfo.phone}
@@ -310,7 +310,7 @@ export default function Header() {
               <Link
                 to="/franchise-finder"
                 onClick={() => setMobileMenuOpen(false)}
-                className="btn-primary block text-center"
+                className="btn-primary block text-center py-3"
               >
                 {t('common.scheduleService')}
               </Link>

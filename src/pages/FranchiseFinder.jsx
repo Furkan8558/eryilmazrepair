@@ -98,10 +98,10 @@ export default function FranchiseFinder() {
   return (
     <div>
       {/* Page Header */}
-      <section className="bg-gradient-primary text-white py-16">
+      <section className="bg-gradient-primary text-white py-12 md:py-16">
         <div className="container-custom text-center">
-          <h1 className="mb-4">{t('franchiseFinder.title')}</h1>
-          <p className="text-xl max-w-3xl mx-auto">
+          <h1 className="mb-3 md:mb-4">{t('franchiseFinder.title')}</h1>
+          <p className="text-base md:text-xl max-w-3xl mx-auto">
             {t('franchiseFinder.subtitle')}
           </p>
         </div>
@@ -111,24 +111,24 @@ export default function FranchiseFinder() {
       <section className="section-padding">
         <div className="container-custom max-w-4xl">
           {/* Search Box */}
-          <div className="card mb-8">
-            <h2 className="text-2xl font-bold mb-6 text-center">
+          <div className="card mb-6 md:mb-8">
+            <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center">
               {t('franchiseFinder.findYourFranchise')}
             </h2>
             
-            <form onSubmit={handleZipSearch} className="mb-6">
-              <div className="flex gap-3">
+            <form onSubmit={handleZipSearch} className="mb-4 md:mb-6">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <input
                   type="text"
                   value={zipCode}
                   onChange={(e) => setZipCode(e.target.value)}
                   placeholder={t('franchiseFinder.enterZipPlaceholder')}
-                  className="flex-1 px-4 py-3 border border-secondary-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  className="flex-1 px-4 py-3 text-base border border-secondary-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
                 />
                 <button
                   type="submit"
                   disabled={loading}
-                  className="btn-primary px-8 flex items-center justify-center min-w-[120px]"
+                  className="btn-primary px-6 sm:px-8 py-3 flex items-center justify-center min-w-[120px]"
                 >
                   {loading ? (
                     <FaSpinner className="animate-spin" />
@@ -143,11 +143,11 @@ export default function FranchiseFinder() {
             </form>
 
             <div className="text-center">
-              <div className="text-secondary-500 mb-3">{t('franchiseFinder.or')}</div>
+              <div className="text-secondary-500 mb-3 text-sm">{t('franchiseFinder.or')}</div>
               <button
                 onClick={detectUserLocation}
                 disabled={detectingLocation}
-                className="btn-outline inline-flex items-center"
+                className="btn-outline inline-flex items-center py-3 px-6"
               >
                 {detectingLocation ? (
                   <>
@@ -164,7 +164,7 @@ export default function FranchiseFinder() {
             </div>
 
             {error && (
-              <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-center">
+              <div className="mt-4 p-3 md:p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-center text-sm">
                 {error}
               </div>
             )}
@@ -173,32 +173,32 @@ export default function FranchiseFinder() {
           {/* Selected Franchise */}
           {selectedFranchise && (
             <div className="card bg-primary-50 border-2 border-primary-200">
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h3 className="text-2xl font-bold text-primary-700 mb-2">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 md:mb-6">
+                <div className="mb-3 sm:mb-0">
+                  <h3 className="text-xl md:text-2xl font-bold text-primary-700 mb-2">
                     {t('franchiseFinder.foundFranchise')}
                   </h3>
-                  <h4 className="text-xl font-semibold text-secondary-800">
+                  <h4 className="text-lg md:text-xl font-semibold text-secondary-800">
                     {selectedFranchise.name}
                   </h4>
                 </div>
-                <div className="bg-primary-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
+                <div className="bg-primary-600 text-white px-4 py-2 rounded-full text-sm font-semibold self-start">
                   {t('franchiseFinder.serving')}
                 </div>
               </div>
 
-              <div className="grid lg:grid-cols-3 gap-8">
+              <div className="grid lg:grid-cols-3 gap-6 md:gap-8">
                 {/* Left Column - Contact Info */}
                 <div className="lg:col-span-1 space-y-4">
                   <div className="flex items-start">
-                    <FaPhone className="text-primary-600 mt-1 mr-3 flex-shrink-0" />
-                    <div>
-                      <div className="font-semibold text-secondary-800 mb-1">
+                    <FaPhone className="text-primary-600 mt-1 mr-3 flex-shrink-0 text-sm" />
+                    <div className="min-w-0">
+                      <div className="font-semibold text-secondary-800 mb-1 text-sm">
                         {t('common.phone')}
                       </div>
                       <a 
                         href={`tel:${selectedFranchise.phone}`}
-                        className="text-primary-600 hover:text-primary-700 font-medium"
+                        className="text-primary-600 hover:text-primary-700 font-medium text-sm break-all"
                       >
                         {selectedFranchise.phone}
                       </a>
@@ -206,14 +206,14 @@ export default function FranchiseFinder() {
                   </div>
 
                   <div className="flex items-start">
-                    <FaEnvelope className="text-primary-600 mt-1 mr-3 flex-shrink-0" />
-                    <div>
-                      <div className="font-semibold text-secondary-800 mb-1">
+                    <FaEnvelope className="text-primary-600 mt-1 mr-3 flex-shrink-0 text-sm" />
+                    <div className="min-w-0">
+                      <div className="font-semibold text-secondary-800 mb-1 text-sm">
                         {t('common.email')}
                       </div>
                       <a 
                         href={`mailto:${selectedFranchise.email}`}
-                        className="text-primary-600 hover:text-primary-700"
+                        className="text-primary-600 hover:text-primary-700 text-sm break-all"
                       >
                         {selectedFranchise.email}
                       </a>
@@ -221,12 +221,12 @@ export default function FranchiseFinder() {
                   </div>
 
                   <div className="flex items-start">
-                    <FaMapMarkerAlt className="text-primary-600 mt-1 mr-3 flex-shrink-0" />
-                    <div>
-                      <div className="font-semibold text-secondary-800 mb-1">
+                    <FaMapMarkerAlt className="text-primary-600 mt-1 mr-3 flex-shrink-0 text-sm" />
+                    <div className="min-w-0">
+                      <div className="font-semibold text-secondary-800 mb-1 text-sm">
                         {t('common.address')}
                       </div>
-                      <p className="text-secondary-700">
+                      <p className="text-secondary-700 text-sm">
                         {selectedFranchise.address.street}<br />
                         {selectedFranchise.address.district}, {selectedFranchise.address.city}<br />
                         {selectedFranchise.address.zip}, {selectedFranchise.address.country}
@@ -235,12 +235,12 @@ export default function FranchiseFinder() {
                   </div>
 
                   <div className="flex items-start">
-                    <FaClock className="text-primary-600 mt-1 mr-3 flex-shrink-0" />
-                    <div>
-                      <div className="font-semibold text-secondary-800 mb-2">
+                    <FaClock className="text-primary-600 mt-1 mr-3 flex-shrink-0 text-sm" />
+                    <div className="min-w-0">
+                      <div className="font-semibold text-secondary-800 mb-2 text-sm">
                         {t('contact.businessHours')}
                       </div>
-                      <div className="text-secondary-700 space-y-1">
+                      <div className="text-secondary-700 space-y-1 text-sm">
                         <p>{t('common.monFri')}: {selectedFranchise.hours.weekday}</p>
                         <p>{t('common.saturday')}: {selectedFranchise.hours.saturday}</p>
                         <p>{t('common.sunday')}: {selectedFranchise.hours.sunday}</p>
@@ -250,7 +250,7 @@ export default function FranchiseFinder() {
 
                   <a 
                     href={`tel:${selectedFranchise.phone}`}
-                    className="btn-primary w-full text-center mt-4 block"
+                    className="btn-primary w-full text-center mt-4 block py-3"
                   >
                     {t('common.callNow')}
                   </a>
@@ -258,8 +258,8 @@ export default function FranchiseFinder() {
 
                 {/* Right Column - Booking Form */}
                 <div className="lg:col-span-2">
-                  <div className="bg-white rounded-xl p-6 shadow-lg">
-                    <h3 className="text-xl font-bold text-secondary-800 mb-4">
+                  <div className="bg-white rounded-xl p-4 md:p-6 shadow-lg">
+                    <h3 className="text-lg md:text-xl font-bold text-secondary-800 mb-4">
                       {t('common.scheduleService')}
                     </h3>
                     <BookingForm />
@@ -270,34 +270,34 @@ export default function FranchiseFinder() {
           )}
 
           {/* All Franchises List */}
-          <div className="mt-12">
-            <h2 className="text-2xl font-bold mb-6 text-center">
+          <div className="mt-8 md:mt-12">
+            <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center">
               {t('franchiseFinder.allLocations')}
             </h2>
             
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
               {activeFranchises.map((franchise) => (
                 <div 
                   key={franchise.id}
                   className="card hover:shadow-xl transition-shadow cursor-pointer"
                   onClick={() => setSelectedFranchise(franchise)}
                 >
-                  <h3 className="text-xl font-bold text-secondary-800 mb-3">
+                  <h3 className="text-lg md:text-xl font-bold text-secondary-800 mb-3">
                     {franchise.name}
                   </h3>
                   
                   <div className="space-y-2 text-sm">
                     <div className="flex items-center text-secondary-600">
-                      <FaPhone className="mr-2 text-primary-600" />
-                      {franchise.phone}
+                      <FaPhone className="mr-2 text-primary-600 flex-shrink-0" />
+                      <span className="break-all">{franchise.phone}</span>
                     </div>
                     <div className="flex items-center text-secondary-600">
-                      <FaMapMarkerAlt className="mr-2 text-primary-600" />
-                      {franchise.address.city}, {franchise.address.district}
+                      <FaMapMarkerAlt className="mr-2 text-primary-600 flex-shrink-0" />
+                      <span>{franchise.address.city}, {franchise.address.district}</span>
                     </div>
                   </div>
                   
-                  <button className="btn-outline w-full mt-4">
+                  <button className="btn-outline w-full mt-4 py-2.5">
                     {t('franchiseFinder.viewDetails')}
                   </button>
                 </div>
@@ -308,17 +308,17 @@ export default function FranchiseFinder() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-primary-600 text-white py-12">
+      <section className="bg-primary-600 text-white py-10 md:py-12">
         <div className="container-custom text-center">
-          <h3 className="text-2xl font-bold mb-4">
+          <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">
             {t('franchiseFinder.cantFindLocation')}
           </h3>
-          <p className="text-lg mb-6 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg mb-6 max-w-2xl mx-auto">
             {t('franchiseFinder.expanding')}
           </p>
           <a 
             href={`mailto:${activeFranchises[0]?.email || 'info@eryilmazteknik.com.tr'}`}
-            className="btn-primary bg-white text-primary-600 hover:bg-gray-100"
+            className="btn-primary bg-white text-primary-600 hover:bg-gray-100 py-3 px-6 inline-block"
           >
             {t('common.contact')}
           </a>
