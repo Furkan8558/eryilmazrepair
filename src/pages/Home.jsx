@@ -5,7 +5,7 @@ import ServiceCard from '../components/ServiceCard'
 import TestimonialCard from '../components/TestimonialCard'
 import WhyChooseUs from '../components/WhyChooseUs'
 import CallToAction from '../components/CallToAction'
-import { services } from '../data/services'
+import getServices from '../data/services'
 import { testimonials } from '../data/testimonials'
 import { blogPosts } from '../data/blogPosts'
 import { faqCategories } from '../data/faq'
@@ -14,6 +14,10 @@ import { useState } from 'react'
 
 export default function Home() {
   const { t } = useTranslation()
+  
+  // Get services dynamically based on current language
+  const services = getServices()
+  
   // Show specific 6 services on homepage
   const featuredServices = services.filter(s => 
     ['refrigerator-repair', 'dishwasher-repair', 'oven-repair', 
@@ -224,7 +228,7 @@ export default function Home() {
                 {t('home.residentialServicesDescription')}
               </p>
               <span className="text-primary-600 font-semibold inline-flex items-center">
-                {t('common.viewAll')} {t('nav.residentialServices')} <FaArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
+                {t('home.viewAllResidentialServices')} <FaArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
               </span>
             </Link>
 
@@ -237,7 +241,7 @@ export default function Home() {
                 {t('home.commercialServicesDescription')}
               </p>
               <span className="text-primary-600 font-semibold inline-flex items-center">
-                {t('common.viewAll')} {t('nav.commercialServices')} <FaArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
+                {t('home.viewAllCommercialServices')} <FaArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
               </span>
             </Link>
           </div>

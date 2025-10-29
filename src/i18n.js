@@ -174,6 +174,8 @@ const resources = {
         servicesForEveryNeedDescription: 'Whether you need home appliance repair or commercial equipment service, we\'ve got you covered.',
         residentialServicesDescription: 'Expert repair for all your home appliances. Refrigerators, dishwashers, washers, dryers, ovens, and more.',
         commercialServicesDescription: 'Professional service for commercial appliances. Minimize downtime and keep your business running smoothly.',
+        viewAllResidentialServices: 'View All Residential Services',
+        viewAllCommercialServices: 'View All Commercial Services',
       },
       // Services
       services: {
@@ -1293,7 +1295,7 @@ const resources = {
         faq: 'Sıkça Sorulan Sorular',
         residentialServices: 'Konut Servisleri',
         commercialServices: 'Ticari Servisler',
-        viewAllServices: 'Tüm Servisleri Gör',
+        viewAllServices: 'Servislerimizin Tümünü Gör',
       },
       // Common - Ortak
       common: {
@@ -1421,7 +1423,7 @@ const resources = {
         faqDescription: 'Beyaz eşya tamir hizmetlerimiz hakkında sık sorulan soruların cevaplarını bulun.',
         blog: 'Blogumuzdan Son Yazılar',
         blogDescription: 'Yararlı ipuçları, bakım kılavuzları ve sektör bilgileri',
-        viewAllServices: 'Tüm Servisleri Gör',
+        viewAllServices: 'Servislerimizin Tümünü Gör',
         readMoreReviews: 'Daha Fazla Yorum Oku',
         readFullArticle: 'Devamını Oku',
         helpfulResources: 'Yararlı Kaynaklar',
@@ -1430,6 +1432,8 @@ const resources = {
         servicesForEveryNeedDescription: 'İster ev beyaz eşya tamiri, ister ticari ekipman servisi olsun, her ihtiyacınız için buradayız.',
         residentialServicesDescription: 'Tüm ev cihazlarınız için uzman tamir. Buzdolapları, bulaşık makineleri, çamaşır makineleri, kurutma makineleri, fırınlar ve daha fazlası.',
         commercialServicesDescription: 'Ticari cihazlar için profesyonel hizmet. Duruş süresini en aza indirin ve işinizi sorunsuz bir şekilde yürütün.',
+        viewAllResidentialServices: 'Tüm Konut Servislerini Görüntüle',
+        viewAllCommercialServices: 'Tüm Ticari Servisleri Görüntüle',
       },
       // Services - Servisler
       services: {
@@ -2130,7 +2134,7 @@ const resources = {
         maintenanceMaxTitle: 'Profesyonel Bakım = Maksimum Verimlilik',
         maintenanceMaxDesc: 'Düzenli profesyonel bakım, cihazlarınızın en yüksek verimlilikte çalışmasını sağlar. Uzman teknisyenlerimiz, cihaz ömrünü uzatırken enerji tasarrufunu maksimize etmenize yardımcı olabilir.',
         scheduleMaintenance: 'Bakım Planlayın',
-        viewAllServices: 'Tüm Servisleri Gör',
+        viewAllServices: 'Servislerimizin Tümünü Gör',
         relatedResources: 'İlgili Kaynaklar',
         careGuideTitle: 'Cihaz Bakım Rehberi',
         careGuideDesc: 'Tüm cihazlar için bakım ipuçları',

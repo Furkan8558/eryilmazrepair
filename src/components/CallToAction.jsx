@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { FaPhone } from 'react-icons/fa'
-import { companyInfo } from '../data/companyInfo'
+import getCompanyInfo from '../data/companyInfo'
 
 export default function CallToAction() {
   const { t } = useTranslation()
+  const companyInfo = getCompanyInfo()
   
   return (
     <section className="hero-gradient text-white section-padding">
@@ -19,9 +20,9 @@ export default function CallToAction() {
           </Link>
           <a
             href={`tel:${companyInfo.phone}`}
-            className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-2 px-5 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-sm"
+            className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-base inline-flex items-center justify-center"
           >
-            <FaPhone className="inline mr-2" />
+            <FaPhone className="mr-2" />
             {t('common.callNow')} {companyInfo.phone}
           </a>
         </div>

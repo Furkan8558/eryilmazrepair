@@ -2,10 +2,11 @@ import { Link } from 'react-router-dom'
 import { FaBuilding, FaCheckCircle, FaClock, FaTools, FaShieldAlt } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
 import CallToAction from '../components/CallToAction'
-import { companyInfo } from '../data/companyInfo'
+import getCompanyInfo from '../data/companyInfo'
 
 export default function CommercialServices() {
   const { t } = useTranslation()
+  const companyInfo = getCompanyInfo()
   
   const commercialServices = [
     {

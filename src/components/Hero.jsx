@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { FaPhone, FaCheckCircle } from 'react-icons/fa'
-import { companyInfo } from '../data/companyInfo'
+import getCompanyInfo from '../data/companyInfo'
 
 export default function Hero() {
   const { t } = useTranslation()
+  
+  // Get company info dynamically based on current language
+  const companyInfo = getCompanyInfo()
   
   return (
     <div className="relative text-white section-padding overflow-hidden">
@@ -64,12 +67,16 @@ export default function Hero() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link to="/franchise-finder" className="btn-primary bg-white text-primary-600 hover:bg-gray-100 text-base sm:text-lg py-3 px-6 font-bold">
+            <Link to="/franchise-finder" className="btn-primary bg-white text-primary-600 hover:bg-gray-100 text-base py-3 px-6 font-bold inline-flex items-center justify-center">
               {t('common.scheduleService')}
             </Link>
-            <Link to="/services" className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-base sm:text-lg">
-              {t('common.viewAll')} {t('footer.services')}
-            </Link>
+            <a
+              href={`tel:${companyInfo.phone}`}
+              className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-base inline-flex items-center justify-center"
+            >
+              <FaPhone className="mr-2" />
+              {t('common.callNow')}
+            </a>
           </div>
         </div>
       </div>

@@ -6,16 +6,17 @@ import * as Icons from 'react-icons/fa'
 import CallToAction from '../components/CallToAction'
 import ServiceCard from '../components/ServiceCard'
 import TestimonialCard from '../components/TestimonialCard'
-import { getServiceById, services } from '../data/services'
+import getServices, { getServiceById } from '../data/services'
 import { testimonials } from '../data/testimonials'
 import { blogPosts } from '../data/blogPosts'
-import { companyInfo } from '../data/companyInfo'
+import getCompanyInfo from '../data/companyInfo'
 
 export default function ServiceDetail() {
   const { serviceId } = useParams()
   const { t } = useTranslation()
   const service = getServiceById(serviceId)
   const [openFAQ, setOpenFAQ] = useState(null)
+  const companyInfo = getCompanyInfo()
 
   const toggleFAQ = (index) => {
     setOpenFAQ(openFAQ === index ? null : index)
@@ -43,6 +44,9 @@ export default function ServiceDetail() {
   }
 
   const IconComponent = Icons[service.icon] || Icons.FaTools
+  
+  // Get services dynamically based on current language
+  const services = getServices()
   
   // Show the same 6 featured services as homepage, excluding current service
   const featuredServiceIds = ['refrigerator-repair', 'dishwasher-repair', 'oven-repair', 
@@ -98,14 +102,26 @@ export default function ServiceDetail() {
               <h2 className="mb-6">{t('serviceDetail.aboutService')} {serviceName}</h2>
               <p className="text-base text-secondary-700 mb-6">{serviceDescription}</p>
               
+              {/* Booking CTA Box */}
               <div className="bg-primary-50 border-l-4 border-primary-600 p-6 rounded-r-lg">
-                <p className="font-semibold text-primary-800 text-sm">
+                <p className="font-semibold text-primary-800 text-sm mb-4">
                   {t('serviceDetail.needImmediate')}
                 </p>
-                <a href={`tel:${companyInfo.phone}`} className="text-xl font-bold text-primary-600 mt-2 inline-flex items-center">
-                  <FaPhone className="mr-3" />
-                  {companyInfo.phone}
-                </a>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Link 
+                    to="/franchise-finder" 
+                    className="btn-primary inline-flex items-center justify-center text-sm"
+                  >
+                    {t('common.scheduleService')}
+                  </Link>
+                  <a 
+                    href={`tel:${companyInfo.phone}`} 
+                    className="bg-white text-primary-600 hover:bg-gray-50 border-2 border-primary-600 font-semibold py-3 px-6 rounded-lg transition-all duration-300 inline-flex items-center justify-center text-sm"
+                  >
+                    <FaPhone className="mr-2" />
+                    {t('common.callNow')} {companyInfo.phone}
+                  </a>
+                </div>
               </div>
             </div>
 

@@ -3,11 +3,15 @@ import { FaHome, FaCheckCircle, FaArrowRight } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
 import ServiceCard from '../components/ServiceCard'
 import CallToAction from '../components/CallToAction'
-import { services } from '../data/services'
-import { companyInfo } from '../data/companyInfo'
+import getServices from '../data/services'
+import getCompanyInfo from '../data/companyInfo'
 
 export default function ResidentialServices() {
   const { t } = useTranslation()
+  const companyInfo = getCompanyInfo()
+  
+  // Get services dynamically based on current language
+  const services = getServices()
   
   // Show the same 6 featured services as homepage
   const featuredServices = services.filter(s => 

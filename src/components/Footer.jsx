@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom'
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaClock } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
-import { companyInfo } from '../data/companyInfo'
+import getCompanyInfo from '../data/companyInfo'
 
 export default function Footer() {
   const { t } = useTranslation()
   const currentYear = new Date().getFullYear()
+  const companyInfo = getCompanyInfo()
 
   return (
     <footer className="bg-secondary-900 text-white">

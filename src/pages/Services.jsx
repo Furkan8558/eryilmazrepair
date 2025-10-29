@@ -1,11 +1,14 @@
 import { useTranslation } from 'react-i18next'
 import ServiceCard from '../components/ServiceCard'
 import CallToAction from '../components/CallToAction'
-import { services } from '../data/services'
+import getServices from '../data/services'
 import { FaTools } from 'react-icons/fa'
 
 export default function Services() {
   const { t } = useTranslation()
+  
+  // Get services dynamically based on current language
+  const services = getServices()
   
   // Show ALL services on the main services page
   return (

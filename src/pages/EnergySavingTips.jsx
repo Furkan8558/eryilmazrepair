@@ -2,10 +2,11 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FaLightbulb, FaSnowflake, FaTint, FaFire, FaPlug, FaThermometerHalf, FaClock, FaLeaf } from 'react-icons/fa';
 import CallToAction from '../components/CallToAction';
-import { companyInfo } from '../data/companyInfo';
+import getCompanyInfo from '../data/companyInfo';
 
 const EnergySavingTips = () => {
   const { t } = useTranslation();
+  const companyInfo = getCompanyInfo();
   
   const energyTips = [
     {

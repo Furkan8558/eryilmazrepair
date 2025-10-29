@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import CallToAction from '../components/CallToAction';
-import { companyInfo } from '../data/companyInfo';
+import getCompanyInfo from '../data/companyInfo';
 
 const ApplianceLifeGuide = () => {
   const { t } = useTranslation();
+  const companyInfo = getCompanyInfo();
   
   const applianceLifeData = [
     { appliance: t('applianceLife.trashCompactor'), low: 7, high: 12, average: 11, serviceLink: '/services/garbage-disposal-repair' },

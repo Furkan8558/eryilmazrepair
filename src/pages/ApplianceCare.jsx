@@ -2,10 +2,11 @@ import { Link } from 'react-router-dom'
 import { FaCheckCircle, FaWrench, FaBook, FaLightbulb, FaPhone } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
 import CallToAction from '../components/CallToAction'
-import { companyInfo } from '../data/companyInfo'
+import getCompanyInfo from '../data/companyInfo'
 
 export default function ApplianceCare() {
   const { t } = useTranslation()
+  const companyInfo = getCompanyInfo()
   
   const careCategories = [
     {

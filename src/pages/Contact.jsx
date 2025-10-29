@@ -2,10 +2,11 @@ import { Link } from 'react-router-dom'
 import { FaPhone, FaEnvelope, FaClock, FaMapMarkerAlt } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
 import ContactForm from '../components/ContactForm'
-import { companyInfo } from '../data/companyInfo'
+import getCompanyInfo from '../data/companyInfo'
 
 export default function Contact() {
   const { t } = useTranslation()
+  const companyInfo = getCompanyInfo()
   
   return (
     <div>

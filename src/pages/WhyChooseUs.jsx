@@ -1,10 +1,11 @@
 import { FaAward, FaClock, FaDollarSign, FaUserTie, FaShieldAlt, FaStar, FaCheckCircle, FaTools, FaThumbsUp } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
 import CallToAction from '../components/CallToAction'
-import { companyInfo } from '../data/companyInfo'
+import getCompanyInfo from '../data/companyInfo'
 
 export default function WhyChooseUs() {
   const { t } = useTranslation()
+  const companyInfo = getCompanyInfo()
   const mainReasons = [
     {
       icon: FaUserTie,

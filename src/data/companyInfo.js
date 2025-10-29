@@ -33,6 +33,7 @@ export const getCompanyInfo = () => {
   };
 };
 
-// For backwards compatibility
-export const companyInfo = getCompanyInfo();
+// Export the function as default for dynamic translation updates
+export default getCompanyInfo;
+
 

@@ -2,10 +2,11 @@ import { FaAward, FaUsers, FaShieldAlt, FaHeart, FaHandshake, FaWrench, FaCheckC
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import CallToAction from '../components/CallToAction'
-import { companyInfo } from '../data/companyInfo'
+import getCompanyInfo from '../data/companyInfo'
 
 export default function About() {
   const { t } = useTranslation()
+  const companyInfo = getCompanyInfo()
   
   const stats = [
     { number: "15+", label: t('about.stat1Label') },

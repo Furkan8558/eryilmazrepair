@@ -38,9 +38,9 @@ export default function ServiceCard({ service }) {
       {/* Service Info */}
       <div className="p-5">
         <h3 className="text-xl font-bold mb-3 text-secondary-900">{serviceName}</h3>
-        <p className="text-secondary-600 mb-4">{serviceDescription}</p>
+        <p className="text-secondary-600 mb-4 text-sm">{serviceDescription}</p>
         
-        <div className="flex items-center text-primary-600 font-semibold group-hover:text-primary-700 transition-colors">
+        <div className="flex items-center text-primary-600 font-semibold group-hover:text-primary-700 transition-colors text-sm">
           <span>{t('common.learnMore')}</span>
           <FaArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
         </div>

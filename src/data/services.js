@@ -537,5 +537,8 @@ export const getServicesByCategory = (category) => {
   return services.filter(service => service.category === category);
 };
 
-// For backwards compatibility
+// Export the function as default for dynamic translation updates
+export default getServices;
+
+// For backwards compatibility - call the function
 export const services = getServices();

@@ -2,13 +2,14 @@ import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { FaPhone, FaBars, FaTimes, FaClock, FaMapMarkerAlt } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
-import { companyInfo } from '../data/companyInfo'
+import getCompanyInfo from '../data/companyInfo'
 import LanguageSwitcher from './LanguageSwitcher'
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const location = useLocation()
   const { t } = useTranslation()
+  const companyInfo = getCompanyInfo()
 
   const navigation = [
     { 
