@@ -5,17 +5,12 @@ export const getCompanyInfo = () => {
   
   return {
     name: "Eryilmaz Appliance Repair",
+    fullName: "Eryilmaz Appliance Repair (Eryilmaz Teknik)",
     tagline: t('companyInfo.tagline'),
-    phone: "+90 541 632 6796",
+    phone: "+90 541 632 6796", // Main/corporate number
     emergencyPhone: "+90 541 632 6796",
     email: "info@eryilmazrepair.com",
-    address: {
-      street: "Soğanlı mah. 7. güngör sok. No:19/B Osmangazi",
-      city: "Bursa",
-      state: "Türkiye",
-      zip: "16200",
-      country: "Türkiye"
-    },
+    // Corporate/Generic info - no specific location
     hours: {
       weekday: "8:00 AM - 6:00 PM",
       saturday: "9:00 AM - 4:00 PM",

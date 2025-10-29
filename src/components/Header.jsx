@@ -119,10 +119,10 @@ export default function Header() {
                 <FaClock className="mr-1.5 text-xs" />
                 <span>{t('common.monFri')}: {companyInfo.hours.weekday}</span>
               </div>
-              <div className="flex items-center">
+              <Link to="/franchise-finder" className="flex items-center hover:text-primary-100 transition-colors">
                 <FaMapMarkerAlt className="mr-1.5 text-xs" />
-                <span>{companyInfo.address.city}, {companyInfo.address.state}</span>
-              </div>
+                <span>{t('header.findLocation')}</span>
+              </Link>
             </div>
             <div className="flex items-center">
               <span className="font-semibold">{t('common.emergency')}</span>
@@ -136,8 +136,8 @@ export default function Header() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <div className="text-lg md:text-xl font-bold text-primary-600">
-              <span className="text-gradient">{companyInfo.name}</span>
+            <div className="text-xl md:text-2xl font-bold text-primary-600">
+              <span className="text-gradient">Eryilmaz Teknik</span>
             </div>
           </Link>
 
@@ -227,7 +227,7 @@ export default function Header() {
               <FaPhone className="mr-2 text-sm" />
               <span className="text-sm">{companyInfo.phone}</span>
             </a>
-            <Link to="/contact" className="btn-primary text-sm py-2 px-4">
+            <Link to="/franchise-finder" className="btn-primary text-sm py-2 px-4">
               {t('common.scheduleService')}
             </Link>
           </div>
@@ -308,7 +308,7 @@ export default function Header() {
                 {companyInfo.phone}
               </a>
               <Link
-                to="/contact"
+                to="/franchise-finder"
                 onClick={() => setMobileMenuOpen(false)}
                 className="btn-primary block text-center"
               >

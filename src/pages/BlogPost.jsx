@@ -123,7 +123,7 @@ export default function BlogPost() {
                   <p className="mb-4">
                     {t('blogPost.needHelpDescription')}
                   </p>
-                  <Link to="/contact" className="btn-primary bg-white text-primary-600 hover:bg-gray-100 w-full text-center">
+                  <Link to="/franchise-finder" className="btn-primary bg-white text-primary-600 hover:bg-gray-100 w-full text-center">
                     {t('blogPost.scheduleService')}
                   </Link>
                 </div>

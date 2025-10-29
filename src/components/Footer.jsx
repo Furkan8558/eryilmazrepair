@@ -14,7 +14,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Company Info */}
           <div>
-            <h3 className="text-lg font-bold text-primary-500 mb-3">{companyInfo.name}</h3>
+            <h3 className="text-lg font-bold text-primary-500 mb-3">{companyInfo.fullName}</h3>
             <p className="text-secondary-300 mb-3 text-xs">
               {t('common.professionalDescription')}
             </p>
@@ -137,12 +137,11 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold mb-3">{t('footer.contactUs')}</h4>
             <ul className="space-y-2">
-              <li className="flex items-start">
-                <FaMapMarkerAlt className="text-primary-500 mt-0.5 mr-2 flex-shrink-0 text-xs" />
-                <span className="text-secondary-300 text-xs">
-                  {companyInfo.address.street}<br />
-                  {companyInfo.address.city}, {companyInfo.address.state} {companyInfo.address.zip}
-                </span>
+              <li className="flex items-center">
+                <FaMapMarkerAlt className="text-primary-500 mr-2 flex-shrink-0 text-xs" />
+                <Link to="/franchise-finder" className="text-secondary-300 hover:text-primary-500 transition-colors text-xs">
+                  {t('header.findLocation')}
+                </Link>
               </li>
               <li className="flex items-center">
                 <FaPhone className="text-primary-500 mr-2 text-xs" />
@@ -173,7 +172,7 @@ export default function Footer() {
       <div className="border-t border-secondary-800">
         <div className="container-custom py-4">
           <div className="flex flex-col md:flex-row justify-between items-center text-secondary-400 text-xs">
-            <p>© {currentYear} {companyInfo.name}. {t('common.allRightsReserved')}.</p>
+            <p>© {currentYear} {companyInfo.fullName}. {t('common.allRightsReserved')}.</p>
             <div className="flex space-x-4 mt-3 md:mt-0">
               <Link to="/privacy-policy" className="hover:text-primary-500 transition-colors">
                 {t('common.privacyPolicy')}

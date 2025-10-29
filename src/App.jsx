@@ -17,6 +17,7 @@ import Reviews from './pages/Reviews'
 import ApplianceCare from './pages/ApplianceCare'
 import ApplianceLifeGuide from './pages/ApplianceLifeGuide'
 import EnergySavingTips from './pages/EnergySavingTips'
+import FranchiseFinder from './pages/FranchiseFinder'
 import ScrollToTop from './components/ScrollToTop'
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route path="/why-choose-us" element={<WhyChooseUs />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/franchise-finder" element={<FranchiseFinder />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:postId" element={<BlogPost />} />
           <Route path="/faq" element={<FAQ />} />

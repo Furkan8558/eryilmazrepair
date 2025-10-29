@@ -94,7 +94,7 @@ export default function CommercialServices() {
               {t('commercial.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact" className="btn-primary bg-white text-primary-600 hover:bg-gray-100">
+              <Link to="/franchise-finder" className="btn-primary bg-white text-primary-600 hover:bg-gray-100">
                 {t('commercial.requestService')}
               </Link>
               <a href={`tel:${companyInfo.phone}`} className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-2 px-5 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-sm">
@@ -123,7 +123,7 @@ export default function CommercialServices() {
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-secondary-900">{service.name}</h3>
                 <p className="text-secondary-600 mb-4">{service.description}</p>
-                <Link to="/contact" className="text-primary-600 font-semibold hover:text-primary-700 inline-flex items-center">
+                <Link to="/franchise-finder" className="text-primary-600 font-semibold hover:text-primary-700 inline-flex items-center">
                   {t('commercial.getQuote')} →
                 </Link>
               </div>
@@ -204,7 +204,7 @@ export default function CommercialServices() {
                   <span>{t('commercial.basicFeature3')}</span>
                 </li>
               </ul>
-              <Link to="/contact" className="btn-outline w-full text-center">
+              <Link to="/franchise-finder" className="btn-outline w-full text-center">
                 {t('commercial.getStarted')}
               </Link>
             </div>
@@ -233,7 +233,7 @@ export default function CommercialServices() {
                   <span>{t('commercial.proFeature4')}</span>
                 </li>
               </ul>
-              <Link to="/contact" className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg block text-center transition-colors">
+              <Link to="/franchise-finder" className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg block text-center transition-colors">
                 {t('commercial.getStarted')}
               </Link>
             </div>
@@ -259,7 +259,7 @@ export default function CommercialServices() {
                   <span>{t('commercial.enterpriseFeature4')}</span>
                 </li>
               </ul>
-              <Link to="/contact" className="btn-outline w-full text-center">
+              <Link to="/franchise-finder" className="btn-outline w-full text-center">
                 {t('commercial.contactUs')}
               </Link>
             </div>

@@ -26,28 +26,44 @@ export default function ContactForm() {
     setIsSubmitting(true)
     
     try {
-      // TODO: Integrate with backend API or email service (Formspree, EmailJS, etc.)
-      // Example: await sendEmail(formData)
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 500))
-      
-      setSubmitted(true)
-      
-      // Reset form after 3 seconds
-      setTimeout(() => {
-        setSubmitted(false)
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          subject: '',
-          message: ''
+      // Send form data to FormSubmit.co
+      const response = await fetch('https://formsubmit.co/furkaneryilmaz201@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message,
+          _template: 'table',
+          _captcha: 'false'
         })
-      }, 3000)
+      })
+
+      if (response.ok) {
+        setSubmitted(true)
+        
+        // Reset form after 3 seconds
+        setTimeout(() => {
+          setSubmitted(false)
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            subject: '',
+            message: ''
+          })
+        }, 3000)
+      } else {
+        throw new Error('Form submission failed')
+      }
     } catch (error) {
-      // Handle error (could show error message to user)
       console.error('Form submission error:', error)
+      alert('There was an error submitting the form. Please try again or call us directly.')
     } finally {
       setIsSubmitting(false)
     }

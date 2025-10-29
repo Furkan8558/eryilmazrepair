@@ -1,4 +1,5 @@
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
+import { FaPhone, FaEnvelope, FaClock, FaMapMarkerAlt } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
 import ContactForm from '../components/ContactForm'
 import { companyInfo } from '../data/companyInfo'
@@ -33,11 +34,11 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold mb-2">{t('common.phone')}</h3>
-                    <a href={`tel:${companyInfo.phone}`} className="text-secondary-600 hover:text-primary-600 transition-colors">
+                    <a href={`tel:${companyInfo.phone}`} className="text-secondary-600 hover:text-primary-600 transition-colors text-lg font-medium">
                       {companyInfo.phone}
                     </a>
                     <p className="text-sm text-secondary-500 mt-1">
-                      {t('common.emergency')}: {companyInfo.emergencyPhone}
+                      {t('common.emergency')}
                     </p>
                   </div>
                 </div>
@@ -56,19 +57,6 @@ export default function Contact() {
 
                 <div className="flex items-start">
                   <div className="bg-primary-100 p-4 rounded-lg mr-4">
-                    <FaMapMarkerAlt className="text-2xl text-primary-600" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold mb-2">{t('common.address')}</h3>
-                    <p className="text-secondary-600">
-                      {companyInfo.address.street}<br />
-                      {companyInfo.address.city}, {companyInfo.address.state} {companyInfo.address.zip}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="bg-primary-100 p-4 rounded-lg mr-4">
                     <FaClock className="text-2xl text-primary-600" />
                   </div>
                   <div>
@@ -82,27 +70,27 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Google Map */}
-              <div className="rounded-lg h-64 overflow-hidden shadow-md">
-                <iframe
-                  title="Eryilmaz Appliance Repair Location"
-                  src={`https://www.google.com/maps/embed/v1/place?key=${import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'YOUR_API_KEY_HERE'}&q=${encodeURIComponent(
-                    `${companyInfo.address.street}, ${companyInfo.address.city}, ${companyInfo.address.state}`
-                  )}`}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
+              {/* Find Your Location CTA */}
+              <div className="card bg-primary-50 border-2 border-primary-200">
+                <div className="flex items-center mb-4">
+                  <FaMapMarkerAlt className="text-3xl text-primary-600 mr-3" />
+                  <h3 className="text-xl font-bold text-secondary-800">
+                    {t('contact.findYourLocation')}
+                  </h3>
+                </div>
+                <p className="text-secondary-600 mb-4">
+                  {t('contact.multipleLocations')}
+                </p>
+                <Link to="/franchise-finder" className="btn-primary w-full text-center">
+                  {t('contact.findNearestFranchise')}
+                </Link>
               </div>
             </div>
 
             {/* Contact Form */}
             <div>
               <div className="card">
-                <h2 className="mb-6">Send Us a Message</h2>
+                <h2 className="mb-6">{t('contact.sendMessage')}</h2>
                 <ContactForm />
               </div>
             </div>
@@ -113,10 +101,10 @@ export default function Contact() {
       {/* Emergency Banner */}
       <section className="bg-primary-600 text-white py-12">
         <div className="container-custom text-center">
-          <h3 className="text-2xl font-bold mb-4">Need Emergency Service?</h3>
-          <p className="text-lg mb-6">We offer 24/7 emergency appliance repair services</p>
+          <h3 className="text-2xl font-bold mb-4">{t('contact.needEmergency')}</h3>
+          <p className="text-lg mb-6">{t('contact.emergency247')}</p>
           <a href={`tel:${companyInfo.emergencyPhone}`} className="btn-primary bg-white text-primary-600 hover:bg-gray-100">
-            Call Emergency Line: {companyInfo.emergencyPhone}
+            {t('contact.callEmergency')}: {companyInfo.emergencyPhone}
           </a>
         </div>
       </section>

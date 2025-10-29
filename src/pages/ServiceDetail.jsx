@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaCheckCircle, FaArrowLeft, FaPhone, FaWrench, FaStar, FaBook, FaCalendar, FaClock, FaChevronDown, FaArrowRight } from 'react-icons/fa'
 import * as Icons from 'react-icons/fa'
-import BookingForm from '../components/BookingForm'
 import CallToAction from '../components/CallToAction'
 import ServiceCard from '../components/ServiceCard'
 import TestimonialCard from '../components/TestimonialCard'
@@ -91,79 +90,67 @@ export default function ServiceDetail() {
       {/* Main Content */}
       <section className="section-padding">
         <div className="container-custom">
-          <div className="grid lg:grid-cols-3 gap-12">
-            {/* Left Column - Service Details */}
-            <div className="lg:col-span-2">
+          {/* Service Details - Full Width */}
+          <div>
+            
+            {/* About This Service */}
+            <div className="mb-12">
+              <h2 className="mb-6">{t('serviceDetail.aboutService')} {serviceName}</h2>
+              <p className="text-base text-secondary-700 mb-6">{serviceDescription}</p>
               
-              {/* About This Service */}
-              <div className="mb-12">
-                <h2 className="mb-6">{t('serviceDetail.aboutService')} {serviceName}</h2>
-                <p className="text-base text-secondary-700 mb-6">{serviceDescription}</p>
-                
-                <div className="bg-primary-50 border-l-4 border-primary-600 p-6 rounded-r-lg">
-                  <p className="font-semibold text-primary-800 text-sm">
-                    {t('serviceDetail.needImmediate')}
-                  </p>
-                  <a href={`tel:${companyInfo.phone}`} className="text-xl font-bold text-primary-600 mt-2 inline-flex items-center">
-                    <FaPhone className="mr-3" />
-                    {companyInfo.phone}
-                  </a>
-                </div>
+              <div className="bg-primary-50 border-l-4 border-primary-600 p-6 rounded-r-lg">
+                <p className="font-semibold text-primary-800 text-sm">
+                  {t('serviceDetail.needImmediate')}
+                </p>
+                <a href={`tel:${companyInfo.phone}`} className="text-xl font-bold text-primary-600 mt-2 inline-flex items-center">
+                  <FaPhone className="mr-3" />
+                  {companyInfo.phone}
+                </a>
               </div>
+            </div>
 
-              {/* Common Problems We Fix */}
-              <div className="mb-12">
-                <h2 className="mb-6">{t('serviceDetail.commonProblems')}</h2>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {service.commonIssues.map((issue, index) => (
-                    <div key={index} className="flex items-start">
-                      <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                      <span className="text-secondary-700 text-sm">{t(`${translationKey}.commonIssues.${index}`, issue)}</span>
-                    </div>
-                  ))}
-                </div>
+            {/* Common Problems We Fix */}
+            <div className="mb-12">
+              <h2 className="mb-6">{t('serviceDetail.commonProblems')}</h2>
+              <div className="grid md:grid-cols-2 gap-4">
+                {service.commonIssues.map((issue, index) => (
+                  <div key={index} className="flex items-start">
+                    <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <span className="text-secondary-700 text-sm">{t(`${translationKey}.commonIssues.${index}`, issue)}</span>
+                  </div>
+                ))}
               </div>
+            </div>
 
-              {/* Repair Services We Provide */}
-              {service.repairServices && (
-                <div className="mb-12">
-                  <h2 className="mb-6">{t('serviceDetail.servicesProvide')}</h2>
-                  <div className="bg-white border border-secondary-200 rounded-xl p-6">
-                    <div className="grid md:grid-cols-2 gap-4">
-                      {service.repairServices.map((repairService, index) => (
-                        <div key={index} className="flex items-start">
-                          <FaWrench className="text-primary-600 mt-1 mr-3 flex-shrink-0" />
-                          <span className="text-secondary-700 text-sm">{t(`${translationKey}.repairServices.${index}`, repairService)}</span>
-                        </div>
-                      ))}
-                    </div>
+            {/* Repair Services We Provide */}
+            {service.repairServices && (
+              <div className="mb-12">
+                <h2 className="mb-6">{t('serviceDetail.servicesProvide')}</h2>
+                <div className="bg-white border border-secondary-200 rounded-xl p-6">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {service.repairServices.map((repairService, index) => (
+                      <div key={index} className="flex items-start">
+                        <FaWrench className="text-primary-600 mt-1 mr-3 flex-shrink-0" />
+                        <span className="text-secondary-700 text-sm">{t(`${translationKey}.repairServices.${index}`, repairService)}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              )}
-
-              {/* Brands We Service */}
-              <div className="mb-12">
-                <h3 className="mb-6">{t('serviceDetail.brandsWeService')}</h3>
-                <div className="flex flex-wrap gap-3">
-                  {service.brands.map((brand, index) => (
-                    <span key={index} className="bg-secondary-100 px-4 py-2 rounded-lg font-semibold text-secondary-700 text-sm">
-                      {brand}
-                    </span>
-                  ))}
-                </div>
               </div>
+            )}
 
-            </div>
-
-            {/* Right Column - Booking Form */}
-            <div className="lg:col-span-1">
-              <div className="sticky top-24">
-                <div className="card">
-                  <h3 className="mb-6 text-lg">{t('serviceDetail.scheduleService')}</h3>
-                  <BookingForm />
-                </div>
+            {/* Brands We Service */}
+            <div className="mb-12">
+              <h3 className="mb-6">{t('serviceDetail.brandsWeService')}</h3>
+              <div className="flex flex-wrap gap-3">
+                {service.brands.map((brand, index) => (
+                  <span key={index} className="bg-secondary-100 px-4 py-2 rounded-lg font-semibold text-secondary-700 text-sm">
+                    {brand}
+                  </span>
+                ))}
               </div>
             </div>
+
           </div>
         </div>
       </section>
