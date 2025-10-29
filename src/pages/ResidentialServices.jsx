@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { FaHome, FaCheckCircle, FaArrowRight } from 'react-icons/fa'
+import { FaHome, FaCheckCircle, FaArrowRight, FaPhone } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
 import ServiceCard from '../components/ServiceCard'
 import CallToAction from '../components/CallToAction'
@@ -61,7 +61,11 @@ export default function ResidentialServices() {
               <Link to="/franchise-finder" className="btn-primary bg-white text-primary-600 hover:bg-gray-100">
                 {t('residential.scheduleRepair')}
               </Link>
-              <a href={`tel:${companyInfo.phone}`} className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-2 px-5 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-sm">
+              <a 
+                href={`tel:${companyInfo.phone}`} 
+                className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-base inline-flex items-center justify-center"
+              >
+                <FaPhone className="mr-2" />
                 {t('residential.call')} {companyInfo.phone}
               </a>
             </div>

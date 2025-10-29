@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { FaBuilding, FaCheckCircle, FaClock, FaTools, FaShieldAlt } from 'react-icons/fa'
+import { FaBuilding, FaCheckCircle, FaClock, FaTools, FaShieldAlt, FaPhone } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
 import CallToAction from '../components/CallToAction'
 import getCompanyInfo from '../data/companyInfo'
@@ -98,7 +98,11 @@ export default function CommercialServices() {
               <Link to="/franchise-finder" className="btn-primary bg-white text-primary-600 hover:bg-gray-100">
                 {t('commercial.requestService')}
               </Link>
-              <a href={`tel:${companyInfo.phone}`} className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-2 px-5 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-sm">
+              <a 
+                href={`tel:${companyInfo.phone}`} 
+                className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-base inline-flex items-center justify-center"
+              >
+                <FaPhone className="mr-2" />
                 {t('residential.call')} {companyInfo.phone}
               </a>
             </div>
@@ -173,97 +177,6 @@ export default function CommercialServices() {
                 {industry}
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Service Plans */}
-      <section className="section-padding bg-secondary-50">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="mb-4">{t('commercial.maintenancePlans')}</h2>
-            <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
-              {t('commercial.maintenancePlansDescription')}
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div className="bg-white rounded-xl p-8 shadow-lg">
-              <h3 className="text-2xl font-bold mb-4 text-primary-600">{t('commercial.basicPlan')}</h3>
-              <div className="text-4xl font-bold mb-4">$199<span className="text-xl text-secondary-600">/mo</span></div>
-              <ul className="space-y-3 mb-6">
-                <li className="flex items-start">
-                  <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                  <span>{t('commercial.basicFeature1')}</span>
-                </li>
-                <li className="flex items-start">
-                  <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                  <span>{t('commercial.basicFeature2')}</span>
-                </li>
-                <li className="flex items-start">
-                  <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                  <span>{t('commercial.basicFeature3')}</span>
-                </li>
-              </ul>
-              <Link to="/franchise-finder" className="btn-outline w-full text-center">
-                {t('commercial.getStarted')}
-              </Link>
-            </div>
-
-            <div className="bg-primary-600 text-white rounded-xl p-8 shadow-xl transform md:scale-105">
-              <div className="bg-white text-primary-600 inline-block px-3 py-1 rounded-full text-sm font-semibold mb-4">
-                {t('commercial.mostPopular')}
-              </div>
-              <h3 className="text-2xl font-bold mb-4">{t('commercial.professionalPlan')}</h3>
-              <div className="text-4xl font-bold mb-4">$399<span className="text-xl opacity-90">/mo</span></div>
-              <ul className="space-y-3 mb-6">
-                <li className="flex items-start">
-                  <FaCheckCircle className="text-white mt-1 mr-3 flex-shrink-0" />
-                  <span>{t('commercial.proFeature1')}</span>
-                </li>
-                <li className="flex items-start">
-                  <FaCheckCircle className="text-white mt-1 mr-3 flex-shrink-0" />
-                  <span>{t('commercial.proFeature2')}</span>
-                </li>
-                <li className="flex items-start">
-                  <FaCheckCircle className="text-white mt-1 mr-3 flex-shrink-0" />
-                  <span>{t('commercial.proFeature3')}</span>
-                </li>
-                <li className="flex items-start">
-                  <FaCheckCircle className="text-white mt-1 mr-3 flex-shrink-0" />
-                  <span>{t('commercial.proFeature4')}</span>
-                </li>
-              </ul>
-              <Link to="/franchise-finder" className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg block text-center transition-colors">
-                {t('commercial.getStarted')}
-              </Link>
-            </div>
-
-            <div className="bg-white rounded-xl p-8 shadow-lg">
-              <h3 className="text-2xl font-bold mb-4 text-primary-600">{t('commercial.enterprisePlan')}</h3>
-              <div className="text-4xl font-bold mb-4">{t('commercial.custom')}</div>
-              <ul className="space-y-3 mb-6">
-                <li className="flex items-start">
-                  <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                  <span>{t('commercial.enterpriseFeature1')}</span>
-                </li>
-                <li className="flex items-start">
-                  <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                  <span>{t('commercial.enterpriseFeature2')}</span>
-                </li>
-                <li className="flex items-start">
-                  <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                  <span>{t('commercial.enterpriseFeature3')}</span>
-                </li>
-                <li className="flex items-start">
-                  <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                  <span>{t('commercial.enterpriseFeature4')}</span>
-                </li>
-              </ul>
-              <Link to="/franchise-finder" className="btn-outline w-full text-center">
-                {t('commercial.contactUs')}
-              </Link>
-            </div>
           </div>
         </div>
       </section>

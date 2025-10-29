@@ -150,8 +150,11 @@ export default function ApplianceCare() {
               <Link to="/franchise-finder" className="btn-primary bg-white text-primary-600 hover:bg-gray-100">
                 {t('applianceCare.scheduleMaintenance')}
               </Link>
-              <a href={`tel:${companyInfo.phone}`} className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-2 px-5 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-sm">
-                <FaPhone className="inline mr-2" />
+              <a 
+                href={`tel:${companyInfo.phone}`} 
+                className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-base inline-flex items-center justify-center"
+              >
+                <FaPhone className="mr-2" />
                 {companyInfo.phone}
               </a>
             </div>
