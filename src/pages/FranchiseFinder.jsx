@@ -50,23 +50,47 @@ export default function FranchiseFinder() {
     setError('')
     setSelectedFranchise(null)
     
+    // Set a timeout for geolocation request (10 seconds)
+    const timeoutId = setTimeout(() => {
+      setDetectingLocation(false)
+      setError(t('franchiseFinder.locationDetectionFailed'))
+    }, 10000)
+
     navigator.geolocation.getCurrentPosition(
       (position) => {
+        clearTimeout(timeoutId)
         const { latitude, longitude } = position.coords
         const franchise = findNearestFranchise(latitude, longitude)
         
         if (franchise) {
           setSelectedFranchise(franchise)
+          setDetectingLocation(false)
         } else {
           setError(t('franchiseFinder.noFranchiseNearby'))
+          setDetectingLocation(false)
         }
-        
-        setDetectingLocation(false)
       },
       (error) => {
+        clearTimeout(timeoutId)
         console.error('Geolocation error:', error)
-        setError(t('franchiseFinder.locationDetectionFailed'))
+        
+        // Provide more specific error messages
+        let errorMessage = t('franchiseFinder.locationDetectionFailed')
+        if (error.code === 1) {
+          errorMessage = 'Location permission denied. Please allow location access and try again.'
+        } else if (error.code === 2) {
+          errorMessage = 'Location information is unavailable. Please try entering your ZIP code.'
+        } else if (error.code === 3) {
+          errorMessage = 'Location request timed out. Please try again or enter your ZIP code.'
+        }
+        
+        setError(errorMessage)
         setDetectingLocation(false)
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 0
       }
     )
   }
@@ -293,7 +317,7 @@ export default function FranchiseFinder() {
             {t('franchiseFinder.expanding')}
           </p>
           <a 
-            href={`mailto:${activeFranchises[0]?.email || 'info@eryilmazrepair.com'}`}
+            href={`mailto:${activeFranchises[0]?.email || 'info@eryilmazteknik.com.tr'}`}
             className="btn-primary bg-white text-primary-600 hover:bg-gray-100"
           >
             {t('common.contact')}

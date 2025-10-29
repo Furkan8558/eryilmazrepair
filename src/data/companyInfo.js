@@ -9,7 +9,7 @@ export const getCompanyInfo = () => {
     tagline: t('companyInfo.tagline'),
     phone: "+90 541 632 6796", // Main/corporate number
     emergencyPhone: "+90 541 632 6796",
-    email: "info@eryilmazrepair.com",
+    email: "info@eryilmazteknik.com.tr",
     // Corporate/Generic info - no specific location
     hours: {
       weekday: "8:00 AM - 6:00 PM",

@@ -4,7 +4,7 @@ export const franchises = [
     id: 'bursa-osmangazi',
     name: 'Bursa Osmangazi',
     phone: '+90 541 632 6796',
-    email: 'bursa@eryilmazrepair.com',
+    email: 'info@eryilmazteknik.com.tr',
     address: {
       street: 'Soğanlı mah. 7. güngör sok. No:19/B',
       district: 'Osmangazi',
