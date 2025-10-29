@@ -16,22 +16,16 @@ export default function About() {
 
   const team = [
     {
-      name: "John Smith",
+      name: "Süleyman Eryılmaz",
       role: t('about.team1Role'),
       experience: t('about.team1Experience'),
       description: t('about.team1Description')
     },
     {
-      name: "Sarah Johnson",
+      name: "Ersel Eryılmaz",
       role: t('about.team2Role'),
       experience: t('about.team2Experience'),
       description: t('about.team2Description')
-    },
-    {
-      name: "Michael Chen",
-      role: t('about.team3Role'),
-      experience: t('about.team3Experience'),
-      description: t('about.team3Description')
     }
   ]
 

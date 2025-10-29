@@ -1,4 +1,4 @@
-// Franchise locations for Eryilmaz Appliance Repair
+// Franchise locations for Eryilmaz Teknik
 export const franchises = [
   {
     id: 'bursa-osmangazi',

@@ -1,7 +1,10 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FaCheckCircle } from 'react-icons/fa'
+import { sanitizeInput, sanitizeMessage, validateEmail, validatePhone, validateName, validateDate } from '../utils/sanitize'
 
 export default function BookingForm() {
+  const { t } = useTranslation()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -13,21 +16,83 @@ export default function BookingForm() {
     message: ''
   })
   const [submitted, setSubmitted] = useState(false)
+  const [errors, setErrors] = useState({})
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+    let sanitizedValue = value;
+
+    // Sanitize input based on field type
+    if (name === 'message') {
+      sanitizedValue = sanitizeMessage(value);
+    } else if (name !== 'email' && name !== 'phone' && name !== 'preferredDate' && name !== 'service' && name !== 'preferredTime') {
+      sanitizedValue = sanitizeInput(value);
+    }
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
-    })
+      [name]: sanitizedValue
+    });
+
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors({
+        ...errors,
+        [name]: ''
+      });
+    }
+  }
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!validateName(formData.name)) {
+      newErrors.name = 'Please enter a valid name (2-50 characters, letters only)';
+    }
+
+    if (!validateEmail(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+
+    if (!validatePhone(formData.phone)) {
+      newErrors.phone = 'Please enter a valid phone number';
+    }
+
+    if (formData.address.length < 10) {
+      newErrors.address = 'Please enter a complete address';
+    }
+
+    if (!formData.service) {
+      newErrors.service = 'Please select a service';
+    }
+
+    if (!validateDate(formData.preferredDate)) {
+      newErrors.preferredDate = 'Please select a valid date (today or future)';
+    }
+
+    if (!formData.preferredTime) {
+      newErrors.preferredTime = 'Please select a preferred time';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  }
+
+  const handleSubmit = (e) => {
+    if (!validateForm()) {
+      e.preventDefault();
+      return false;
+    }
+    // Form will submit to FormSubmit if validation passes
   }
 
   if (submitted) {
     return (
       <div className="bg-green-50 border border-green-200 rounded-lg p-8 text-center">
         <FaCheckCircle className="text-5xl text-green-500 mx-auto mb-4" />
-        <h3 className="text-2xl font-bold text-green-800 mb-2">Booking Received!</h3>
+        <h3 className="text-2xl font-bold text-green-800 mb-2">{t('bookingForm.bookingReceived')}</h3>
         <p className="text-green-700">
-          Thank you for your booking request. We'll contact you shortly to confirm your appointment.
+          {t('bookingForm.thankYouMessage')}
         </p>
       </div>
     )
@@ -37,6 +102,7 @@ export default function BookingForm() {
     <form 
       action="https://formsubmit.co/info@eryilmazteknik.com.tr" 
       method="POST"
+      onSubmit={handleSubmit}
       className="space-y-6"
     >
       {/* FormSubmit Configuration */}
@@ -48,7 +114,7 @@ export default function BookingForm() {
       <div className="grid md:grid-cols-2 gap-6">
         <div>
           <label htmlFor="name" className="block text-sm font-semibold text-secondary-700 mb-2">
-            Full Name *
+            {t('bookingForm.fullName')} *
           </label>
           <input
             type="text"
@@ -57,14 +123,16 @@ export default function BookingForm() {
             value={formData.name}
             onChange={handleChange}
             required
-            className="input-field"
-            placeholder="John Doe"
+            maxLength="50"
+            className={`input-field ${errors.name ? 'border-red-500' : ''}`}
+            placeholder={t('bookingForm.fullNamePlaceholder')}
           />
+          {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
         </div>
 
         <div>
           <label htmlFor="phone" className="block text-sm font-semibold text-secondary-700 mb-2">
-            Phone Number *
+            {t('bookingForm.phoneNumber')} *
           </label>
           <input
             type="tel"
@@ -73,15 +141,17 @@ export default function BookingForm() {
             value={formData.phone}
             onChange={handleChange}
             required
-            className="input-field"
-            placeholder="(555) 123-4567"
+            maxLength="20"
+            className={`input-field ${errors.phone ? 'border-red-500' : ''}`}
+            placeholder={t('bookingForm.phoneNumberPlaceholder')}
           />
+          {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
         </div>
       </div>
 
       <div>
         <label htmlFor="email" className="block text-sm font-semibold text-secondary-700 mb-2">
-          Email Address *
+          {t('bookingForm.emailAddress')} *
         </label>
         <input
           type="email"
@@ -90,14 +160,16 @@ export default function BookingForm() {
           value={formData.email}
           onChange={handleChange}
           required
-          className="input-field"
-          placeholder="john@example.com"
+          maxLength="254"
+          className={`input-field ${errors.email ? 'border-red-500' : ''}`}
+          placeholder={t('bookingForm.emailPlaceholder')}
         />
+        {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
       </div>
 
       <div>
         <label htmlFor="address" className="block text-sm font-semibold text-secondary-700 mb-2">
-          Service Address *
+          {t('bookingForm.serviceAddress')} *
         </label>
         <input
           type="text"
@@ -106,14 +178,16 @@ export default function BookingForm() {
           value={formData.address}
           onChange={handleChange}
           required
-          className="input-field"
-          placeholder="123 Main St, City, State, ZIP"
+          maxLength="200"
+          className={`input-field ${errors.address ? 'border-red-500' : ''}`}
+          placeholder={t('bookingForm.serviceAddressPlaceholder')}
         />
+        {errors.address && <p className="text-red-500 text-sm mt-1">{errors.address}</p>}
       </div>
 
       <div>
         <label htmlFor="service" className="block text-sm font-semibold text-secondary-700 mb-2">
-          Service Needed *
+          {t('bookingForm.serviceNeeded')} *
         </label>
         <select
           id="service"
@@ -121,25 +195,26 @@ export default function BookingForm() {
           value={formData.service}
           onChange={handleChange}
           required
-          className="input-field"
+          className={`input-field ${errors.service ? 'border-red-500' : ''}`}
         >
-          <option value="">Select a service...</option>
-          <option value="refrigerator">Refrigerator Repair</option>
-          <option value="dishwasher">Dishwasher Repair</option>
-          <option value="oven">Oven/Stove Repair</option>
-          <option value="washer">Washing Machine Repair</option>
-          <option value="dryer">Dryer Repair</option>
-          <option value="microwave">Microwave Repair</option>
-          <option value="ice-maker">Ice Maker Repair</option>
-          <option value="disposal">Garbage Disposal Repair</option>
-          <option value="other">Other</option>
+          <option value="">{t('bookingForm.selectService')}</option>
+          <option value="refrigerator">{t('bookingForm.refrigeratorRepair')}</option>
+          <option value="dishwasher">{t('bookingForm.dishwasherRepair')}</option>
+          <option value="oven">{t('bookingForm.ovenRepair')}</option>
+          <option value="washer">{t('bookingForm.washerRepair')}</option>
+          <option value="dryer">{t('bookingForm.dryerRepair')}</option>
+          <option value="microwave">{t('bookingForm.microwaveRepair')}</option>
+          <option value="ice-maker">{t('bookingForm.iceMakerRepair')}</option>
+          <option value="disposal">{t('bookingForm.disposalRepair')}</option>
+          <option value="other">{t('bookingForm.other')}</option>
         </select>
+        {errors.service && <p className="text-red-500 text-sm mt-1">{errors.service}</p>}
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
         <div>
           <label htmlFor="preferredDate" className="block text-sm font-semibold text-secondary-700 mb-2">
-            Preferred Date *
+            {t('bookingForm.preferredDate')} *
           </label>
           <input
             type="date"
@@ -148,13 +223,15 @@ export default function BookingForm() {
             value={formData.preferredDate}
             onChange={handleChange}
             required
-            className="input-field"
+            min={new Date().toISOString().split('T')[0]}
+            className={`input-field ${errors.preferredDate ? 'border-red-500' : ''}`}
           />
+          {errors.preferredDate && <p className="text-red-500 text-sm mt-1">{errors.preferredDate}</p>}
         </div>
 
         <div>
           <label htmlFor="preferredTime" className="block text-sm font-semibold text-secondary-700 mb-2">
-            Preferred Time *
+            {t('bookingForm.preferredTime')} *
           </label>
           <select
             id="preferredTime"
@@ -162,19 +239,20 @@ export default function BookingForm() {
             value={formData.preferredTime}
             onChange={handleChange}
             required
-            className="input-field"
+            className={`input-field ${errors.preferredTime ? 'border-red-500' : ''}`}
           >
-            <option value="">Select a time...</option>
-            <option value="morning">Morning (8 AM - 12 PM)</option>
-            <option value="afternoon">Afternoon (12 PM - 4 PM)</option>
-            <option value="evening">Evening (4 PM - 6 PM)</option>
+            <option value="">{t('bookingForm.selectTime')}</option>
+            <option value="morning">{t('bookingForm.morning')}</option>
+            <option value="afternoon">{t('bookingForm.afternoon')}</option>
+            <option value="evening">{t('bookingForm.evening')}</option>
           </select>
+          {errors.preferredTime && <p className="text-red-500 text-sm mt-1">{errors.preferredTime}</p>}
         </div>
       </div>
 
       <div>
         <label htmlFor="message" className="block text-sm font-semibold text-secondary-700 mb-2">
-          Additional Details
+          {t('bookingForm.additionalDetails')}
         </label>
         <textarea
           id="message"
@@ -182,8 +260,9 @@ export default function BookingForm() {
           value={formData.message}
           onChange={handleChange}
           rows="4"
+          maxLength="5000"
           className="textarea-field"
-          placeholder="Please describe the issue with your appliance..."
+          placeholder={t('bookingForm.additionalDetailsPlaceholder')}
         ></textarea>
       </div>
 
@@ -191,11 +270,11 @@ export default function BookingForm() {
         type="submit" 
         className="btn-primary w-full"
       >
-        Schedule Service Appointment
+        {t('bookingForm.scheduleAppointment')}
       </button>
 
       <p className="text-sm text-secondary-600 text-center">
-        * Required fields. We'll contact you to confirm your appointment.
+        {t('bookingForm.requiredFields')}
       </p>
     </form>
   )

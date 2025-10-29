@@ -1,4 +1,4 @@
-# 🔧 Eryilmaz Appliance Repair Website
+# 🔧 Eryilmaz Teknik Website
 
 A complete, professional appliance repair service website built with React, Vite, and Tailwind CSS. This is a fully functional, production-ready website that **closely mirrors the structure and features of Mr. Appliance**, including Residential Services, Commercial Services, Why Choose Us, and all essential pages.
 

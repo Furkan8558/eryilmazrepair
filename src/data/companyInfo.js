@@ -4,8 +4,8 @@ export const getCompanyInfo = () => {
   const t = i18n.t.bind(i18n);
   
   return {
-    name: "Eryilmaz Appliance Repair",
-    fullName: "Eryilmaz Appliance Repair (Eryilmaz Teknik)",
+    name: "Eryilmaz Teknik",
+    fullName: "Eryilmaz Teknik",
     tagline: t('companyInfo.tagline'),
     phone: "+90 541 632 6796", // Main/corporate number
     emergencyPhone: "+90 541 632 6796",

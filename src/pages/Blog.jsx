@@ -17,8 +17,14 @@ function BlogCard({ post }) {
           onError={(e) => {
             // Fallback to gradient background if image fails to load
             e.target.style.display = 'none';
-            e.target.parentElement.classList.add('bg-gradient-to-br', 'from-primary-500', 'to-primary-700', 'flex', 'items-center', 'justify-center');
-            e.target.parentElement.innerHTML += `<span class="text-white text-lg">${t('blog.blogImage')}</span>`;
+            const parentElement = e.target.parentElement;
+            parentElement.classList.add('bg-gradient-to-br', 'from-primary-500', 'to-primary-700', 'flex', 'items-center', 'justify-center');
+            
+            // Safely create and append text element (prevents XSS)
+            const span = document.createElement('span');
+            span.className = 'text-white text-lg';
+            span.textContent = t('blog.blogImage');
+            parentElement.appendChild(span);
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
