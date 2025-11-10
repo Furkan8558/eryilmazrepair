@@ -1,26 +1,26 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock, FaSearch, FaSpinner } from 'react-icons/fa'
 import { findFranchiseByZip, findNearestFranchise, getActiveFranchises } from '../data/franchises'
 import BookingForm from '../components/BookingForm'
 
-export default function FranchiseFinder() {
+export default function ServiceFinder() {
   const { t } = useTranslation()
   const [zipCode, setZipCode] = useState('')
-  const [selectedFranchise, setSelectedFranchise] = useState(null)
+  const [selectedService, setSelectedService] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [detectingLocation, setDetectingLocation] = useState(false)
   
-  const activeFranchises = getActiveFranchises()
+  const activeServices = getActiveFranchises()
 
   const handleZipSearch = (e) => {
     e.preventDefault()
     setError('')
-    setSelectedFranchise(null)
+    setSelectedService(null)
     
     if (!zipCode.trim()) {
-      setError(t('franchiseFinder.enterZipCode'))
+      setError(t('serviceFinder.enterZipCode'))
       return
     }
     
@@ -28,12 +28,12 @@ export default function FranchiseFinder() {
     
     // Simulate API call delay
     setTimeout(() => {
-      const franchise = findFranchiseByZip(zipCode)
+      const service = findFranchiseByZip(zipCode)
       
-      if (franchise) {
-        setSelectedFranchise(franchise)
+      if (service) {
+        setSelectedService(service)
       } else {
-        setError(t('franchiseFinder.noFranchiseFound'))
+        setError(t('serviceFinder.noServiceFound'))
       }
       
       setLoading(false)
@@ -42,18 +42,18 @@ export default function FranchiseFinder() {
 
   const detectUserLocation = () => {
     if (!navigator.geolocation) {
-      setError(t('franchiseFinder.geolocationNotSupported'))
+      setError(t('serviceFinder.geolocationNotSupported'))
       return
     }
     
     setDetectingLocation(true)
     setError('')
-    setSelectedFranchise(null)
+    setSelectedService(null)
     
     // Set a timeout for geolocation request (10 seconds)
     const timeoutId = setTimeout(() => {
       setDetectingLocation(false)
-      setError(t('franchiseFinder.locationDetectionFailed'))
+      setError(t('serviceFinder.locationDetectionFailed'))
     }, 10000)
 
     navigator.geolocation.getCurrentPosition(
@@ -63,10 +63,10 @@ export default function FranchiseFinder() {
         const franchise = findNearestFranchise(latitude, longitude)
         
         if (franchise) {
-          setSelectedFranchise(franchise)
+          setSelectedService(franchise)
           setDetectingLocation(false)
         } else {
-          setError(t('franchiseFinder.noFranchiseNearby'))
+          setError(t('serviceFinder.noFranchiseNearby'))
           setDetectingLocation(false)
         }
       },
@@ -75,7 +75,7 @@ export default function FranchiseFinder() {
         console.error('Geolocation error:', error)
         
         // Provide more specific error messages
-        let errorMessage = t('franchiseFinder.locationDetectionFailed')
+        let errorMessage = t('serviceFinder.locationDetectionFailed')
         if (error.code === 1) {
           errorMessage = 'Location permission denied. Please allow location access and try again.'
         } else if (error.code === 2) {
@@ -100,20 +100,20 @@ export default function FranchiseFinder() {
       {/* Page Header */}
       <section className="bg-gradient-primary text-white py-12 md:py-16">
         <div className="container-custom text-center">
-          <h1 className="mb-3 md:mb-4">{t('franchiseFinder.title')}</h1>
+          <h1 className="mb-3 md:mb-4">{t('serviceFinder.title')}</h1>
           <p className="text-base md:text-xl max-w-3xl mx-auto">
-            {t('franchiseFinder.subtitle')}
+            {t('serviceFinder.subtitle')}
           </p>
         </div>
       </section>
 
-      {/* Franchise Finder */}
+      {/* Service Finder */}
       <section className="section-padding">
         <div className="container-custom max-w-4xl">
           {/* Search Box */}
           <div className="card mb-6 md:mb-8">
             <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center">
-              {t('franchiseFinder.findYourFranchise')}
+              {t('serviceFinder.findYourService')}
             </h2>
             
             <form onSubmit={handleZipSearch} className="mb-4 md:mb-6">
@@ -122,7 +122,7 @@ export default function FranchiseFinder() {
                   type="text"
                   value={zipCode}
                   onChange={(e) => setZipCode(e.target.value)}
-                  placeholder={t('franchiseFinder.enterZipPlaceholder')}
+                  placeholder={t('serviceFinder.enterZipPlaceholder')}
                   className="flex-1 px-4 py-3 text-base border border-secondary-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
                 />
                 <button
@@ -135,7 +135,7 @@ export default function FranchiseFinder() {
                   ) : (
                     <>
                       <FaSearch className="mr-2" />
-                      {t('franchiseFinder.search')}
+                      {t('serviceFinder.search')}
                     </>
                   )}
                 </button>
@@ -143,7 +143,7 @@ export default function FranchiseFinder() {
             </form>
 
             <div className="text-center">
-              <div className="text-secondary-500 mb-3 text-sm">{t('franchiseFinder.or')}</div>
+              <div className="text-secondary-500 mb-3 text-sm">{t('serviceFinder.or')}</div>
               <button
                 onClick={detectUserLocation}
                 disabled={detectingLocation}
@@ -152,12 +152,12 @@ export default function FranchiseFinder() {
                 {detectingLocation ? (
                   <>
                     <FaSpinner className="animate-spin mr-2" />
-                    {t('franchiseFinder.detecting')}
+                    {t('serviceFinder.detecting')}
                   </>
                 ) : (
                   <>
                     <FaMapMarkerAlt className="mr-2" />
-                    {t('franchiseFinder.useMyLocation')}
+                    {t('serviceFinder.useMyLocation')}
                   </>
                 )}
               </button>
@@ -170,20 +170,20 @@ export default function FranchiseFinder() {
             )}
           </div>
 
-          {/* Selected Franchise */}
-          {selectedFranchise && (
+          {/* Selected Service Center */}
+          {selectedService && (
             <div className="card bg-primary-50 border-2 border-primary-200">
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 md:mb-6">
                 <div className="mb-3 sm:mb-0">
                   <h3 className="text-xl md:text-2xl font-bold text-primary-700 mb-2">
-                    {t('franchiseFinder.foundFranchise')}
+                    {t('serviceFinder.foundFranchise')}
                   </h3>
                   <h4 className="text-lg md:text-xl font-semibold text-secondary-800">
-                    {selectedFranchise.name}
+                    {selectedService.name}
                   </h4>
                 </div>
                 <div className="bg-primary-600 text-white px-4 py-2 rounded-full text-sm font-semibold self-start">
-                  {t('franchiseFinder.serving')}
+                  {t('serviceFinder.serving')}
                 </div>
               </div>
 
@@ -197,10 +197,10 @@ export default function FranchiseFinder() {
                         {t('common.phone')}
                       </div>
                       <a 
-                        href={`tel:${selectedFranchise.phone}`}
+                        href={`tel:${selectedService.phone}`}
                         className="text-primary-600 hover:text-primary-700 font-medium text-sm break-all"
                       >
-                        {selectedFranchise.phone}
+                        {selectedService.phone}
                       </a>
                     </div>
                   </div>
@@ -212,10 +212,10 @@ export default function FranchiseFinder() {
                         {t('common.email')}
                       </div>
                       <a 
-                        href={`mailto:${selectedFranchise.email}`}
+                        href={`mailto:${selectedService.email}`}
                         className="text-primary-600 hover:text-primary-700 text-sm break-all"
                       >
-                        {selectedFranchise.email}
+                        {selectedService.email}
                       </a>
                     </div>
                   </div>
@@ -227,9 +227,9 @@ export default function FranchiseFinder() {
                         {t('common.address')}
                       </div>
                       <p className="text-secondary-700 text-sm">
-                        {selectedFranchise.address.street}<br />
-                        {selectedFranchise.address.district}, {selectedFranchise.address.city}<br />
-                        {selectedFranchise.address.zip}, {selectedFranchise.address.country}
+                        {selectedService.address.street}<br />
+                        {selectedService.address.district}, {selectedService.address.city}<br />
+                        {selectedService.address.zip}, {selectedService.address.country}
                       </p>
                     </div>
                   </div>
@@ -241,15 +241,15 @@ export default function FranchiseFinder() {
                         {t('contact.businessHours')}
                       </div>
                       <div className="text-secondary-700 space-y-1 text-sm">
-                        <p>{t('common.monFri')}: {selectedFranchise.hours.weekday}</p>
-                        <p>{t('common.saturday')}: {selectedFranchise.hours.saturday}</p>
-                        <p>{t('common.sunday')}: {selectedFranchise.hours.sunday}</p>
+                        <p>{t('common.monFri')}: {selectedService.hours.weekday}</p>
+                        <p>{t('common.saturday')}: {selectedService.hours.saturday}</p>
+                        <p>{t('common.sunday')}: {selectedService.hours.sunday}</p>
                       </div>
                     </div>
                   </div>
 
                   <a 
-                    href={`tel:${selectedFranchise.phone}`}
+                    href={`tel:${selectedService.phone}`}
                     className="btn-primary w-full text-center mt-4 block py-3"
                   >
                     {t('common.callNow')}
@@ -269,18 +269,18 @@ export default function FranchiseFinder() {
             </div>
           )}
 
-          {/* All Franchises List */}
+          {/* All Service Centers List */}
           <div className="mt-8 md:mt-12">
             <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center">
-              {t('franchiseFinder.allLocations')}
+              {t('serviceFinder.allLocations')}
             </h2>
             
             <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
-              {activeFranchises.map((franchise) => (
+              {activeServices.map((franchise) => (
                 <div 
                   key={franchise.id}
                   className="card hover:shadow-xl transition-shadow cursor-pointer"
-                  onClick={() => setSelectedFranchise(franchise)}
+                  onClick={() => setSelectedService(franchise)}
                 >
                   <h3 className="text-lg md:text-xl font-bold text-secondary-800 mb-3">
                     {franchise.name}
@@ -298,7 +298,7 @@ export default function FranchiseFinder() {
                   </div>
                   
                   <button className="btn-outline w-full mt-4 py-2.5">
-                    {t('franchiseFinder.viewDetails')}
+                    {t('serviceFinder.viewDetails')}
                   </button>
                 </div>
               ))}
@@ -311,13 +311,13 @@ export default function FranchiseFinder() {
       <section className="bg-primary-600 text-white py-10 md:py-12">
         <div className="container-custom text-center">
           <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">
-            {t('franchiseFinder.cantFindLocation')}
+            {t('serviceFinder.cantFindLocation')}
           </h3>
           <p className="text-base md:text-lg mb-6 max-w-2xl mx-auto">
-            {t('franchiseFinder.expanding')}
+            {t('serviceFinder.expanding')}
           </p>
           <a 
-            href={`mailto:${activeFranchises[0]?.email || 'info@eryilmazteknik.com.tr'}`}
+            href={`mailto:${activeServices[0]?.email || 'info@eryilmazteknik.com.tr'}`}
             className="btn-primary bg-white text-primary-600 hover:bg-gray-100 py-3 px-6 inline-block"
           >
             {t('common.contact')}

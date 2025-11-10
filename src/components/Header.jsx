@@ -120,7 +120,7 @@ export default function Header() {
                 <FaClock className="mr-1.5 text-xs" />
                 <span>{t('common.monFri')}: {companyInfo.hours.weekday}</span>
               </div>
-              <Link to="/franchise-finder" className="flex items-center hover:text-primary-100 transition-colors">
+              <Link to="/service-finder" className="flex items-center hover:text-primary-100 transition-colors">
                 <FaMapMarkerAlt className="mr-1.5 text-xs" />
                 <span>{t('header.findLocation')}</span>
               </Link>
@@ -228,7 +228,7 @@ export default function Header() {
               <FaPhone className="mr-2 text-sm" />
               <span className="text-sm">{companyInfo.phone}</span>
             </a>
-            <Link to="/franchise-finder" className="btn-primary text-sm py-2 px-4">
+            <Link to="/service-finder" className="btn-primary text-sm py-2 px-4 flex items-center justify-center text-center">
               {t('common.scheduleService')}
             </Link>
           </div>
@@ -309,7 +309,7 @@ export default function Header() {
                 {companyInfo.phone}
               </a>
               <Link
-                to="/franchise-finder"
+                to="/service-finder"
                 onClick={() => setMobileMenuOpen(false)}
                 className="btn-primary block text-center py-3"
               >

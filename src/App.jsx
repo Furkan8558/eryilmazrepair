@@ -23,7 +23,7 @@ const Reviews = lazy(() => import('./pages/Reviews'))
 const ApplianceCare = lazy(() => import('./pages/ApplianceCare'))
 const ApplianceLifeGuide = lazy(() => import('./pages/ApplianceLifeGuide'))
 const EnergySavingTips = lazy(() => import('./pages/EnergySavingTips'))
-const FranchiseFinder = lazy(() => import('./pages/FranchiseFinder'))
+const ServiceFinder = lazy(() => import('./pages/ServiceFinder'))
 
 // Loading component
 const LoadingFallback = () => (
@@ -51,7 +51,8 @@ function App() {
             <Route path="/why-choose-us" element={<WhyChooseUs />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/franchise-finder" element={<FranchiseFinder />} />
+            <Route path="/service-finder" element={<ServiceFinder />} />
+            <Route path="/franchise-finder" element={<ServiceFinder />} /> {/* Redirect old URL */}
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:postId" element={<BlogPost />} />
             <Route path="/faq" element={<FAQ />} />
