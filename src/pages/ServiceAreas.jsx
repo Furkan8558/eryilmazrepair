@@ -2,12 +2,28 @@ import { useState } from 'react'
 import { FaMapMarkerAlt, FaCheckCircle, FaSearch } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
 import CallToAction from '../components/CallToAction'
+import SEO from '../components/SEO'
 import { serviceAreas, checkServiceAvailability } from '../data/serviceAreas'
 
 export default function ServiceAreas() {
   const { t } = useTranslation()
   const [zipCode, setZipCode] = useState('')
   const [searchResult, setSearchResult] = useState(null)
+
+  // Structured Data
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Appliance Repair",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Eryilmaz Teknik"
+    },
+    "areaServed": serviceAreas.map(area => ({
+      "@type": "City",
+      "name": area.name
+    }))
+  }
 
   const handleSearch = (e) => {
     e.preventDefault()
@@ -20,6 +36,24 @@ export default function ServiceAreas() {
 
   return (
     <div>
+      <SEO 
+        title={t('serviceAreas.title') || "Hizmet Bölgeleri | Eryilmaz Teknik"}
+        description={t('serviceAreas.subtitle') || "Bursa'nın tüm ilçelerinde beyaz eşya tamir servisi. Nilüfer, Osmangazi, Yıldırım ve daha fazlası."}
+        keywords={[
+          'bursa hizmet bölgeleri',
+          'servis verilen bölgeler bursa',
+          'nilüfer beyaz eşya servisi',
+          'osmangazi teknik servis',
+          'yıldırım tamirci',
+          'mudanya tamir servisi',
+          'gemlik beyaz eşya tamiri',
+          'gürsu teknik servis',
+          'kestel tamirci',
+          'bursa ilçeleri servis'
+        ]}
+        structuredData={structuredData}
+        ogType="website"
+      />
       {/* Page Header */}
       <section className="bg-gradient-primary text-white py-16">
         <div className="container-custom text-center">

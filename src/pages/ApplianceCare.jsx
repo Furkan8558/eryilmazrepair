@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { FaCheckCircle, FaWrench, FaBook, FaLightbulb, FaPhone } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
 import CallToAction from '../components/CallToAction'
+import SEO from '../components/SEO'
 import getCompanyInfo from '../data/companyInfo'
 
 export default function ApplianceCare() {
@@ -137,6 +138,21 @@ export default function ApplianceCare() {
 
   return (
     <div>
+      <SEO 
+        title={t('applianceCare.title') || "Cihaz Bakım Rehberi | Eryilmaz Teknik"}
+        description={t('applianceCare.subtitle') || "Beyaz eşyalarınızın ömrünü uzatın. Profesyonel bakım ipuçları ve kullanım önerileri."}
+        keywords={[
+          'beyaz eşya bakımı',
+          'cihaz temizliği',
+          'buzdolabı bakım rehberi',
+          'çamaşır makinesi temizlik',
+          'kombi bakım ipuçları',
+          'klima temizlik rehberi',
+          'bakım talimatları',
+          'cihaz ömrü uzatma'
+        ]}
+        ogType="article"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-primary text-white py-20">
         <div className="container-custom">

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { FaBuilding, FaCheckCircle, FaClock, FaTools, FaShieldAlt, FaPhone } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
 import CallToAction from '../components/CallToAction'
+import SEO from '../components/SEO'
 import getCompanyInfo from '../data/companyInfo'
 
 export default function CommercialServices() {
@@ -83,8 +84,40 @@ export default function CommercialServices() {
     }
   ]
 
+  // Commercial Services Schema
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Commercial Appliance Repair",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Eryilmaz Teknik"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Bursa"
+    }
+  }
+
   return (
     <div>
+      <SEO 
+        title={t('commercial.title') || "Ticari Servisleri | Eryilmaz Teknik"}
+        description={t('commercial.subtitle') || "İşletmeniz için profesyonel teknik servis. Restoran, otel, hastane ve fabrika ekipmanları tamiri."}
+        keywords={[
+          'ticari beyaz eşya tamiri',
+          'restoran mutfak tamiri',
+          'otel teknik servis',
+          'hastane cihaz tamiri',
+          'fabrika ekipman servisi',
+          'endüstriyel klima',
+          'ticari soğutma sistemleri',
+          'işyeri kombi bakımı',
+          'toplu taşıma klima'
+        ]}
+        structuredData={structuredData}
+        ogType="website"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-primary text-white py-20">
         <div className="container-custom">

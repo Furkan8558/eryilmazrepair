@@ -3,6 +3,7 @@ import { FaHome, FaCheckCircle, FaArrowRight, FaPhone } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
 import ServiceCard from '../components/ServiceCard'
 import CallToAction from '../components/CallToAction'
+import SEO from '../components/SEO'
 import getServices from '../data/services'
 import getCompanyInfo from '../data/companyInfo'
 
@@ -46,8 +47,39 @@ export default function ResidentialServices() {
     }
   ]
 
+  // Residential Services Schema
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Residential Appliance Repair",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Eryilmaz Teknik"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Bursa"
+    }
+  }
+
   return (
     <div>
+      <SEO 
+        title={t('residential.title') || "Ev Servisleri | Eryilmaz Teknik"}
+        description={t('residential.subtitle') || "Eviniz için profesyonel beyaz eşya tamir servisi. Buzdolabı, çamaşır makinesi, kombi, klima tamiri."}
+        keywords={[
+          'ev beyaz eşya tamiri',
+          'evde tamir servisi',
+          'apartman tamir hizmeti',
+          'konut teknik servis',
+          'ev kombi bakımı',
+          'ev klima servisi',
+          'villa beyaz eşya tamiri',
+          'site içi teknik servis'
+        ]}
+        structuredData={structuredData}
+        ogType="website"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-primary text-white py-20">
         <div className="container-custom">

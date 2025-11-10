@@ -2,11 +2,29 @@ import { FaAward, FaUsers, FaShieldAlt, FaHeart, FaHandshake, FaWrench, FaCheckC
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import CallToAction from '../components/CallToAction'
+import SEO from '../components/SEO'
 import getCompanyInfo from '../data/companyInfo'
 
 export default function About() {
   const { t } = useTranslation()
   const companyInfo = getCompanyInfo()
+  
+  // Structured Data for About page
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "name": "Eryilmaz Teknik",
+      "foundingDate": "2010",
+      "description": "15+ yıllık deneyimi ile Bursa'nın en güvenilir beyaz eşya tamir servisi",
+      "knowsAbout": ["Beyaz Eşya Tamiri", "Kombi Bakımı", "Klima Servisi", "Teknik Servis"],
+      "areaServed": {
+        "@type": "City",
+        "name": "Bursa"
+      }
+    }
+  }
   
   const stats = [
     { number: "15+", label: t('about.stat1Label') },
@@ -40,6 +58,22 @@ export default function About() {
 
   return (
     <div>
+      <SEO 
+        title={t('nav.about') || "Hakkımızda | Eryilmaz Teknik"}
+        description={t('about.introduction') || "15+ yıllık deneyimi ile Bursa'nın en güvenilir beyaz eşya tamir servisi. Profesyonel ekibimiz ve kaliteli hizmetimizle yanınızdayız."}
+        keywords={[
+          'eryilmaz teknik hakkında',
+          'bursa teknik servis hakkımızda',
+          'beyaz eşya tamircisi kimdir',
+          'bursa tamirci deneyim',
+          'profesyonel teknik servis ekibi',
+          'eryılmaz teknik referanslar',
+          '15 yıllık tecrübe',
+          'güvenilir tamirci bursa'
+        ]}
+        structuredData={structuredData}
+        ogType="website"
+      />
       {/* Page Header */}
       <section className="bg-gradient-primary text-white py-16">
         <div className="container-custom text-center">

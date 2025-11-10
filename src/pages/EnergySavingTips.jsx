@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FaLightbulb, FaSnowflake, FaTint, FaFire, FaPlug, FaThermometerHalf, FaClock, FaLeaf } from 'react-icons/fa';
 import CallToAction from '../components/CallToAction';
+import SEO from '../components/SEO';
 import getCompanyInfo from '../data/companyInfo';
 
 const EnergySavingTips = () => {
@@ -265,6 +266,21 @@ const EnergySavingTips = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEO 
+        title={t('energySaving.title') || "Enerji Tasarrufu İpuçları | Eryilmaz Teknik"}
+        description={t('energySaving.subtitle') || "Elektrik faturanızı düşürün. Beyaz eşyalarda enerji tasarrufu yapmanın yolları."}
+        keywords={[
+          'enerji tasarrufu ipuçları',
+          'elektrik faturası düşürme',
+          'buzdolabı enerji tasarrufu',
+          'klima verimli kullanım',
+          'kombi yakıt tasarrufu',
+          'çamaşır makinesi enerji',
+          'verimli cihaz kullanımı',
+          'tasarruf rehberi'
+        ]}
+        ogType="article"
+      />
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-green-600 to-primary-600 text-white py-16">
         <div className="container mx-auto px-4">

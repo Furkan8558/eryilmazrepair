@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import CallToAction from '../components/CallToAction';
+import SEO from '../components/SEO';
 import getCompanyInfo from '../data/companyInfo';
 
 const ApplianceLifeGuide = () => {
@@ -74,6 +75,21 @@ const ApplianceLifeGuide = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEO 
+        title={t('applianceLife.heroTitle') || "Cihaz Ömrü Rehberi | Eryilmaz Teknik"}
+        description="Beyaz eşyalarınızın ortalama ömrü ne kadar? Ne zaman yenilenmeli? Kapsamlı cihaz ömrü rehberi."
+        keywords={[
+          'beyaz eşya ömrü',
+          'cihaz değiştirme zamanı',
+          'buzdolabı kaç yıl dayanır',
+          'çamaşır makinesi ömrü',
+          'kombi ne kadar kullanılır',
+          'klima değiştirme',
+          'ortalama cihaz ömrü',
+          'yenileme zamanı'
+        ]}
+        ogType="article"
+      />
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-primary-600 to-primary-700 text-white py-16">
         <div className="container mx-auto px-4">

@@ -157,7 +157,7 @@ export default function Contact() {
               </div>
 
               {/* Find Your Location CTA */}
-              <div className="card bg-primary-50 border-2 border-primary-200">
+              <div className="card bg-primary-50 border-2 border-primary-200 mb-6">
                 <div className="flex items-center mb-4">
                   <FaMapMarkerAlt className="text-3xl text-primary-600 mr-3" />
                   <h3 className="text-xl font-bold text-secondary-800">
@@ -167,9 +167,28 @@ export default function Contact() {
                 <p className="text-secondary-600 mb-4">
                   {t('contact.multipleLocations')}
                 </p>
-                <Link to="/franchise-finder" className="btn-primary w-full text-center">
-                  {t('contact.findNearestFranchise')}
+                <Link to="/service-finder" className="btn-primary w-full text-center">
+                  {t('contact.findNearestService')}
                 </Link>
+              </div>
+
+              {/* Franchise Opportunities Info */}
+              <div className="card bg-green-50 border-2 border-green-200">
+                <div className="flex items-center mb-4">
+                  <FaMapMarkerAlt className="text-3xl text-green-600 mr-3" />
+                  <h3 className="text-xl font-bold text-secondary-800">
+                    {t('contact.interestedInFranchise')}
+                  </h3>
+                </div>
+                <p className="text-secondary-600 mb-4">
+                  {t('contact.franchiseInfo')}
+                </p>
+                <a 
+                  href={`mailto:${companyInfo.email}?subject=Franchise Opportunity Inquiry`}
+                  className="btn-outline border-green-600 text-green-600 hover:bg-green-600 hover:text-white w-full text-center"
+                >
+                  {t('common.contact')}
+                </a>
               </div>
             </div>
 

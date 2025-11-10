@@ -1,6 +1,7 @@
 import { FaAward, FaClock, FaDollarSign, FaUserTie, FaShieldAlt, FaStar, FaCheckCircle, FaTools, FaThumbsUp } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
 import CallToAction from '../components/CallToAction'
+import SEO from '../components/SEO'
 import getCompanyInfo from '../data/companyInfo'
 
 export default function WhyChooseUs() {
@@ -107,6 +108,21 @@ export default function WhyChooseUs() {
 
   return (
     <div>
+      <SEO 
+        title={t('whyUs.title') || "Neden Bizi Seçmelisiniz? | Eryilmaz Teknik"}
+        description={t('whyUs.subtitle') || "15+ yıllık deneyim, garantili hizmet, profesyonel ekip. Bursa'nın en güvenilir teknik servisi."}
+        keywords={[
+          'neden eryilmaz teknik',
+          'güvenilir tamirci avantajları',
+          'profesyonel servis özellikleri',
+          'uygun fiyat garantili',
+          'deneyimli teknisyen ekip',
+          'hızlı tamir servisi',
+          'müşteri memnuniyeti',
+          'kaliteli hizmet bursa'
+        ]}
+        ogType="website"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-primary text-white py-20">
         <div className="container-custom text-center">

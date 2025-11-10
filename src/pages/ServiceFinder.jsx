@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock, FaSearch, FaSpinner } from 'react-icons/fa'
 import { findFranchiseByZip, findNearestFranchise, getActiveFranchises } from '../data/franchises'
 import BookingForm from '../components/BookingForm'
+import SEO from '../components/SEO'
 
 export default function ServiceFinder() {
   const { t } = useTranslation()
@@ -24,6 +25,22 @@ export default function ServiceFinder() {
   }, [])
   
   const activeServices = getActiveFranchises()
+
+  // Structured Data for Service Finder
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Service Center Finder",
+    "description": "Find your nearest Eryilmaz Teknik service center in Bursa",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Eryilmaz Teknik",
+      "areaServed": activeServices.map(service => ({
+        "@type": "City",
+        "name": service.address.city
+      }))
+    }
+  }
 
   const handleZipSearch = (e) => {
     e.preventDefault()
@@ -108,6 +125,24 @@ export default function ServiceFinder() {
 
   return (
     <div>
+      <SEO 
+        title={t('serviceFinder.title') || "Servis Merkezi Bul | Eryilmaz Teknik"}
+        description={t('serviceFinder.subtitle') || "Size en yakın Eryilmaz Teknik servis merkezini bulun. Bursa'nın tüm ilçelerinde hizmetinizdeyiz."}
+        keywords={[
+          'servis merkezi bul bursa',
+          'yakınımdaki tamirci',
+          'bursa teknik servis konumları',
+          'servis noktaları bursa',
+          'en yakın beyaz eşya servisi',
+          'bursa tamirci adresleri',
+          'nilüfer servis merkezi',
+          'osmangazi teknik servis',
+          'yıldırım tamirci',
+          'mudanya servis noktası'
+        ]}
+        structuredData={structuredData}
+        ogType="website"
+      />
       {/* Success Modal */}
       {showSuccessModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">

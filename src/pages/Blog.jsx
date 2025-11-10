@@ -3,6 +3,7 @@ import { FaClock, FaUser, FaArrowRight, FaRss } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
 import CallToAction from '../components/CallToAction'
+import SEO from '../components/SEO'
 import { blogPosts, getPostsByCategory } from '../data/blogPosts'
 
 function BlogCard({ post }) {
@@ -84,8 +85,36 @@ export default function Blog() {
     { id: 'troubleshooting', name: t('blog.troubleshooting') || 'Sorun Giderme' }
   ]
 
+  // Blog Schema
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Eryilmaz Teknik Blog",
+    "description": "Beyaz eşya bakımı, tamir ipuçları ve nasıl yapılır rehberleri",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Eryilmaz Teknik"
+    }
+  }
+
   return (
     <div>
+      <SEO 
+        title={t('blog.title') || "Blog | Eryilmaz Teknik"}
+        description={t('blog.subtitle') || "Beyaz eşya bakımı, tamir ipuçları ve kullanım rehberleri. Cihazlarınızın ömrünü uzatın."}
+        keywords={[
+          'beyaz eşya bakım ipuçları',
+          'kombi bakımı nasıl yapılır',
+          'klima temizliği',
+          'buzdolabı bakımı',
+          'çamaşır makinesi temizliği',
+          'enerji tasarrufu ipuçları',
+          'cihaz ömrü uzatma',
+          'tamir rehberi'
+        ]}
+        structuredData={structuredData}
+        ogType="blog"
+      />
       {/* Page Header */}
       <section className="bg-gradient-primary text-white py-16">
         <div className="container-custom text-center">

@@ -6,6 +6,7 @@ import * as Icons from 'react-icons/fa'
 import CallToAction from '../components/CallToAction'
 import ServiceCard from '../components/ServiceCard'
 import TestimonialCard from '../components/TestimonialCard'
+import SEO from '../components/SEO'
 import getServices, { getServiceById } from '../data/services'
 import { testimonials } from '../data/testimonials'
 import { blogPosts } from '../data/blogPosts'
@@ -26,6 +27,22 @@ export default function ServiceDetail() {
   const translationKey = `services.${serviceId.replace(/-/g, '')}`
   const serviceName = t(`${translationKey}.name`, service?.name || '')
   const serviceDescription = t(`${translationKey}.description`, service?.description || '')
+
+  // Service Schema
+  const structuredData = service ? {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": serviceName,
+    "description": serviceDescription,
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Eryilmaz Teknik"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Bursa"
+    }
+  } : null
 
   if (!service) {
     return (
@@ -60,6 +77,13 @@ export default function ServiceDetail() {
 
   return (
     <div>
+      <SEO 
+        title={`${serviceName} | Eryilmaz Teknik`}
+        description={serviceDescription}
+        keywords={[serviceName, `${serviceName} bursa`, 'teknik servis', 'tamir', 'bakım']}
+        structuredData={structuredData}
+        ogType="website"
+      />
       {/* Service Header with Image */}
       <section className="relative text-white py-20">
         <div className="absolute inset-0 z-0">

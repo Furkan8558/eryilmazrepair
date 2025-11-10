@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom'
 import { FaClock, FaUser, FaArrowLeft, FaTag } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
 import CallToAction from '../components/CallToAction'
+import SEO from '../components/SEO'
 import { getPostById, getRecentPosts } from '../data/blogPosts'
 
 export default function BlogPost() {
@@ -9,6 +10,24 @@ export default function BlogPost() {
   const { postId } = useParams()
   const post = getPostById(postId)
   const recentPosts = getRecentPosts(3).filter(p => p.id !== postId)
+
+  // Article Schema for individual blog post
+  const structuredData = post ? {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.excerpt,
+    "image": post.image,
+    "datePublished": post.date,
+    "author": {
+      "@type": "Person",
+      "name": post.author
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Eryilmaz Teknik"
+    }
+  } : null
 
   if (!post) {
     return (
@@ -28,6 +47,14 @@ export default function BlogPost() {
 
   return (
     <div>
+      <SEO 
+        title={post.title}
+        description={post.excerpt}
+        keywords={[post.category, 'beyaz eşya bakımı', 'tamir ipuçları']}
+        structuredData={structuredData}
+        ogType="article"
+        ogImage={post.image}
+      />
       {/* Article Header */}
       <section className="bg-gradient-primary text-white py-16">
         <div className="container-custom max-w-4xl">

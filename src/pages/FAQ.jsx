@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { FaChevronDown, FaChevronUp, FaQuestionCircle } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
 import CallToAction from '../components/CallToAction'
+import SEO from '../components/SEO'
 import getCompanyInfo from '../data/companyInfo'
 import { getFaqCategories } from '../data/faq'
 
@@ -35,8 +36,41 @@ export default function FAQ() {
   const companyInfo = getCompanyInfo()
   const faqCategories = getFaqCategories()
 
+  // FAQPage Schema for rich search results
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqCategories.flatMap(category => 
+      category.questions.map(q => ({
+        "@type": "Question",
+        "name": q.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": q.answer
+        }
+      }))
+    )
+  }
+
   return (
     <div>
+      <SEO 
+        title={t('faq.title') || "Sıkça Sorulan Sorular | Eryilmaz Teknik"}
+        description={t('faq.subtitle') || "Beyaz eşya tamiri, kombi bakımı ve klima servisi hakkında tüm sorularınızın cevapları burada."}
+        keywords={[
+          'beyaz eşya tamiri sss',
+          'kombi bakımı sorular',
+          'klima servisi faq',
+          'tamir fiyatları',
+          'garanti şartları',
+          'acil servis nasıl',
+          'randevu alma',
+          'teknik servis soruları',
+          'bursa tamirci sss'
+        ]}
+        structuredData={structuredData}
+        ogType="website"
+      />
       {/* Page Header */}
       <section className="bg-gradient-primary text-white py-16">
         <div className="container-custom text-center">
