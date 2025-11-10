@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock, FaSearch, FaSpinner } from 'react-icons/fa'
 import { findFranchiseByZip, findNearestFranchise, getActiveFranchises } from '../data/franchises'
@@ -11,6 +11,17 @@ export default function ServiceFinder() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [detectingLocation, setDetectingLocation] = useState(false)
+  const [showSuccessModal, setShowSuccessModal] = useState(false)
+
+  // Check for success parameter in URL
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    if (urlParams.get('success') === 'true') {
+      setShowSuccessModal(true)
+      // Remove the success parameter from URL
+      window.history.replaceState({}, '', window.location.pathname)
+    }
+  }, [])
   
   const activeServices = getActiveFranchises()
 
@@ -97,6 +108,33 @@ export default function ServiceFinder() {
 
   return (
     <div>
+      {/* Success Modal */}
+      {showSuccessModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-2xl max-w-md w-full p-6 md:p-8 animate-fadeIn">
+            <div className="text-center">
+              <div className="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-secondary-800 mb-2">
+                {t('bookingForm.bookingReceived')}
+              </h3>
+              <p className="text-secondary-600 mb-6">
+                {t('bookingForm.thankYouMessage')}
+              </p>
+              <button
+                onClick={() => setShowSuccessModal(false)}
+                className="btn-primary w-full"
+              >
+                {t('common.close') || 'Close'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Page Header */}
       <section className="bg-gradient-primary text-white py-12 md:py-16">
         <div className="container-custom text-center">
@@ -176,7 +214,7 @@ export default function ServiceFinder() {
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 md:mb-6">
                 <div className="mb-3 sm:mb-0">
                   <h3 className="text-xl md:text-2xl font-bold text-primary-700 mb-2">
-                    {t('serviceFinder.foundFranchise')}
+                    {t('serviceFinder.serviceCenter')}
                   </h3>
                   <h4 className="text-lg md:text-xl font-semibold text-secondary-800">
                     {selectedService.name}
