@@ -1,11 +1,23 @@
 import { Link } from 'react-router-dom'
 import { FaClock, FaUser, FaArrowRight, FaRss } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
+import { useState } from 'react'
 import CallToAction from '../components/CallToAction'
-import { blogPosts } from '../data/blogPosts'
+import { blogPosts, getPostsByCategory } from '../data/blogPosts'
 
 function BlogCard({ post }) {
   const { t } = useTranslation()
+  
+  // Get category display name based on language
+  const getCategoryName = (category) => {
+    const categoryMap = {
+      'maintenance': { en: 'Maintenance Tips', tr: 'Bakım İpuçları' },
+      'how-to': { en: 'How-To Guides', tr: 'Nasıl Yapılır' },
+      'troubleshooting': { en: 'Troubleshooting', tr: 'Sorun Giderme' }
+    };
+    const lang = t('nav.home') === 'Home' ? 'en' : 'tr';
+    return categoryMap[category]?.[lang] || category;
+  };
   
   return (
     <article className="card group p-0 overflow-hidden">
@@ -29,7 +41,7 @@ function BlogCard({ post }) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
         <div className="absolute bottom-3 left-3 bg-primary-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
-          {post.category}
+          {getCategoryName(post.category)}
         </div>
       </div>
       
@@ -62,7 +74,15 @@ function BlogCard({ post }) {
 
 export default function Blog() {
   const { t } = useTranslation()
-  const categories = [...new Set(blogPosts.map(post => post.category))]
+  const [selectedCategory, setSelectedCategory] = useState('all')
+  const filteredPosts = getPostsByCategory(selectedCategory)
+  
+  const categories = [
+    { id: 'all', name: t('blog.allPosts') || 'Tüm Yazılar' },
+    { id: 'maintenance', name: t('blog.maintenance') || 'Bakım İpuçları' },
+    { id: 'how-to', name: t('blog.howTo') || 'Nasıl Yapılır' },
+    { id: 'troubleshooting', name: t('blog.troubleshooting') || 'Sorun Giderme' }
+  ]
 
   return (
     <div>
@@ -81,26 +101,34 @@ export default function Blog() {
       <section className="section-padding">
         <div className="container-custom">
           {/* Categories */}
-          <div className="flex flex-wrap gap-3 justify-center mb-12">
-            <button className="px-4 py-2 bg-primary-600 text-white rounded-lg font-semibold">
-              {t('blog.allPosts')}
-            </button>
+          <div className="flex flex-wrap gap-4 justify-center mb-12">
             {categories.map((category) => (
               <button
-                key={category}
-                className="px-4 py-2 bg-secondary-100 text-secondary-700 rounded-lg font-semibold hover:bg-secondary-200 transition-colors"
+                key={category.id}
+                onClick={() => setSelectedCategory(category.id)}
+                className={`px-8 py-3 rounded-lg font-semibold transition-all whitespace-nowrap ${
+                  selectedCategory === category.id
+                    ? 'bg-primary-600 text-white shadow-lg scale-105'
+                    : 'bg-secondary-100 text-secondary-700 hover:bg-secondary-200 hover:shadow-md'
+                }`}
               >
-                {category}
+                {category.name}
               </button>
             ))}
           </div>
 
           {/* Posts Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post) => (
+            {filteredPosts.map((post) => (
               <BlogCard key={post.id} post={post} />
             ))}
           </div>
+
+          {filteredPosts.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-secondary-600 text-lg">{t('blog.noPosts') || 'Bu kategoride yazı bulunamadı.'}</p>
+            </div>
+          )}
         </div>
       </section>
 

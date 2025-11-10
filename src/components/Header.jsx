@@ -158,22 +158,22 @@ export default function Header() {
                    // Check if submenu has nested items (categories) or simple list
                    item.submenu.some(subItem => subItem.items) ? (
                      // Multi-column layout for menus with categories (Residential, Commercial, Why Us, Resources)
-                     <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-[800px] bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 border border-secondary-200">
-                       <div className="py-4 px-8">
+                     <div className="absolute left-0 top-full mt-2 w-[600px] bg-white shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 border-t-4 border-primary-500">
+                       <div className="px-8 py-6">
                          <div className="flex gap-12 justify-start">
                            {item.submenu.map((subItem, idx) => (
                              <div key={idx}>
                                {subItem.items ? (
-                                 <div className="min-w-[200px]">
-                                   <div className="font-semibold text-primary-600 text-xs mb-2 uppercase">
+                                 <div className="min-w-[220px]">
+                                   <div className="font-bold text-primary-600 text-base mb-3 uppercase tracking-wide">
                                      {subItem.name}
                                    </div>
-                                   <div className="space-y-1">
+                                   <div className="space-y-1.5">
                                      {subItem.items.map((nestedItem) => (
                                        <Link
                                          key={nestedItem.path}
                                          to={nestedItem.path}
-                                         className="block text-xs text-secondary-700 hover:text-primary-600 transition-colors py-1 whitespace-nowrap"
+                                         className="block text-sm text-secondary-700 hover:text-primary-600 hover:translate-x-1 transition-all py-1.5 whitespace-nowrap"
                                        >
                                          {nestedItem.name}
                                        </Link>
@@ -181,10 +181,10 @@ export default function Header() {
                                    </div>
                                  </div>
                                ) : (
-                                 <div className="min-w-[180px]">
+                                 <div className="min-w-[220px]">
                                    <Link
                                      to={subItem.path}
-                                     className="block text-xs font-semibold text-primary-600 hover:text-primary-700 transition-colors whitespace-nowrap"
+                                     className="block text-sm font-semibold text-primary-600 hover:text-primary-700 transition-colors whitespace-nowrap"
                                    >
                                      {subItem.name}
                                    </Link>
@@ -196,15 +196,15 @@ export default function Header() {
                        </div>
                      </div>
                    ) : (
-                     // Single column layout for simple lists (About menu)
-                     <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-[240px] bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 border border-secondary-200">
-                       <div className="py-3 px-4">
-                         <div className="space-y-1">
+                     // Single column layout for simple lists (About menu) - SAME WIDTH AS MULTI-COLUMN
+                     <div className="absolute left-0 top-full mt-2 w-[600px] bg-white shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 border-t-4 border-primary-500">
+                       <div className="px-8 py-6">
+                         <div className="space-y-1.5">
                            {item.submenu.map((subItem, idx) => (
                              <Link
                                key={idx}
                                to={subItem.path}
-                               className="block text-xs text-secondary-700 hover:text-primary-600 hover:bg-primary-50 transition-colors py-2 px-3 rounded whitespace-nowrap"
+                               className="block text-sm text-secondary-700 hover:text-primary-600 hover:translate-x-1 transition-all py-1.5 whitespace-nowrap"
                              >
                                {subItem.name}
                              </Link>

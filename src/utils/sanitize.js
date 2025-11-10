@@ -10,9 +10,9 @@
  */
 export function sanitizeInput(input) {
   if (typeof input !== 'string') return '';
-  
+  // NOTE: We intentionally do NOT call .trim() here so users can type spaces
+  // while editing (trimming should be applied on submit/validation if needed).
   return input
-    .trim()
     .replace(/[<>]/g, '') // Remove < and > to prevent HTML injection
     .replace(/javascript:/gi, '') // Remove javascript: protocol
     .replace(/on\w+=/gi, '') // Remove inline event handlers
@@ -59,8 +59,8 @@ export function validateName(name) {
 export function sanitizeMessage(message) {
   if (typeof message !== 'string') return '';
   
+  // NOTE: We do NOT call .trim() here to allow spaces while typing
   return message
-    .trim()
     .replace(/<script[^>]*>.*?<\/script>/gi, '') // Remove script tags
     .replace(/<iframe[^>]*>.*?<\/iframe>/gi, '') // Remove iframes
     .replace(/javascript:/gi, '') // Remove javascript: protocol

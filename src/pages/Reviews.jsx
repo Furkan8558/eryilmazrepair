@@ -41,20 +41,6 @@ export default function Reviews() {
         </div>
       </section>
 
-      {/* Leave a Review CTA */}
-      <section className="bg-secondary-50 py-16">
-        <div className="container-custom text-center">
-          <FaQuoteLeft className="text-5xl text-primary-600 mx-auto mb-6" />
-          <h2 className="mb-4">{t('reviews.shareExperience')}</h2>
-          <p className="text-lg text-secondary-700 mb-8 max-w-2xl mx-auto">
-            {t('reviews.shareExperienceDescription')}
-          </p>
-          <button className="btn-primary">
-            {t('reviews.leaveReview')}
-          </button>
-        </div>
-      </section>
-
       <CallToAction />
     </div>
   )

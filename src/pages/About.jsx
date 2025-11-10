@@ -31,9 +31,11 @@ export default function About() {
   ]
 
   const brandsWeService = [
-    'Samsung', 'LG', 'Whirlpool', 'GE', 'Frigidaire', 'Maytag', 
-    'KitchenAid', 'Bosch', 'Electrolux', 'Kenmore', 'Amana', 
-    'Hotpoint', 'Viking', 'Sub-Zero', 'Thermador', 'Wolf'
+    'Arçelik', 'Beko', 'Vestel', 'Bosch', 'Siemens', 
+    'Samsung', 'LG', 'Profilo', 'Altus', 'Grundig',
+    'Whirlpool', 'Electrolux', 'Vaillant', 'Baymak', 'Eca',
+    'Demirdöküm', 'Protherm', 'Buderus', 'Airfel', 'Ferroli',
+    'Daikin', 'Mitsubishi', 'Alarko', 'Regal'
   ]
 
   return (

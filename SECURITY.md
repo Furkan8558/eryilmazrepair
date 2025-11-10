@@ -43,15 +43,28 @@ Implemented comprehensive security headers on both Vercel and Netlify:
 #### ✅ Content-Security-Policy (CSP)
 ```
 default-src 'self';
-script-src 'self' 'unsafe-inline' 'unsafe-eval';
+script-src 'self';
 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
 font-src 'self' https://fonts.gstatic.com;
-img-src 'self' data: https:;
+img-src 'self' https:;
 connect-src 'self' https://formsubmit.co;
+object-src 'none';
+base-uri 'self';
+form-action 'self' https://formsubmit.co;
 frame-ancestors 'none';
+upgrade-insecure-requests;
 ```
 
-**Note**: `unsafe-inline` and `unsafe-eval` are required for React/Vite in production. Consider implementing nonce-based CSP for even better security in future.
+**Security Improvements:**
+- ✅ Removed `'unsafe-inline'` from script-src
+- ✅ Removed `'unsafe-eval'` from script-src
+- ✅ Removed `data:` from img-src
+- ✅ Added `object-src 'none'` to prevent Flash/Java applets
+- ✅ Added `base-uri 'self'` to prevent base tag injection
+- ✅ Added `form-action` to restrict form submissions
+- ✅ Added `upgrade-insecure-requests` for HTTPS enforcement
+
+**Note**: `'unsafe-inline'` is kept only for style-src due to Tailwind CSS inline styles. This is acceptable as CSS injection is less dangerous than script injection.
 
 ### 3. **Input Validation & Sanitization**
 Created comprehensive security utility (`src/utils/sanitize.js`) with:

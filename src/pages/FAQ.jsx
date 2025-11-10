@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { FaChevronDown, FaChevronUp, FaQuestionCircle } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
 import CallToAction from '../components/CallToAction'
+import getCompanyInfo from '../data/companyInfo'
 import { getFaqCategories } from '../data/faq'
 
 function FAQItem({ question, answer }) {
@@ -31,6 +32,7 @@ function FAQItem({ question, answer }) {
 
 export default function FAQ() {
   const { t } = useTranslation()
+  const companyInfo = getCompanyInfo()
   const faqCategories = getFaqCategories()
 
   return (
@@ -77,7 +79,7 @@ export default function FAQ() {
             <a href="/contact" className="btn-primary">
               {t('faq.contactUs')}
             </a>
-            <a href="tel:(555) 123-4567" className="btn-outline">
+            <a href={`tel:${companyInfo.phone}`} className="btn-outline">
               {t('faq.callUs')}
             </a>
           </div>

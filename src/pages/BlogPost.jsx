@@ -31,13 +31,15 @@ export default function BlogPost() {
       {/* Article Header */}
       <section className="bg-gradient-primary text-white py-16">
         <div className="container-custom max-w-4xl">
-          <Link to="/blog" className="inline-flex items-center text-white mb-6 hover:text-gray-200 transition-colors">
-            <FaArrowLeft className="mr-2" />
-            {t('blogPost.backToBlog')}
+          <Link to="/blog" className="inline-flex items-center text-white mb-8 hover:text-gray-200 transition-colors">
+            <FaArrowLeft className="mr-3" />
+            <span className="text-lg">{t('blogPost.backToBlog')}</span>
           </Link>
           
-          <div className="inline-block bg-white bg-opacity-20 text-white text-sm font-semibold px-4 py-2 rounded-full mb-4">
-            {post.category}
+          <div className="mb-6">
+            <span className="inline-block bg-white bg-opacity-20 text-white text-sm font-semibold px-4 py-2 rounded-full">
+              {post.category}
+            </span>
           </div>
           
           <h1 className="mb-6">{post.title}</h1>
@@ -58,28 +60,26 @@ export default function BlogPost() {
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2">
-              <div className="bg-secondary-200 h-96 rounded-lg mb-8 flex items-center justify-center">
-                <span className="text-secondary-400 text-xl">{t('blogPost.featuredImage')}</span>
+              <div className="relative h-96 rounded-lg mb-8 overflow-hidden">
+                <img 
+                  src={post.image} 
+                  alt={post.title}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    const parentElement = e.target.parentElement;
+                    parentElement.classList.add('bg-secondary-200', 'flex', 'items-center', 'justify-center');
+                    const span = document.createElement('span');
+                    span.className = 'text-secondary-400 text-xl';
+                    span.textContent = t('blogPost.featuredImage');
+                    parentElement.appendChild(span);
+                  }}
+                />
               </div>
 
-              <div className="prose prose-lg max-w-none">
-                <p className="text-xl text-secondary-700 mb-6">{post.excerpt}</p>
-                <p className="text-secondary-700 mb-4">{post.content}</p>
-                
-                {/* Add more content paragraphs here */}
-                <p className="text-secondary-700 mb-4">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor 
-                  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-
-                <h2 className="mt-8 mb-4">{t('blogPost.keyTakeaways')}</h2>
-                <ul className="list-disc pl-6 mb-6 text-secondary-700">
-                  <li>{t('blogPost.takeaway1')}</li>
-                  <li>{t('blogPost.takeaway2')}</li>
-                  <li>{t('blogPost.takeaway3')}</li>
-                  <li>{t('blogPost.takeaway4')}</li>
-                </ul>
+              <div className="prose prose-lg max-w-none blog-content">
+                <div className="text-xl text-secondary-700 mb-6 font-medium">{post.excerpt}</div>
+                <div dangerouslySetInnerHTML={{ __html: post.content }} />
               </div>
 
               {/* Tags */}

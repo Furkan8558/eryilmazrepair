@@ -378,7 +378,7 @@ export const getServices = () => {
       icon: "FaFire",
       shortDescription: t('servicesData.combiBoiler.shortDescription'),
       description: t('servicesData.combiBoiler.description'),
-      image: "/images/combi-boiler-repair.jpg",
+      image: "/images/boiler-repair.jpg",
       commonIssues: [
         t('servicesData.combiBoiler.issue1'),
         t('servicesData.combiBoiler.issue2'),
@@ -428,7 +428,7 @@ export const getServices = () => {
       icon: "FaWind",
       shortDescription: t('servicesData.airConditioner.shortDescription'),
       description: t('servicesData.airConditioner.description'),
-      image: "/images/air-conditioner-repair.jpg",
+      image: "/images/airconditioner-repair.jpg",
       commonIssues: [
         t('servicesData.airConditioner.issue1'),
         t('servicesData.airConditioner.issue2'),

@@ -96,21 +96,88 @@ This document outlines the comprehensive SEO strategy implemented for Eryilmaz T
 ## Next Steps for Maximum SEO Impact
 
 ### Immediate Actions (Week 1-2)
-1. **Google Search Console Setup**
-   - Verify ownership using the google-site-verification.html file
-   - Submit sitemap.xml
-   - Monitor indexing and search performance
+1. **Google Search Console Setup** (Step-by-Step)
 
-2. **Google My Business**
-   - Create/claim your GMB listing
-   - Add accurate business information
-   - Upload high-quality photos
-   - Collect and respond to customer reviews
-   - Post regular updates
+   **Step 1: Add Your Property**
+   - Go to https://search.google.com/search-console
+   - Click "Add property" (+ button)
+   - Enter your website: `https://eryilmazteknik.com.tr`
+   - Click Continue
 
-3. **Bing Webmaster Tools**
-   - Verify ownership
-   - Submit sitemap
+   **Step 2: Verify Ownership (Choose ONE method)**
+   
+   **Option A: HTML File Upload (Easiest)**
+   - Choose "HTML file" verification method
+   - Download the verification file
+   - Upload it to your `public` folder (already done: `/public/google-site-verification.html`)
+   - Return to Search Console and click "Verify"
+   
+   **Option B: DNS Record (Recommended if you have DNS access)**
+   - Choose "DNS record" verification method
+   - Record type: TXT (recommended)
+   - Copy the TXT record value shown (e.g., `google-site-verification=xxxxxxxxxxxxx`)
+   - Go to your domain provider (GoDaddy, Namecheap, etc.)
+   - Add this TXT record to your DNS settings
+   - Return to Search Console and click "Verify"
+   - DNS changes may take 24-48 hours to apply
+
+   **Step 3: Submit Sitemap**
+   - In Search Console, go to "Sitemaps" (left menu)
+   - Paste this URL: `https://eryilmazteknik.com.tr/sitemap.xml`
+   - Click "Submit"
+   - Wait 1-2 days for initial indexing
+
+   **Step 4: Monitor Performance**
+   - Check "Coverage" report weekly for indexing errors
+   - View "Performance" tab to see which keywords appear in search
+   - Fix any crawl errors if they appear
+
+2. **Google My Business Setup** (Step-by-Step)
+
+   **Step 1: Create/Claim Your Business**
+   - Go to https://www.google.com/business
+   - Click "Manage now" or "Start now"
+   - Search for "Eryilmaz Teknik Bursa"
+   - If it exists, click "Claim this business"
+   - If not, click "Create a business" and enter details
+
+   **Step 2: Add Business Information**
+   - Business Name: `Eryilmaz Teknik`
+   - Category: Select "Appliance Repair Service"
+   - Phone: Your main phone number
+   - Address: Your business address in Bursa
+   - Website: `https://eryilmazteknik.com.tr`
+   - Hours: Set to 24/7 (since you offer 24/7 service)
+
+   **Step 3: Upload Photos & Description**
+   - Add 5-10 high-quality photos of your work, team, and shop
+   - Write compelling business description emphasizing local keywords
+   - Add service area: Select Bursa and surrounding districts
+
+   **Step 4: Verify Your Business**
+   - Google will send a postcard to your address (7-10 days)
+   - Enter the verification code when received
+   - Business will then appear on Google Maps
+
+3. **Bing Webmaster Tools Setup** (Step-by-Step)
+
+   **Step 1: Add Your Site**
+   - Go to https://www.bing.com/webmaster
+   - Click "Add a property"
+   - Enter: `https://eryilmazteknik.com.tr`
+   - Click "Add"
+
+   **Step 2: Verify Ownership**
+   - Choose "XML file" or "HTML meta tag" method
+   - Download or copy the verification code
+   - For XML file: Upload to your public folder
+   - For meta tag: You can verify automatically if domain is in Microsoft account
+   - Click "Verify"
+
+   **Step 3: Submit Sitemap**
+   - Go to "Sitemaps" section
+   - Add: `https://eryilmazteknik.com.tr/sitemap.xml`
+   - Click "Submit"
 
 ### Short-term Actions (Month 1)
 4. **Content Creation**
