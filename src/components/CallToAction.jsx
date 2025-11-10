@@ -15,15 +15,18 @@ export default function CallToAction() {
           {t('cta.description')}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link to="/franchise-finder" className="btn-primary bg-white text-primary-600 hover:bg-gray-100">
+          <Link to="/service-finder" className="btn-primary bg-white text-primary-600 hover:bg-gray-100">
             {t('common.scheduleService')}
           </Link>
           <a
             href={`tel:${companyInfo.phone}`}
-            className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-base inline-flex items-center justify-center"
+            className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-base inline-flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2"
           >
-            <FaPhone className="mr-2" />
-            {t('common.callNow')} {companyInfo.phone}
+            <span className="inline-flex items-center gap-2">
+              <FaPhone />
+              {t('common.callNow')}
+            </span>
+            <span className="font-bold">{companyInfo.phone}</span>
           </a>
         </div>
       </div>

@@ -133,17 +133,20 @@ export default function ServiceDetail() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Link 
-                    to="/franchise-finder" 
+                    to="/service-finder" 
                     className="btn-primary inline-flex items-center justify-center text-sm"
                   >
                     {t('common.scheduleService')}
                   </Link>
                   <a 
                     href={`tel:${companyInfo.phone}`} 
-                    className="bg-white text-primary-600 hover:bg-gray-50 border-2 border-primary-600 font-semibold py-3 px-6 rounded-lg transition-all duration-300 inline-flex items-center justify-center text-sm"
+                    className="bg-white text-primary-600 hover:bg-gray-50 border-2 border-primary-600 font-semibold py-3 px-4 md:px-6 rounded-lg transition-all duration-300 inline-flex flex-col sm:flex-row items-center justify-center text-sm gap-1 sm:gap-2"
                   >
-                    <FaPhone className="mr-2" />
-                    {t('common.callNow')} {companyInfo.phone}
+                    <span className="inline-flex items-center gap-2">
+                      <FaPhone />
+                      {t('common.callNow')}
+                    </span>
+                    <span className="font-bold text-xs sm:text-sm">{companyInfo.phone}</span>
                   </a>
                 </div>
               </div>

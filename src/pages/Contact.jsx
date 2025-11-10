@@ -206,10 +206,14 @@ export default function Contact() {
       {/* Emergency Banner */}
       <section className="bg-primary-600 text-white py-12">
         <div className="container-custom text-center">
-          <h3 className="text-2xl font-bold mb-4">{t('contact.needEmergency')}</h3>
-          <p className="text-lg mb-6">{t('contact.emergency247')}</p>
-          <a href={`tel:${companyInfo.emergencyPhone}`} className="btn-primary bg-white text-primary-600 hover:bg-gray-100">
-            {t('contact.callEmergency')}: {companyInfo.emergencyPhone}
+          <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 px-4">{t('contact.needEmergency')}</h3>
+          <p className="text-base md:text-lg mb-4 md:mb-6 px-4">{t('contact.emergency247')}</p>
+          <a 
+            href={`tel:${companyInfo.emergencyPhone}`} 
+            className="btn-primary bg-white text-primary-600 hover:bg-gray-100 inline-flex flex-col sm:flex-row items-center justify-center gap-2 px-4 md:px-6"
+          >
+            <span className="font-semibold">{t('contact.callEmergency')}:</span>
+            <span className="font-bold text-lg">{companyInfo.emergencyPhone}</span>
           </a>
         </div>
       </section>

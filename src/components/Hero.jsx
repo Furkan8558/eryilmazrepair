@@ -67,7 +67,7 @@ export default function Hero() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link to="/franchise-finder" className="btn-primary bg-white text-primary-600 hover:bg-gray-100 text-base py-3 px-6 font-bold inline-flex items-center justify-center">
+            <Link to="/service-finder" className="btn-primary bg-white text-primary-600 hover:bg-gray-100 text-base py-3 px-6 font-bold inline-flex items-center justify-center">
               {t('common.scheduleService')}
             </Link>
             <a
